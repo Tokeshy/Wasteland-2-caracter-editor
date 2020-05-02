@@ -2,7 +2,7 @@ program Project1;
 
 uses
   Vcl.Forms,
-  Unit1 in 'Unit1.pas' {Form1},
+  Unit1 in 'Unit1.pas' {WL2CED},
   Vcl.Themes,
   Vcl.Styles;
 
@@ -12,6 +12,6 @@ begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
   TStyleManager.TrySetStyle('Auric');
-  Application.CreateForm(TForm1, Form1);
+  Application.CreateForm(TWL2CED, WL2CED);
   Application.Run;
 end.

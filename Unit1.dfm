@@ -1,4 +1,4 @@
-object Form1: TForm1
+object WL2CED: TWL2CED
   Left = 0
   Top = 0
   Caption = 'Wastelands'#160'2 character editor Rev'#160'2.0'

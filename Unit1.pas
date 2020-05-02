@@ -9,7 +9,7 @@ uses
   Xml.XMLDoc, Vcl.DBCtrls;
 
 type
-  TForm1 = class(TForm)
+  TWL2CED = class(TForm)
     SObtn: TButton;
     CaracterID: TEdit;
     CrLbtn: TButton;
@@ -142,7 +142,6 @@ type
     procedure Followus1Click(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
 
-
   private
     { Private declarations }
   public
@@ -151,7 +150,7 @@ type
 
 var
   S, sa, FileName, sf : AnsiString;
-  Form1: TForm1;
+  WL2CED: TWL2CED;
   i, OFNL, a: longint;
   sf1, OldFileName, NewFileName, sname, cname,cn : string;
   savefile : textFile;
@@ -168,22 +167,30 @@ implementation
   - не забыть про замену ссылок в самом приложении
   + Добавлена кнопка подписки на YouTube}
 
-procedure TForm1.Aboutproject1Click(Sender: TObject);
+procedure TerminateOrRename;
+begin
+  if (WL2CED.SGid.text <> 'выбранный SaveGame') and (WL2CED.SGid.text <> 'Selected SaveGame')
+    then RenameFile(NewFileName, OldFileName);
+  application.Terminate;
+end;
+
+procedure TWL2CED.Aboutproject1Click(Sender: TObject);
 begin
   ShellExecute(0, 'open', 'https://sonkjeferson.wixsite.com/wastelandschared2', '', '', SW_SHOWNORMAL); //актуализированно
 end;
 
 
-procedure TForm1.EndBtnClick(Sender: TObject);
+procedure TWL2CED.EndBtnClick(Sender: TObject);
 begin
-  if (SGid.text <> 'выбранный SaveGame') and (SGid.text <> 'Selected SaveGame') then RenameFile(NewFileName, OldFileName);
-  application.Terminate;
+  {if (SGid.text <> 'выбранный SaveGame') and (SGid.text <> 'Selected SaveGame') then RenameFile(NewFileName, OldFileName);
+  application.Terminate; }
+  TerminateOrRename
 end;
 
 /////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////
 
-procedure TForm1.N4Click(Sender: TObject);
+procedure TWL2CED.N4Click(Sender: TObject);
 begin
   CaracSavBtn.Caption:='Сохранить персонаж';
   CaracterBox.Text:='Выбрать персонаж';
@@ -263,7 +270,7 @@ begin
   SSnBtn.Caption:='Сканировать Save';
 end;
 
-procedure TForm1.English1Click(Sender: TObject);
+procedure TWL2CED.English1Click(Sender: TObject);
 begin
     CaracSavBtn.Caption:='Save unit';
   CaracterBox.Text:='Select unit';
@@ -346,54 +353,57 @@ end;
 /////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////
 
-procedure TForm1.Followus1Click(Sender: TObject);
+procedure TWL2CED.Followus1Click(Sender: TObject);
 begin
   ShellExecute(0, 'open', 'https://www.youtube.com/channel/UCyniVlUauJ1iWYyo-vHfGlA', '', '', SW_SHOWNORMAL); //актуализированно
 end;
 
-procedure TForm1.FormClose(Sender: TObject; var Action: TCloseAction);
+procedure TWL2CED.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
-  if (SGid.text <> 'выбранный SaveGame') and (SGid.text <> 'Selected SaveGame') then  RenameFile(NewFileName, OldFileName);
-  application.Terminate;
+  {if (SGid.text <> 'выбранный SaveGame') and (SGid.text <> 'Selected SaveGame') then  RenameFile(NewFileName, OldFileName);
+  application.Terminate;}
+  TerminateOrRename
 end;
 
-procedure TForm1.FormCreate(Sender: TObject);
+procedure TWL2CED.FormCreate(Sender: TObject);
 begin
   memo3.Clear;
 end;
 
-procedure TForm1.N1Click(Sender: TObject);
+procedure TWL2CED.N1Click(Sender: TObject);
 begin
   ShellExecute(0, 'open', 'https://sonkjeferson.wixsite.com/donation', '', '', SW_SHOWNORMAL); //актуализированно
 end;
 
-procedure TForm1.N2Click(Sender: TObject);
+procedure TWL2CED.N2Click(Sender: TObject);
 begin
-if EndBtn.caption='Выход' then ShellExecute(0, 'open', 'https://youtu.be/EORiIPeyx2Y', '', '', SW_SHOWNORMAL);
-if EndBtn.caption='Exit' then ShellExecute(0, 'open', 'https://youtu.be/LeS7QBcF6zI', '', '', SW_SHOWNORMAL);
+  if EndBtn.caption='Выход'
+    then ShellExecute(0, 'open', 'https://youtu.be/EORiIPeyx2Y', '', '', SW_SHOWNORMAL);
+  if EndBtn.caption='Exit'
+    then ShellExecute(0, 'open', 'https://youtu.be/LeS7QBcF6zI', '', '', SW_SHOWNORMAL);
 end;
 
-procedure TForm1.SaveBtnClick(Sender: TObject);
- var
-       f:textFile; // Описание переменной.
+procedure TWL2CED.SaveBtnClick(Sender: TObject);
+var
+  f:textFile; // Описание переменной.
 begin
-       AssignFile(f, NewFileName);  // Связь переменной с файлом.
-       Rewrite(f);                         // Создания нового файла.
-       write(f, sf1);                    // Запись строки в файл.
-       CloseFile(f);
-  	   RenameFile(NewFileName, OldFileName);
+  AssignFile(f, NewFileName);  // Связь переменной с файлом.
+  Rewrite(f);                  // Создания нового файла.
+  write(f, sf1);               // Запись строки в файл.
+  CloseFile(f);
+  RenameFile(NewFileName, OldFileName);
 end;
 
-procedure TForm1.SObtnClick(Sender: TObject);
+procedure TWL2CED.SObtnClick(Sender: TObject);
 begin
   openDialog1.InitialDir := 'C:\';
   openDialog1.Filter :='Wasteland2 Save Games files|*.xml';
-  if OpenDialog1.Execute then SGid.Text:=(ExtractFileName(OpenDialog1.FileName));
+  if OpenDialog1.Execute
+    then SGid.Text:=(ExtractFileName(OpenDialog1.FileName));
   CaracterBox.Clear;
 end;
 
-procedure TForm1.SSnBtnClick(Sender: TObject);
-
+procedure TWL2CED.SSnBtnClick(Sender: TObject);
 const
   Fn = 'utf8.txt';
 var
@@ -402,13 +412,10 @@ var
   a1, a2, fcd :longint;
   i, cc, j: integer;
   S1, cn : string;
-
 begin
-
   CrLbtn.Enabled:=true;
   CaracterBox.Text:= 'Выбрать персонаж';
-
-  // меняем тип файла на TXT
+{FileType to TXT}
   OldFileName:=OpenDialog1.FileName;
   OFNL:=OldFileName.length;
   NewFileName:=OldFileName;
@@ -418,63 +425,56 @@ begin
   FileName :=NewFileName;
   AssignFile(F, FileName);
   Reset(F, 1);
-
-    // загружаем весь текст в переменную SA
+{Loading into SA Var}
   SetLength(SSrc, FileSize(F));
   BlockRead(F, Pointer(SSrc)^, Length(SSrc));
   CloseFile(F);
   S := Utf8ToAnsi(SSrc);
   sa := S;
-
-     // считаем кол-во персов
+{Counting Caracters}
   cc:=0;
   s1:='</name><displayName>&lt;@&gt;';
- for i:=0 to Length(sa)-Length(s1) do begin
-  if copy(sa,i,Length(s1))=s1 then
-   begin
-    cc:=cc+1;
-    // выдираем имена персов
-    cn := copy(sa,i,Length(s1)+10);
-    delete (cn, 1, Length(s1));
-    delete (cn, (ansipos('{',cn)), Length(cn));
-    //закидываем найденных персов в ComboBox
-    CaracterBox.Items.Add(cn);
-   end;
- end;
+  for i:=0 to Length(sa)-Length(s1) do
+  begin
+    if copy(sa,i,Length(s1))=s1 then
+    begin
+      cc:=cc+1;
+    {Getting Caracters Names}
+      cn := copy(sa,i,Length(s1)+10);
+      delete (cn, 1, Length(s1));
+      delete (cn, (ansipos('{',cn)), Length(cn));
+    {Feeling ComboBox}
+      CaracterBox.Items.Add(cn);
+    end;
+  end;
 
  CaracterID.Text := 'Найдено юнитов - ' +  inttostr(cc);
-
-
- // Проверка работоспособности
 end;
 
-procedure TForm1.Suppo1Click(Sender: TObject);
+procedure TWL2CED.Suppo1Click(Sender: TObject);
 begin
-  //страница "Спасибо"
-    ShellExecute(0, 'open', 'https://sonkjeferson.wixsite.com/donation', '', '', SW_SHOWNORMAL); //актуализированно
+{ProjectSupport Page}
+  ShellExecute(0, 'open', 'https://sonkjeferson.wixsite.com/donation', '', '', SW_SHOWNORMAL);
 end;
 
-procedure TForm1.CaracSavBtnClick(Sender: TObject);
+procedure TWL2CED.CaracSavBtnClick(Sender: TObject);
 var
   sf2, sfl: string;
   w1, w2, w3, w4, w5, w6, w7, w8, w9, w10, r1, r2, r3, r4, r5, r6, r7, r8, r9,
   r10, r11, r12, t1, t2, t3, t4, t5, t6, t7, t8, t9 :integer;
 begin
-
-//сохраняем префикс1 в SF1
+{Prefix into sf1}
   sf1:=S;
   delete (sf1, (ansipos(sname,sf1)), (length(sf1)));
-//сохраняем префикс2 в sf2
+{Prefix2 into sf2}
   sf2:=cn;
   delete (sf2, (ansipos('<KeyValuePairOfStringInt32><Key>awareness',sf2)), Length(sf2));
-//  delete (sf2, 1, 1);
-
-//сохраняем постфикс в SFL
+{Postfix into sfl}
   sfl:=S;
   delete (sfl, 1, (length(sf1)));
   delete (sfl, 1, (ansipos('</availableTraitPoints>',sfl)));
 
-//перевод навыков в формат Wasteland
+{skils into Wasteland format}
   if (wstb1.Position)=10 then w1:=44;
   if (wstb1.Position)=9 then w1:=36;
   if (wstb1.Position)=8 then w1:=30;
@@ -585,7 +585,7 @@ begin
   if (wstb10.Position)=2 then w10:=4;
   if (wstb10.Position)=1 then w10:=2;
 
-//////////////////////////////////////////////////////////
+{############################################}
 
   if (rstb1.Position)=10 then r1:=44;
   if (rstb1.Position)=9 then r1:=36;
@@ -719,7 +719,8 @@ begin
   if (rstb12.Position)=2 then r12:=4;
   if (rstb12.Position)=1 then r12:=2;
 
-//////////////////////////////////////////////////////////
+{############################################}
+
   if (tstb1.Position)=10 then t1:=44;
   if (tstb1.Position)=9 then t1:=36;
   if (tstb1.Position)=8 then t1:=30;
@@ -819,11 +820,9 @@ begin
   if (tstb9.Position)=2 then t9:=4;
   if (tstb9.Position)=1 then t9:=2;
 
-//сборка окончательного файла
-
+{compiling outputFile}
   sf1:=sf1+'<'+sf2+'<KeyValuePairOfStringInt32><Key>awareness</Key><Value>'+(inttostr(ASTB3.Position));
   delete (sf1, 1, 1 );
-
   sf1:=sf1+'</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>charisma</Key><Value>'+(inttostr(ASTB7.Position));
   sf1:=sf1+'</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>coordination</Key><Value>'+(inttostr(ASTB1.Position));
   sf1:=sf1+'</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>intelligence</Key><Value>'+(inttostr(ASTB6.Position));
@@ -862,88 +861,74 @@ begin
   sf1:=sf1+'</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>toasterRepair</Key><Value>'+(inttostr(t5));
   sf1:=sf1+'</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>weaponSmith</Key><Value>'+(inttostr(r11));
   sf1:=sf1+'</Value></KeyValuePairOfStringInt32></skillXps2><hasCommittedPoints>false</hasCommittedPoints><availableAttributePoints>0</availableAttributePoints><availableSkillPoints>54</availableSkillPoints><availableTraitPoints>0<';
-
-   //последняя строка формирования выходного txt
-
+{The last line of output TXT}
   sf1:=sf1+sfl;
-
 end;
 
 
 
-procedure TForm1.CrLbtnClick(Sender: TObject);
+procedure TWL2CED.CrLbtnClick(Sender: TObject);
 var
- cn1 : string;
-
+  cn1 : string;
 begin
-
   CaracSavBtn.Enabled:=true;
   SaveBtn.Enabled:=true;
-
-  //считываем имя выбранного персонажа в переменную cname
+{read caracter's name into cname}
   cname:= caracterbox.Items.Strings[caracterbox.ItemIndex];
   CurUnitGroup.Caption := 'Загружены данные ' + cname;
-  //сканируем конкретно наш персонаж
-
+{scaning caracter}
   cn:=S;
   sname:='</name><displayName>&lt;@&gt;'+cname;
-  //удаляем "начало" файла (до описания перса)
+{clearing file (before caracter description)}
   delete (cn, 1, (ansipos(sname,cn)));
-  //удаляем "лишнее" продолжение (после описания текущего перса)
+{clering postfix (after caracter description)}
   delete (cn, (ansipos('</availableSkillPoints><availableTraitPoints>',cn)), Length(cn));
-
-  // теперь переменная cn содержит все данные о навыках и инвентаре выбранного перса
-
-
- //загрузка исходных значений навыков из SaveGame
- //общие данные
-  //пол
-    cn1:=cn;
-    delete (cn1, 1, (ansipos('{',cn1)-1));
-    delete (cn1, (ansipos('}',cn1)), Length(cn1));
-    delete (cn1, 1, (Length('{')));
-    edit6.Text:=cn1;
-
-  // возраст
-    cn1:=cn;
-    delete (cn1, 1, (ansipos('<age>',cn1)-1));
-    delete (cn1, (ansipos('</age>',cn1)), Length(cn1));
-    delete (cn1, 1, 5);
-    edit7.Text:=cn1;
-
- // уровень
-    cn1:=cn;
-    delete (cn1, 1, (ansipos('<level>',cn1)-1));
-    delete (cn1, (ansipos('</level>',cn1)), Length(cn1));
-    delete (cn1, 1, 7);
-    edit8.Text:=cn1;
-
- // Текущие HP
-    cn1:=cn;
-    delete (cn1, 1, (ansipos('<curHp>',cn1)-1));
-    delete (cn1, (ansipos('</curHp>',cn1)), Length(cn1));
-    delete (cn1, 1, 7);
-    edit9.Text:=cn1;
-
- // максимальные HP
-    cn1:=cn;
-    delete (cn1, 1, (ansipos('<maxHp>',cn1)-1));
-    delete (cn1, (ansipos('</maxHp>',cn1)), Length(cn1));
-    delete (cn1, 1, 7);
-    edit10.Text:=cn1;
-
- // свободные Skill'ы
-    cn1:=cn;
-    delete (cn1, 1, (ansipos('<availableSkillPoints>',cn1)-1));
-    delete (cn1, (ansipos('</availableSkillPoints>',cn1)), Length(cn1));
-    delete (cn1, 1, 22);
-    edit11.Text:=cn1;
-
- // Биография
-    cn1:=cn;
-    delete (cn1, 1, (ansipos('<biography>&lt;@&gt;',cn1)-1));
-  //проверка наличия биографии
-    if ansipos('<biography>&lt;@&gt;',cn1)=0 then memo3.Text:='Биография не заполнена' else
+{now cn include all data about skills and inventory of selected caracter}
+{reading values from savegame}
+{general}
+{Gender}
+  cn1:=cn;
+  delete (cn1, 1, (ansipos('{',cn1)-1));
+  delete (cn1, (ansipos('}',cn1)), Length(cn1));
+  delete (cn1, 1, (Length('{')));
+  edit6.Text:=cn1;
+{age}
+  cn1:=cn;
+  delete (cn1, 1, (ansipos('<age>',cn1)-1));
+  delete (cn1, (ansipos('</age>',cn1)), Length(cn1));
+  delete (cn1, 1, 5);
+  edit7.Text:=cn1;
+{lvl}
+  cn1:=cn;
+  delete (cn1, 1, (ansipos('<level>',cn1)-1));
+  delete (cn1, (ansipos('</level>',cn1)), Length(cn1));
+  delete (cn1, 1, 7);
+  edit8.Text:=cn1;
+{actual HP}
+  cn1:=cn;
+  delete (cn1, 1, (ansipos('<curHp>',cn1)-1));
+  delete (cn1, (ansipos('</curHp>',cn1)), Length(cn1));
+  delete (cn1, 1, 7);
+  edit9.Text:=cn1;
+{max HP}
+  cn1:=cn;
+  delete (cn1, 1, (ansipos('<maxHp>',cn1)-1));
+  delete (cn1, (ansipos('</maxHp>',cn1)), Length(cn1));
+  delete (cn1, 1, 7);
+  edit10.Text:=cn1;
+{Free SkillPoints}
+  cn1:=cn;
+  delete (cn1, 1, (ansipos('<availableSkillPoints>',cn1)-1));
+  delete (cn1, (ansipos('</availableSkillPoints>',cn1)), Length(cn1));
+  delete (cn1, 1, 22);
+  edit11.Text:=cn1;
+{Biografy}
+  cn1:=cn;
+  delete (cn1, 1, (ansipos('<biography>&lt;@&gt;',cn1)-1));
+  {check if biografy exists}
+  if ansipos('<biography>&lt;@&gt;',cn1)=0
+    then memo3.Text:='Биография не заполнена'
+    else
     begin
       delete (cn1, (ansipos('</biography>',cn1)), Length(cn1));
       delete (cn1, 1, Length('<biography>&lt;@&gt;'));
@@ -1724,7 +1709,7 @@ begin
 end;
 
 
-procedure TForm1.WSTB1Change(Sender: TObject);
+procedure TWL2CED.WSTB1Change(Sender: TObject);
 begin
   // Работа с TrackBar
   //'оружейные'  навыки
