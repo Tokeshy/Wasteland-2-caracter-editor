@@ -159,18 +159,18 @@ implementation
 
 {$R *.dfm}
 
-{At version 2.0 добавлена возможность смены языка интерфейса
-  - перезалить видео на Youtube, даже 2 - на русском и английском
-  + сделать сайт проекта, с мультиязыковой поддержкой (RU / ENG)
-  + новый сайт с возможностью выбора языка //переход на веб.страницу в соотв. с выбранным в приложении языком
-  + сделать страницы Donate в том числе в крипте .. Гуглосайты?
-  - не забыть про замену ссылок в самом приложении
-  + Добавлена кнопка подписки на YouTube}
+{At version 2.0 РґРѕР±Р°РІР»РµРЅР° РІРѕР·РјРѕР¶РЅРѕСЃС‚СЊ СЃРјРµРЅС‹ СЏР·С‹РєР° РёРЅС‚РµСЂС„РµР№СЃР°
+  - РїРµСЂРµР·Р°Р»РёС‚СЊ РІРёРґРµРѕ РЅР° Youtube, РґР°Р¶Рµ 2 - РЅР° СЂСѓСЃСЃРєРѕРј Рё Р°РЅРіР»РёР№СЃРєРѕРј
+  + СЃРґРµР»Р°С‚СЊ СЃР°Р№С‚ РїСЂРѕРµРєС‚Р°, СЃ РјСѓР»СЊС‚РёСЏР·С‹РєРѕРІРѕР№ РїРѕРґРґРµСЂР¶РєРѕР№ (RU / ENG)
+  + РЅРѕРІС‹Р№ СЃР°Р№С‚ СЃ РІРѕР·РјРѕР¶РЅРѕСЃС‚СЊСЋ РІС‹Р±РѕСЂР° СЏР·С‹РєР° //РїРµСЂРµС…РѕРґ РЅР° РІРµР±.СЃС‚СЂР°РЅРёС†Сѓ РІ СЃРѕРѕС‚РІ. СЃ РІС‹Р±СЂР°РЅРЅС‹Рј РІ РїСЂРёР»РѕР¶РµРЅРёРё СЏР·С‹РєРѕРј
+  + СЃРґРµР»Р°С‚СЊ СЃС‚СЂР°РЅРёС†С‹ Donate РІ С‚РѕРј С‡РёСЃР»Рµ РІ РєСЂРёРїС‚Рµ .. Р“СѓРіР»РѕСЃР°Р№С‚С‹?
+  - РЅРµ Р·Р°Р±С‹С‚СЊ РїСЂРѕ Р·Р°РјРµРЅСѓ СЃСЃС‹Р»РѕРє РІ СЃР°РјРѕРј РїСЂРёР»РѕР¶РµРЅРёРё
+  + Р”РѕР±Р°РІР»РµРЅР° РєРЅРѕРїРєР° РїРѕРґРїРёСЃРєРё РЅР° YouTube}
 
 {Regular Procedures & Functions}
 procedure TerminateOrRename;
 begin
-  if (WL2CED.SGid.text <> 'выбранный SaveGame') and (WL2CED.SGid.text <> 'Selected SaveGame')
+  if (WL2CED.SGid.text <> 'РІС‹Р±СЂР°РЅРЅС‹Р№ SaveGame') and (WL2CED.SGid.text <> 'Selected SaveGame')
     then RenameFile(NewFileName, OldFileName);
   application.Terminate;
 end;
@@ -231,7 +231,7 @@ end;
 
 procedure TWL2CED.Aboutproject1Click(Sender: TObject);
 begin
-  ShellExecute(0, 'open', 'https://sonkjeferson.wixsite.com/wastelandschared2', '', '', SW_SHOWNORMAL); //актуализированно
+  ShellExecute(0, 'open', 'https://sonkjeferson.wixsite.com/wastelandschared2', '', '', SW_SHOWNORMAL); //Р°РєС‚СѓР°Р»РёР·РёСЂРѕРІР°РЅРЅРѕ
 end;
 
 procedure TWL2CED.EndBtnClick(Sender: TObject);
@@ -241,82 +241,82 @@ end;
 
 procedure TWL2CED.N4Click(Sender: TObject);
 begin
-  CaracSavBtn.Caption:='Сохранить персонаж';
-  CaracterBox.Text:='Выбрать персонаж';
-  CaracterID.Text:='Всего юнитов';
-  CrLbtn.Caption:='Сканировать персонаж';
-  CurUnitGroup.Caption:='Выбранный юнит';
-    Label2.Caption:='Пол';
-    Label3.Caption:='Возраст';
-    Label4.Caption:='Уровень';
-    Label5.Caption:='Tекущие HP';
-    Label6.Caption:='Максимальные HP';
-    Label7.Caption:='Свободные Skil'+#39+'ы';
-  EndBtn.Caption:='Выход';
-    N3.Caption:='Благодарности';
-    N1.Caption:='Купить кофе разработчику';
-    Suppo1.Caption:='Сказать "Спасибо" разработчику';
-    N5.Caption:='Инфо';
-    Aboutproject1.Caption:='О проекте';
-    N2.Caption:='Как пользоваться';
-  TabSheet1.Caption:='Оружейные';
-    GroupBox1.Caption:='Текущий уровень';
-    GroupBox2.Caption:='Применяемый уровень';
-    GroupBox3.Caption:='Навык';
-      WS1.Text:='Дробящее';
-      WS10.Text:='Пистолеты';
-      WS2.Text:='Пист.-пулемёт';
-      WS3.Text:='Рукопашная';
-      WS4.Text:='Снайперские';
-      WS5.Text:='Тяжёлое';
-      WS6.Text:='Холодное';
-      WS7.Text:='Штурмовые';
-      WS8.Text:='Энергетическое';
-      WS9.Text:='Дробовики';
-    TabSheet2.Caption:='Общие';
-      GroupBox6.Caption:='Применяемый уровень';
-      GroupBox5.Caption:='Текущий уровень';
-      GroupBox4.Caption:='Навык';
-        RS1.Text:='"Знаток запада"';
-        RS10.Text:='Меняла';
-        RS11.Text:='Оружейник';
-        RS12.Text:='Хитрожопый';
-        RS2.Text:='Стрелок';
-        RS3.Text:='Выживание';
-        RS4.Text:='Грубая сила';
-        RS5.Text:='Дрессировщик';
-        RS6.Text:='Жополиз';
-        RS7.Text:='Задира';
-        RS8.Text:='Зоркий глаз';
-        RS9.Text:='Лидерство';
-    TabSheet3.Caption:='Технические';
-      GroupBox7.Caption:='Навык';
-        TS1.Text:='Взрывотехника';
-        TS2.Text:='Компьютеры';
-        TS3.Text:='Механика';
-        TS4.Text:='Полевая мед.';
-        TS5.Text:='Ремонт тостеров';
-        TS6.Text:='Снятие сигнализ.';
-        TS7.Text:='Хирургия';
-        TS8.Text:='Взлом сейфов';
-        TS9.Text:='Взлом замков';
-      GroupBox8.Caption:='Текущий уровень';
-      GroupBox9.Caption:='Применяемый уровень';
-    TabSheet4.Caption:='Атрибуты';
-      GroupBox10.Caption:='Текущий уровень';
-      GroupBox11.Caption:='Навык';
-        as1.Text:='Координация';
-        as2.Text:='Удача';
-        as3.Text:='Восприятие';
-        as4.Text:='Сила';
-        as5.Text:='Скорость';
-        as6.Text:='Интеллект';
-        as7.Text:='Харизма';
-      GroupBox12.Caption:='Применяемый уровень';
-  SaveBtn.Caption:='Перезаписать Save';
-  SGid.Text:='выбранный SaveGame';
-  SObtn.Caption:='Выбрать сохранённую игру';
-  SSnBtn.Caption:='Сканировать Save';
+  CaracSavBtn.Caption:='РЎРѕС…СЂР°РЅРёС‚СЊ РїРµСЂСЃРѕРЅР°Р¶';
+  CaracterBox.Text:='Р’С‹Р±СЂР°С‚СЊ РїРµСЂСЃРѕРЅР°Р¶';
+  CaracterID.Text:='Р’СЃРµРіРѕ СЋРЅРёС‚РѕРІ';
+  CrLbtn.Caption:='РЎРєР°РЅРёСЂРѕРІР°С‚СЊ РїРµСЂСЃРѕРЅР°Р¶';
+  CurUnitGroup.Caption:='Р’С‹Р±СЂР°РЅРЅС‹Р№ СЋРЅРёС‚';
+    Label2.Caption:='РџРѕР»';
+    Label3.Caption:='Р’РѕР·СЂР°СЃС‚';
+    Label4.Caption:='РЈСЂРѕРІРµРЅСЊ';
+    Label5.Caption:='TРµРєСѓС‰РёРµ HP';
+    Label6.Caption:='РњР°РєСЃРёРјР°Р»СЊРЅС‹Рµ HP';
+    Label7.Caption:='РЎРІРѕР±РѕРґРЅС‹Рµ Skil'+#39+'С‹';
+  EndBtn.Caption:='Р’С‹С…РѕРґ';
+    N3.Caption:='Р‘Р»Р°РіРѕРґР°СЂРЅРѕСЃС‚Рё';
+    N1.Caption:='РљСѓРїРёС‚СЊ РєРѕС„Рµ СЂР°Р·СЂР°Р±РѕС‚С‡РёРєСѓ';
+    Suppo1.Caption:='РЎРєР°Р·Р°С‚СЊ "РЎРїР°СЃРёР±Рѕ" СЂР°Р·СЂР°Р±РѕС‚С‡РёРєСѓ';
+    N5.Caption:='РРЅС„Рѕ';
+    Aboutproject1.Caption:='Рћ РїСЂРѕРµРєС‚Рµ';
+    N2.Caption:='РљР°Рє РїРѕР»СЊР·РѕРІР°С‚СЊСЃСЏ';
+  TabSheet1.Caption:='РћСЂСѓР¶РµР№РЅС‹Рµ';
+    GroupBox1.Caption:='РўРµРєСѓС‰РёР№ СѓСЂРѕРІРµРЅСЊ';
+    GroupBox2.Caption:='РџСЂРёРјРµРЅСЏРµРјС‹Р№ СѓСЂРѕРІРµРЅСЊ';
+    GroupBox3.Caption:='РќР°РІС‹Рє';
+      WS1.Text:='Р”СЂРѕР±СЏС‰РµРµ';
+      WS10.Text:='РџРёСЃС‚РѕР»РµС‚С‹';
+      WS2.Text:='РџРёСЃС‚.-РїСѓР»РµРјС‘С‚';
+      WS3.Text:='Р СѓРєРѕРїР°С€РЅР°СЏ';
+      WS4.Text:='РЎРЅР°Р№РїРµСЂСЃРєРёРµ';
+      WS5.Text:='РўСЏР¶С‘Р»РѕРµ';
+      WS6.Text:='РҐРѕР»РѕРґРЅРѕРµ';
+      WS7.Text:='РЁС‚СѓСЂРјРѕРІС‹Рµ';
+      WS8.Text:='Р­РЅРµСЂРіРµС‚РёС‡РµСЃРєРѕРµ';
+      WS9.Text:='Р”СЂРѕР±РѕРІРёРєРё';
+    TabSheet2.Caption:='РћР±С‰РёРµ';
+      GroupBox6.Caption:='РџСЂРёРјРµРЅСЏРµРјС‹Р№ СѓСЂРѕРІРµРЅСЊ';
+      GroupBox5.Caption:='РўРµРєСѓС‰РёР№ СѓСЂРѕРІРµРЅСЊ';
+      GroupBox4.Caption:='РќР°РІС‹Рє';
+        RS1.Text:='"Р—РЅР°С‚РѕРє Р·Р°РїР°РґР°"';
+        RS10.Text:='РњРµРЅСЏР»Р°';
+        RS11.Text:='РћСЂСѓР¶РµР№РЅРёРє';
+        RS12.Text:='РҐРёС‚СЂРѕР¶РѕРїС‹Р№';
+        RS2.Text:='РЎС‚СЂРµР»РѕРє';
+        RS3.Text:='Р’С‹Р¶РёРІР°РЅРёРµ';
+        RS4.Text:='Р“СЂСѓР±Р°СЏ СЃРёР»Р°';
+        RS5.Text:='Р”СЂРµСЃСЃРёСЂРѕРІС‰РёРє';
+        RS6.Text:='Р–РѕРїРѕР»РёР·';
+        RS7.Text:='Р—Р°РґРёСЂР°';
+        RS8.Text:='Р—РѕСЂРєРёР№ РіР»Р°Р·';
+        RS9.Text:='Р›РёРґРµСЂСЃС‚РІРѕ';
+    TabSheet3.Caption:='РўРµС…РЅРёС‡РµСЃРєРёРµ';
+      GroupBox7.Caption:='РќР°РІС‹Рє';
+        TS1.Text:='Р’Р·СЂС‹РІРѕС‚РµС…РЅРёРєР°';
+        TS2.Text:='РљРѕРјРїСЊСЋС‚РµСЂС‹';
+        TS3.Text:='РњРµС…Р°РЅРёРєР°';
+        TS4.Text:='РџРѕР»РµРІР°СЏ РјРµРґ.';
+        TS5.Text:='Р РµРјРѕРЅС‚ С‚РѕСЃС‚РµСЂРѕРІ';
+        TS6.Text:='РЎРЅСЏС‚РёРµ СЃРёРіРЅР°Р»РёР·.';
+        TS7.Text:='РҐРёСЂСѓСЂРіРёСЏ';
+        TS8.Text:='Р’Р·Р»РѕРј СЃРµР№С„РѕРІ';
+        TS9.Text:='Р’Р·Р»РѕРј Р·Р°РјРєРѕРІ';
+      GroupBox8.Caption:='РўРµРєСѓС‰РёР№ СѓСЂРѕРІРµРЅСЊ';
+      GroupBox9.Caption:='РџСЂРёРјРµРЅСЏРµРјС‹Р№ СѓСЂРѕРІРµРЅСЊ';
+    TabSheet4.Caption:='РђС‚СЂРёР±СѓС‚С‹';
+      GroupBox10.Caption:='РўРµРєСѓС‰РёР№ СѓСЂРѕРІРµРЅСЊ';
+      GroupBox11.Caption:='РќР°РІС‹Рє';
+        as1.Text:='РљРѕРѕСЂРґРёРЅР°С†РёСЏ';
+        as2.Text:='РЈРґР°С‡Р°';
+        as3.Text:='Р’РѕСЃРїСЂРёСЏС‚РёРµ';
+        as4.Text:='РЎРёР»Р°';
+        as5.Text:='РЎРєРѕСЂРѕСЃС‚СЊ';
+        as6.Text:='РРЅС‚РµР»Р»РµРєС‚';
+        as7.Text:='РҐР°СЂРёР·РјР°';
+      GroupBox12.Caption:='РџСЂРёРјРµРЅСЏРµРјС‹Р№ СѓСЂРѕРІРµРЅСЊ';
+  SaveBtn.Caption:='РџРµСЂРµР·Р°РїРёСЃР°С‚СЊ Save';
+  SGid.Text:='РІС‹Р±СЂР°РЅРЅС‹Р№ SaveGame';
+  SObtn.Caption:='Р’С‹Р±СЂР°С‚СЊ СЃРѕС…СЂР°РЅС‘РЅРЅСѓСЋ РёРіСЂСѓ';
+  SSnBtn.Caption:='РЎРєР°РЅРёСЂРѕРІР°С‚СЊ Save';
 end;
 
 procedure TWL2CED.English1Click(Sender: TObject);
@@ -403,7 +403,7 @@ end;
 
 procedure TWL2CED.Followus1Click(Sender: TObject);
 begin
-  ShellExecute(0, 'open', 'https://www.youtube.com/channel/UCyniVlUauJ1iWYyo-vHfGlA', '', '', SW_SHOWNORMAL); //актуализированно
+  ShellExecute(0, 'open', 'https://www.youtube.com/channel/UCyniVlUauJ1iWYyo-vHfGlA', '', '', SW_SHOWNORMAL); //Р°РєС‚СѓР°Р»РёР·РёСЂРѕРІР°РЅРЅРѕ
 end;
 
 procedure TWL2CED.FormClose(Sender: TObject; var Action: TCloseAction);
@@ -418,12 +418,12 @@ end;
 
 procedure TWL2CED.N1Click(Sender: TObject);
 begin
-  ShellExecute(0, 'open', 'https://sonkjeferson.wixsite.com/donation', '', '', SW_SHOWNORMAL); //актуализированно
+  ShellExecute(0, 'open', 'https://sonkjeferson.wixsite.com/donation', '', '', SW_SHOWNORMAL); //Р°РєС‚СѓР°Р»РёР·РёСЂРѕРІР°РЅРЅРѕ
 end;
 
 procedure TWL2CED.N2Click(Sender: TObject);
 begin
-  if EndBtn.caption='Выход'
+  if EndBtn.caption='Р’С‹С…РѕРґ'
     then ShellExecute(0, 'open', 'https://youtu.be/EORiIPeyx2Y', '', '', SW_SHOWNORMAL);
   if EndBtn.caption='Exit'
     then ShellExecute(0, 'open', 'https://youtu.be/LeS7QBcF6zI', '', '', SW_SHOWNORMAL);
@@ -460,8 +460,8 @@ var
   S1, cn : string;
 begin
   CrLbtn.Enabled:=true;
-  if EndBtn.caption='Выход'
-    then CaracterBox.Text:= 'Выбрать персонаж';
+  if EndBtn.caption='Р’С‹С…РѕРґ'
+    then CaracterBox.Text:= 'Р’С‹Р±СЂР°С‚СЊ РїРµСЂСЃРѕРЅР°Р¶';
   if EndBtn.caption='Exit'
     then CaracterBox.Text:= 'Select unit';
 {FileType to TXT}
@@ -497,8 +497,8 @@ begin
     end;
   end;
 
-  if EndBtn.caption='Выход'
-    then CaracterID.Text := 'Найдено юнитов - ' +  inttostr(cc);
+  if EndBtn.caption='Р’С‹С…РѕРґ'
+    then CaracterID.Text := 'РќР°Р№РґРµРЅРѕ СЋРЅРёС‚РѕРІ - ' +  inttostr(cc);
   if EndBtn.caption='Exit'
     then CaracterID.Text := 'Units found - ' +  inttostr(cc);
 end;
@@ -616,7 +616,7 @@ begin
   SaveBtn.Enabled:=true;
 {read caracter's name into cname}
   cname:= caracterbox.Items.Strings[caracterbox.ItemIndex];
-  CurUnitGroup.Caption := 'Загружены данные ' + cname;
+  CurUnitGroup.Caption := 'Р—Р°РіСЂСѓР¶РµРЅС‹ РґР°РЅРЅС‹Рµ ' + cname;
 {scaning caracter}
   cn:=S;
   sname:='</name><displayName>&lt;@&gt;'+cname;
@@ -648,7 +648,7 @@ begin
   delete (cn1, 1, (ansipos('<biography>&lt;@&gt;',cn1)-1));
   {check if biografy exists}
   if ansipos('<biography>&lt;@&gt;',cn1)=0
-    then memo3.Text:='Биография не заполнена'
+    then memo3.Text:='Р‘РёРѕРіСЂР°С„РёСЏ РЅРµ Р·Р°РїРѕР»РЅРµРЅР°'
     else
     begin
       delete (cn1, (ansipos('</biography>',cn1)), Length(cn1));
@@ -660,7 +660,7 @@ begin
 { Block 1 - weapon skills  }
 {##########################}
 
-{crushing / дробящее}
+{crushing / РґСЂРѕР±СЏС‰РµРµ}
   cn1 := CnClean(cn, 'KeyValuePairOfStringInt32><Key>bluntWeapons</Key><Value>');
   {translating to "normal" values}
   cn1 := ValToWL2Format(cn1);
@@ -669,63 +669,63 @@ begin
   WSTB1.Position:=WSPB1.Position;
   WSL1.Text:=inttostr(WSTB1.Position)+'/10';
   wsi1.Text:=wsl1.Text;
-{submachine gun / пистолеты-пулемёты}
+{submachine gun / РїРёСЃС‚РѕР»РµС‚С‹-РїСѓР»РµРјС‘С‚С‹}
   cn1 := CnClean(cn, 'KeyValuePairOfStringInt32><Key>smg</Key><Value>');
   cn1 := ValToWL2Format(cn1);
   WSPB2.Position:=strtoint(cn1);
   WSTB2.Position:=WSPB2.Position;
   WSL2.Text:=inttostr(WSTB2.Position)+'/10';
   wsi2.Text:=wsl2.Text;
-{Melee / Рукопашная}
+{Melee / Р СѓРєРѕРїР°С€РЅР°СЏ}
   cn1 := CnClean(cn, 'KeyValuePairOfStringInt32><Key>brawling</Key><Value>');
   cn1 := ValToWL2Format(cn1);
   WSPB3.Position:=strtoint(cn1);
   WSTB3.Position:=WSPB3.Position;
   WSL3.Text:=inttostr(WSTB3.Position)+'/10';
   wsi3.Text:=wsl3.Text;
-{Sniper  / Снайперские}
+{Sniper  / РЎРЅР°Р№РїРµСЂСЃРєРёРµ}
   cn1 := CnClean(cn, 'KeyValuePairOfStringInt32><Key>sniperRifle</Key><Value>');
   cn1 := ValToWL2Format(cn1);
   WSPB4.Position:=strtoint(cn1);
   WSTB4.Position:=WSPB4.Position;
   WSL4.Text:=inttostr(WSTB4.Position)+'/10';
   wsi4.Text:=wsl4.Text;
-{Heavy / Тяжёлое}
+{Heavy / РўСЏР¶С‘Р»РѕРµ}
   cn1 := CnClean(cn, 'KeyValuePairOfStringInt32><Key>atWeapons</Key><Value>');
   cn1 := ValToWL2Format(cn1);
   WSPB5.Position:=strtoint(cn1);
   WSTB5.Position:=WSPB5.Position;
   WSL5.Text:=inttostr(WSTB5.Position)+'/10';
   wsi5.Text:=wsl5.Text;
-{steel arms / Холодное}
+{steel arms / РҐРѕР»РѕРґРЅРѕРµ}
   cn1 := CnClean(cn, 'KeyValuePairOfStringInt32><Key>bladedWeapons</Key><Value>');
   cn1 := ValToWL2Format(cn1);
   WSPB6.Position:=strtoint(cn1);
   WSTB6.Position:=WSPB6.Position;
   WSL6.Text:=inttostr(WSTB6.Position)+'/10';
   wsi6.Text:=wsl6.Text;
-{Assault / Штурмовые}
+{Assault / РЁС‚СѓСЂРјРѕРІС‹Рµ}
   cn1 := CnClean(cn, 'KeyValuePairOfStringInt32><Key>rifle</Key><Value>');
   cn1 := ValToWL2Format(cn1);
   WSPB7.Position:=strtoint(cn1);
   WSTB7.Position:=WSPB7.Position;
   WSL7.Text:=inttostr(WSTB7.Position)+'/10';
   wsi7.Text:=wsl7.Text;
-{Power /Энергетическое}
+{Power /Р­РЅРµСЂРіРµС‚РёС‡РµСЃРєРѕРµ}
   cn1 := CnClean(cn, 'KeyValuePairOfStringInt32><Key>energyWeapons</Key><Value>');
   cn1 := ValToWL2Format(cn1);
   WSPB8.Position:=strtoint(cn1);
   WSTB8.Position:=WSPB8.Position;
   WSL8.Text:=inttostr(WSTB8.Position)+'/10';
   wsi8.Text:=wsl8.Text;
-{shotguns / дробовики}
+{shotguns / РґСЂРѕР±РѕРІРёРєРё}
   cn1 := CnClean(cn, 'KeyValuePairOfStringInt32><Key>shotgun</Key><Value>');
   cn1 := ValToWL2Format(cn1);
   WSPB9.Position:=strtoint(cn1);
   WSTB9.Position:=WSPB9.Position;
   WSL9.Text:=inttostr(WSTB9.Position)+'/10';
   wsi9.Text:=wsl9.Text;
-{guns / пистолеты}
+{guns / РїРёСЃС‚РѕР»РµС‚С‹}
   cn1 := CnClean(cn, 'KeyValuePairOfStringInt32><Key>handgun</Key><Value>');
   cn1 := ValToWL2Format(cn1);
   WSPB10.Position:=strtoint(cn1);
@@ -737,84 +737,84 @@ begin
 {Block 2 - 'General skills'}
 {##########################}
 
-{"Calvin Backer skill" / "Знаток запада"}
+{"Calvin Backer skill" / "Р—РЅР°С‚РѕРє Р·Р°РїР°РґР°"}
   cn1 := CnClean(cn, 'KeyValuePairOfStringInt32><Key>calvinBackerSkill</Key><Value>');
   cn1 := ValToWL2Format(cn1);
   RSPB1.Position:=strtoint(cn1);
   RSTB1.Position:=RSPB1.Position;
   RSL1.Text:=inttostr(RSTB1.Position)+'/10';
   rsi1.Text:= RSL1.Text;
-{Combat shooting / стрелок}
+{Combat shooting / СЃС‚СЂРµР»РѕРє}
   cn1 := CnClean(cn, 'KeyValuePairOfStringInt32><Key>combatShooting</Key><Value>');
   cn1 := ValToWL2Format(cn1);
   RSPB2.Position:=strtoint(cn1);
   RSTB2.Position:=RSPB2.Position;
   RSL2.Text:=inttostr(RSTB2.Position)+'/10';
   rsi2.Text:= RSL2.Text;
-{Outdoorsman / выживание}
+{Outdoorsman / РІС‹Р¶РёРІР°РЅРёРµ}
   cn1 := CnClean(cn, 'KeyValuePairOfStringInt32><Key>outdoorsman</Key><Value>');
   cn1 := ValToWL2Format(cn1);
   RSPB3.Position:=strtoint(cn1);
   RSTB3.Position:=RSPB3.Position;
   RSL3.Text:=inttostr(RSTB3.Position)+'/10';
   rsi3.Text:= RSL3.Text;
-{Brute force / грубая сила}
+{Brute force / РіСЂСѓР±Р°СЏ СЃРёР»Р°}
   cn1 := CnClean(cn, 'KeyValuePairOfStringInt32><Key>bruteForce</Key><Value>');
   cn1 := ValToWL2Format(cn1);
   RSPB4.Position:=strtoint(cn1);
   RSTB4.Position:=RSPB4.Position;
   RSL4.Text:=inttostr(RSTB4.Position)+'/10';
   rsi4.Text:= RSL4.Text;
-{Animal Whisperer / дрессировщик}
+{Animal Whisperer / РґСЂРµСЃСЃРёСЂРѕРІС‰РёРє}
   cn1 := CnClean(cn, 'KeyValuePairOfStringInt32><Key>animalWhisperer</Key><Value>');
   cn1 := ValToWL2Format(cn1);
   RSPB5.Position:=strtoint(cn1);
   RSTB5.Position:=RSPB5.Position;
   RSL5.Text:=inttostr(RSTB5.Position)+'/10';
   rsi5.Text:= RSL5.Text;
-{Spot lie / жополиз}
+{Spot lie / Р¶РѕРїРѕР»РёР·}
   cn1 := CnClean(cn, 'KeyValuePairOfStringInt32><Key>spotLie</Key><Value>');
   cn1 := ValToWL2Format(cn1);
   RSPB6.Position:=strtoint(cn1);
   RSTB6.Position:=RSPB6.Position;
   RSL6.Text:=inttostr(RSTB6.Position)+'/10';
   rsi6.Text:= RSL6.Text;
-{Intimidate / задира}
+{Intimidate / Р·Р°РґРёСЂР°}
   cn1 := CnClean(cn, 'KeyValuePairOfStringInt32><Key>intimidate</Key><Value>');
   cn1 := ValToWL2Format(cn1);
   RSPB7.Position:=strtoint(cn1);
   RSTB7.Position:=RSPB7.Position;
   RSL7.Text:=inttostr(RSTB7.Position)+'/10';
   rsi7.Text:= RSL7.Text;
-{Perception / Зоркий глаз}
+{Perception / Р—РѕСЂРєРёР№ РіР»Р°Р·}
   cn1 := CnClean(cn, 'KeyValuePairOfStringInt32><Key>perception</Key><Value>');
   cn1 := ValToWL2Format(cn1);
   RSPB8.Position:=strtoint(cn1);
   RSTB8.Position:=RSPB8.Position;
   RSL8.Text:=inttostr(RSTB8.Position)+'/10';
   rsi8.Text:= RSL8.Text;
-{Leadership / лидерство}
+{Leadership / Р»РёРґРµСЂСЃС‚РІРѕ}
   cn1 := CnClean(cn, 'KeyValuePairOfStringInt32><Key>leadership</Key><Value>');
   cn1 := ValToWL2Format(cn1);
   RSPB9.Position:=strtoint(cn1);
   RSTB9.Position:=RSPB9.Position;
   RSL9.Text:=inttostr(RSTB9.Position)+'/10';
   rsi9.Text:= RSL9.Text;
-{Barter / меняла}
+{Barter / РјРµРЅСЏР»Р°}
   cn1 := CnClean(cn, 'KeyValuePairOfStringInt32><Key>barter</Key><Value>');
   cn1 := ValToWL2Format(cn1);
   RSPB10.Position:=strtoint(cn1);
   RSTB10.Position:=RSPB10.Position;
   RSL10.Text:=inttostr(RSTB10.Position)+'/10';
   rsi10.Text:= RSL10.Text;
-{weapon smith / оружейник}
+{weapon smith / РѕСЂСѓР¶РµР№РЅРёРє}
   cn1 := CnClean(cn, 'KeyValuePairOfStringInt32><Key>weaponSmith</Key><Value>');
   cn1 := ValToWL2Format(cn1);
   RSPB11.Position:=strtoint(cn1);
   RSTB11.Position:=RSPB11.Position;
   RSL11.Text:=inttostr(RSTB11.Position)+'/10';
   rsi11.Text:= RSL11.Text;
-{Manipulate / хитрожопый}
+{Manipulate / С…РёС‚СЂРѕР¶РѕРїС‹Р№}
   cn1 := CnClean(cn, 'KeyValuePairOfStringInt32><Key>manipulate</Key><Value>');
   cn1 := ValToWL2Format(cn1);
   RSPB12.Position:=strtoint(cn1);
@@ -826,63 +826,63 @@ begin
 {Block 3 - Technical skills}
 {##########################}
 
-{Demolitions / взрывотехника}
+{Demolitions / РІР·СЂС‹РІРѕС‚РµС…РЅРёРєР°}
   cn1 := CnClean(cn, 'KeyValuePairOfStringInt32><Key>demolitions</Key><Value>');
   cn1 := ValToWL2Format(cn1);
   TSPB1.Position:=strtoint(cn1);
   TSTB1.Position:=TSPB1.Position;
   TSL1.Text:=inttostr(TSTB1.Position)+'/10';
   Tsi1.Text:= TSL1.Text;
-{Computer tech / компьютеры}
+{Computer tech / РєРѕРјРїСЊСЋС‚РµСЂС‹}
   cn1 := CnClean(cn, 'KeyValuePairOfStringInt32><Key>computerTech</Key><Value>');
   cn1 := ValToWL2Format(cn1);
   TSPB2.Position:=strtoint(cn1);
   TSTB2.Position:=TSPB2.Position;
   TSL2.Text:=inttostr(TSTB2.Position)+'/10';
   Tsi2.Text:= TSL2.Text;
-{Mechanical repair / механика}
+{Mechanical repair / РјРµС…Р°РЅРёРєР°}
   cn1 := CnClean(cn, 'KeyValuePairOfStringInt32><Key>mechanicalRepair</Key><Value>');
   cn1 := ValToWL2Format(cn1);
   TSPB3.Position:=strtoint(cn1);
   TSTB3.Position:=TSPB3.Position;
   TSL3.Text:=inttostr(TSTB3.Position)+'/10';
   Tsi3.Text:= TSL3.Text;
-{Field medic / полевая медицина}
+{Field medic / РїРѕР»РµРІР°СЏ РјРµРґРёС†РёРЅР°}
   cn1 := CnClean(cn, 'KeyValuePairOfStringInt32><Key>fieldMedic</Key><Value>');
   cn1 := ValToWL2Format(cn1);
   TSPB4.Position:=strtoint(cn1);
   TSTB4.Position:=TSPB4.Position;
   TSL4.Text:=inttostr(TSTB4.Position)+'/10';
   Tsi4.Text:= TSL4.Text;
-{Toaster repair / ремонт тостеров}
+{Toaster repair / СЂРµРјРѕРЅС‚ С‚РѕСЃС‚РµСЂРѕРІ}
   cn1 := CnClean(cn, 'KeyValuePairOfStringInt32><Key>toasterRepair</Key><Value>');
   cn1 := ValToWL2Format(cn1);
   TSPB5.Position:=strtoint(cn1);
   TSTB5.Position:=TSPB5.Position;
   TSL5.Text:=inttostr(TSTB5.Position)+'/10';
   Tsi5.Text:= TSL5.Text;
-{Alarm disarm / снятие сигнализации}
+{Alarm disarm / СЃРЅСЏС‚РёРµ СЃРёРіРЅР°Р»РёР·Р°С†РёРё}
   cn1 := CnClean(cn, 'KeyValuePairOfStringInt32><Key>alarmDisarm</Key><Value>');
   cn1 := ValToWL2Format(cn1);
   TSPB6.Position:=strtoint(cn1);
   TSTB6.Position:=TSPB6.Position;
   TSL6.Text:=inttostr(TSTB6.Position)+'/10';
   Tsi6.Text:= TSL6.Text;
-{Doctor / хирургия}
+{Doctor / С…РёСЂСѓСЂРіРёСЏ}
   cn1 := CnClean(cn, 'KeyValuePairOfStringInt32><Key>doctor</Key><Value>');
   cn1 := ValToWL2Format(cn1);
   TSPB7.Position:=strtoint(cn1);
   TSTB7.Position:=TSPB7.Position;
   TSL7.Text:=inttostr(TSTB7.Position)+'/10';
   Tsi7.Text:= TSL7.Text;
-{Safe crack / взлом сейфов}
+{Safe crack / РІР·Р»РѕРј СЃРµР№С„РѕРІ}
   cn1 := CnClean(cn, 'KeyValuePairOfStringInt32><Key>safecrack</Key><Value>');
   cn1 := ValToWL2Format(cn1);
   TSPB8.Position:=strtoint(cn1);
   TSTB8.Position:=TSPB8.Position;
   TSL8.Text:=inttostr(TSTB8.Position)+'/10';
   Tsi8.Text:= TSL8.Text;
-{PickLock / взлом замков}
+{PickLock / РІР·Р»РѕРј Р·Р°РјРєРѕРІ}
   cn1 := CnClean(cn, 'KeyValuePairOfStringInt32><Key>pickLock</Key><Value>');
   cn1 := ValToWL2Format(cn1);
   TSPB9.Position:=strtoint(cn1);
@@ -894,43 +894,43 @@ begin
 {   Block 4 - Attributes   }
 {##########################}
 
-{Coordination / Координация}
+{Coordination / РљРѕРѕСЂРґРёРЅР°С†РёСЏ}
   cn1 := CnClean(cn, 'KeyValuePairOfStringInt32><Key>coordination</Key><Value>');
   ASPB1.Position:=strtoint(cn1);
   ASTB1.Position:=ASPB1.Position;
   ASL1.Text:=inttostr(ASTB1.Position)+'/10';
   Asi1.Text:= ASL1.Text;
-{Luck / удача}
+{Luck / СѓРґР°С‡Р°}
   cn1 := CnClean(cn, 'KeyValuePairOfStringInt32><Key>luck</Key><Value>');
   ASPB2.Position:=strtoint(cn1);
   ASTB2.Position:=ASPB2.Position;
   ASL2.Text:=inttostr(ASTB2.Position)+'/10';
   Asi2.Text:= ASL2.Text;
-{Awareness / восприятие}
+{Awareness / РІРѕСЃРїСЂРёСЏС‚РёРµ}
   cn1 := CnClean(cn, 'KeyValuePairOfStringInt32><Key>awareness</Key><Value>');
   ASPB3.Position:=strtoint(cn1);
   ASTB3.Position:=ASPB3.Position;
   ASL3.Text:=inttostr(ASTB3.Position)+'/10';
   Asi3.Text:= ASL3.Text;
-{Strength / сила}
+{Strength / СЃРёР»Р°}
   cn1 := CnClean(cn, 'KeyValuePairOfStringInt32><Key>strength</Key><Value>');
   ASPB4.Position:=strtoint(cn1);
   ASTB4.Position:=ASPB4.Position;
   ASL4.Text:=inttostr(ASTB4.Position)+'/10';
   Asi4.Text:= ASL4.Text;
-{Speed / скорость}
+{Speed / СЃРєРѕСЂРѕСЃС‚СЊ}
   cn1 := CnClean(cn, 'KeyValuePairOfStringInt32><Key>speed</Key><Value>');
   ASPB5.Position:=strtoint(cn1);
   ASTB5.Position:=ASPB5.Position;
   ASL5.Text:=inttostr(ASTB5.Position)+'/10';
   Asi5.Text:= ASL5.Text;
-{Intelligence / интеллект}
+{Intelligence / РёРЅС‚РµР»Р»РµРєС‚}
   cn1 := CnClean(cn, 'KeyValuePairOfStringInt32><Key>intelligence</Key><Value>');
   ASPB6.Position:=strtoint(cn1);
   ASTB6.Position:=ASPB6.Position;
   ASL6.Text:=inttostr(ASTB6.Position)+'/10';
   Asi6.Text:= ASL6.Text;
-{Charisma / харизма}
+{Charisma / С…Р°СЂРёР·РјР°}
   cn1 := CnClean(cn, 'KeyValuePairOfStringInt32><Key>charisma</Key><Value>');
   ASPB7.Position:=strtoint(cn1);
   ASTB7.Position:=ASPB7.Position;
