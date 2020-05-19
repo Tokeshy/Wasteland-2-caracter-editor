@@ -1,4 +1,4 @@
-unit Main;
+﻿unit Main;
 
 interface
 
@@ -418,7 +418,7 @@ end;
 
 procedure TWL2CED.N1Click(Sender: TObject);
 begin
-  ShellExecute(0, 'open', 'https://sonkjeferson.wixsite.com/donation', '', '', SW_SHOWNORMAL); //актуализированно
+  ShellExecute(0, 'open', 'https://sites.google.com/view/little-beggar/%D0%B3%D0%BB%D0%B0%D0%B2%D0%BD%D0%B0%D1%8F', '', '', SW_SHOWNORMAL); //актуализированно
 end;
 
 procedure TWL2CED.N2Click(Sender: TObject);
@@ -506,7 +506,7 @@ end;
 procedure TWL2CED.Suppo1Click(Sender: TObject);
 begin
 {ProjectSupport Page}
-  ShellExecute(0, 'open', 'https://sonkjeferson.wixsite.com/donation', '', '', SW_SHOWNORMAL);
+  ShellExecute(0, 'open', 'https://sites.google.com/view/little-beggar/%D0%B3%D0%BB%D0%B0%D0%B2%D0%BD%D0%B0%D1%8F', '', '', SW_SHOWNORMAL);
 end;
 
 procedure TWL2CED.CaracSavBtnClick(Sender: TObject);
