@@ -13,6 +13,7 @@ Well, and here's what else - this project will continue to remain absolutely fre
 So if someone is trying to sell it to you, it's scammers))
 
 ###############################
+
 SaveGameCaracterEditor for Wasteland 2 (Редактор игровых персонажей для Wasteland 2).
 Разработан исключительно на энтузиазме, написан на Delphi и является абсолютно бесплатным.
 
