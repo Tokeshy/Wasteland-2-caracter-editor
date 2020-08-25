@@ -2819,28 +2819,40 @@ object WL2CED: TWL2CED
     Top = 614
     object N5: TMenuItem
       Caption = #1048#1085#1092#1086
-      object Aboutproject1: TMenuItem
-        Caption = #1054' '#1087#1088#1086#1077#1082#1090#1077
-        OnClick = Aboutproject1Click
+      object DevInfo: TMenuItem
+        Caption = #1056#1072#1079#1088#1072#1073#1086#1090#1095#1080#1082
+        object N1: TMenuItem
+          Caption = #1050#1091#1087#1080#1090#1100' '#1082#1086#1092#1077' '#1088#1072#1079#1088#1072#1073#1086#1090#1095#1080#1082#1091
+          OnClick = N1Click
+        end
+        object Suppo1: TMenuItem
+          Caption = #1057#1082#1072#1079#1072#1090#1100' "'#1057#1087#1072#1089#1080#1073#1086'" '#1088#1072#1079#1088#1072#1073#1086#1090#1095#1080#1082#1091
+          OnClick = Suppo1Click
+        end
+        object Followonpatreon1: TMenuItem
+          Caption = 'Follow on patreon'
+          Hint = 'support a developer on the Patreon platform'
+          OnClick = Followonpatreon1Click
+        end
+        object MailtoDev: TMenuItem
+          Caption = #1053#1072#1087#1080#1089#1072#1090#1100
+          OnClick = MailtoDevClick
+        end
       end
-      object N2: TMenuItem
-        Caption = #1050#1072#1082' '#1087#1086#1083#1100#1079#1086#1074#1072#1090#1100#1089#1103
-        OnClick = N2Click
+      object ProjectInfo: TMenuItem
+        Caption = #1054' '#1087#1088#1086#1077#1082#1090#1077
+        object N2: TMenuItem
+          Caption = #1050#1072#1082' '#1087#1086#1083#1100#1079#1086#1074#1072#1090#1100#1089#1103
+          OnClick = N2Click
+        end
+        object Aboutproject1: TMenuItem
+          Caption = #1054' '#1087#1088#1086#1077#1082#1090#1077
+          OnClick = Aboutproject1Click
+        end
       end
       object Followus1: TMenuItem
         Caption = 'Follow us (YouTube)'
         OnClick = Followus1Click
-      end
-    end
-    object N3: TMenuItem
-      Caption = #1041#1083#1072#1075#1086#1076#1072#1088#1085#1086#1089#1090#1080
-      object N1: TMenuItem
-        Caption = #1050#1091#1087#1080#1090#1100' '#1082#1086#1092#1077' '#1088#1072#1079#1088#1072#1073#1086#1090#1095#1080#1082#1091
-        OnClick = N1Click
-      end
-      object Suppo1: TMenuItem
-        Caption = #1057#1082#1072#1079#1072#1090#1100' "'#1057#1087#1072#1089#1080#1073#1086'" '#1088#1072#1079#1088#1072#1073#1086#1090#1095#1080#1082#1091
-        OnClick = Suppo1Click
       end
     end
     object language1: TMenuItem
@@ -2853,10 +2865,6 @@ object WL2CED: TWL2CED
         Caption = #1056#1091#1089#1089#1082#1080#1081
         OnClick = N4Click
       end
-    end
-    object Followonpatreon1: TMenuItem
-      Caption = 'Follow on patreon'
-      Hint = 'support a developer on the Patreon platform'
     end
   end
   object OpenDialog1: TOpenDialog
