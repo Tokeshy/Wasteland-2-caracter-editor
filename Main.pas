@@ -125,6 +125,7 @@ type
     N4: TMenuItem;
     N5: TMenuItem;
     Followus1: TMenuItem;
+    Followonpatreon1: TMenuItem;
     procedure WSTB1Change(Sender: TObject);
     procedure EndBtnClick(Sender: TObject);
     procedure Aboutproject1Click(Sender: TObject);
@@ -154,6 +155,16 @@ var
   i, OFNL, a: longint;
   sf1, OldFileName, NewFileName, sname, cname,cn : string;
   savefile : textFile;
+
+const
+  VideoRu    = '';
+  VideoEng   = '';
+  ChannelLnk = '';
+
+  PatreonLnk = '';
+  ThanksLnk  = 'https://sites.google.com/view/little-beggar/%D0%B3%D0%BB%D0%B0%D0%B2%D0%BD%D0%B0%D1%8F';
+  ProjLnk    = 'https://sonkjeferson.wixsite.com/wastelandschared2';
+
 
 implementation
 
@@ -231,7 +242,7 @@ end;
 
 procedure TWL2CED.Aboutproject1Click(Sender: TObject);
 begin
-  ShellExecute(0, 'open', 'https://sonkjeferson.wixsite.com/wastelandschared2', '', '', SW_SHOWNORMAL); //актуализированно
+  ShellExecute(0, 'open', ProjLnk, '', '', SW_SHOWNORMAL);
 end;
 
 procedure TWL2CED.EndBtnClick(Sender: TObject);
@@ -241,162 +252,172 @@ end;
 
 procedure TWL2CED.N4Click(Sender: TObject);
 begin
-  CaracSavBtn.Caption:='Сохранить персонаж';
-  CaracterBox.Text:='Выбрать персонаж';
-  CaracterID.Text:='Всего юнитов';
-  CrLbtn.Caption:='Сканировать персонаж';
-  CurUnitGroup.Caption:='Выбранный юнит';
-    Label2.Caption:='Пол';
-    Label3.Caption:='Возраст';
-    Label4.Caption:='Уровень';
-    Label5.Caption:='Tекущие HP';
-    Label6.Caption:='Максимальные HP';
-    Label7.Caption:='Свободные Skil'+#39+'ы';
-  EndBtn.Caption:='Выход';
-    N3.Caption:='Благодарности';
-    N1.Caption:='Купить кофе разработчику';
-    Suppo1.Caption:='Сказать "Спасибо" разработчику';
-    N5.Caption:='Инфо';
-    Aboutproject1.Caption:='О проекте';
-    N2.Caption:='Как пользоваться';
-  TabSheet1.Caption:='Оружейные';
-    GroupBox1.Caption:='Текущий уровень';
-    GroupBox2.Caption:='Применяемый уровень';
-    GroupBox3.Caption:='Навык';
-      WS1.Text:='Дробящее';
-      WS10.Text:='Пистолеты';
-      WS2.Text:='Пист.-пулемёт';
-      WS3.Text:='Рукопашная';
-      WS4.Text:='Снайперские';
-      WS5.Text:='Тяжёлое';
-      WS6.Text:='Холодное';
-      WS7.Text:='Штурмовые';
-      WS8.Text:='Энергетическое';
-      WS9.Text:='Дробовики';
-    TabSheet2.Caption:='Общие';
-      GroupBox6.Caption:='Применяемый уровень';
-      GroupBox5.Caption:='Текущий уровень';
-      GroupBox4.Caption:='Навык';
-        RS1.Text:='"Знаток запада"';
-        RS10.Text:='Меняла';
-        RS11.Text:='Оружейник';
-        RS12.Text:='Хитрожопый';
-        RS2.Text:='Стрелок';
-        RS3.Text:='Выживание';
-        RS4.Text:='Грубая сила';
-        RS5.Text:='Дрессировщик';
-        RS6.Text:='Жополиз';
-        RS7.Text:='Задира';
-        RS8.Text:='Зоркий глаз';
-        RS9.Text:='Лидерство';
-    TabSheet3.Caption:='Технические';
-      GroupBox7.Caption:='Навык';
-        TS1.Text:='Взрывотехника';
-        TS2.Text:='Компьютеры';
-        TS3.Text:='Механика';
-        TS4.Text:='Полевая мед.';
-        TS5.Text:='Ремонт тостеров';
-        TS6.Text:='Снятие сигнализ.';
-        TS7.Text:='Хирургия';
-        TS8.Text:='Взлом сейфов';
-        TS9.Text:='Взлом замков';
-      GroupBox8.Caption:='Текущий уровень';
-      GroupBox9.Caption:='Применяемый уровень';
-    TabSheet4.Caption:='Атрибуты';
-      GroupBox10.Caption:='Текущий уровень';
-      GroupBox11.Caption:='Навык';
-        as1.Text:='Координация';
-        as2.Text:='Удача';
-        as3.Text:='Восприятие';
-        as4.Text:='Сила';
-        as5.Text:='Скорость';
-        as6.Text:='Интеллект';
-        as7.Text:='Харизма';
-      GroupBox12.Caption:='Применяемый уровень';
-  SaveBtn.Caption:='Перезаписать Save';
-  SGid.Text:='выбранный SaveGame';
-  SObtn.Caption:='Выбрать сохранённую игру';
-  SSnBtn.Caption:='Сканировать Save';
+  CaracSavBtn.Caption := 'Сохранить персонаж';
+  CaracterBox.Text    := 'Выбрать персонаж';
+  CaracterID.Text     := 'Всего юнитов';
+  CrLbtn.Caption      := 'Сканировать персонаж';
+  CurUnitGroup.Caption := 'Выбранный юнит';
+    Label2.Caption     := 'Пол';
+    Label3.Caption     := 'Возраст';
+    Label4.Caption     := 'Уровень';
+    Label5.Caption     := 'Tекущие HP';
+    Label6.Caption     := 'Максимальные HP';
+    Label7.Caption     := 'Свободные Skil'+#39+'ы';
+  EndBtn.Caption          := 'Выход';
+    N3.Caption            := 'Благодарности';
+    N1.Caption            := 'Купить кофе разработчику';
+    Suppo1.Caption        := 'Сказать "Спасибо" разработчику';
+    N5.Caption            := 'Инфо';
+    Aboutproject1.Caption := 'О проекте';
+    N2.Caption            := 'Как пользоваться';
+{###################################################}
+  TabSheet1.Caption   := 'Оружейные';
+    GroupBox1.Caption := 'Текущий уровень';
+    GroupBox2.Caption := 'Применяемый уровень';
+    GroupBox3.Caption := 'Навык';
+      WS1.Text  := 'Дробящее';
+      WS10.Text := 'Пистолеты';
+      WS2.Text  := 'Пист.-пулемёт';
+      WS3.Text  := 'Рукопашная';
+      WS4.Text  := 'Снайперские';
+      WS5.Text  := 'Тяжёлое';
+      WS6.Text  := 'Холодное';
+      WS7.Text  := 'Штурмовые';
+      WS8.Text  := 'Энергетическое';
+      WS9.Text  := 'Дробовики';
+{###################################################}
+    TabSheet2.Caption   := 'Общие';
+      GroupBox6.Caption := 'Применяемый уровень';
+      GroupBox5.Caption := 'Текущий уровень';
+      GroupBox4.Caption := 'Навык';
+        RS1.Text  := '"Знаток запада"';
+        RS10.Text := 'Меняла';
+        RS11.Text := 'Оружейник';
+        RS12.Text := 'Хитрожопый';
+        RS2.Text  := 'Стрелок';
+        RS3.Text  := 'Выживание';
+        RS4.Text  := 'Грубая сила';
+        RS5.Text  := 'Дрессировщик';
+        RS6.Text  := 'Жополиз';
+        RS7.Text  := 'Задира';
+        RS8.Text  := 'Зоркий глаз';
+        RS9.Text  := 'Лидерство';
+{###################################################}
+    TabSheet3.Caption   := 'Технические';
+      GroupBox7.Caption := 'Навык';
+      GroupBox8.Caption := 'Текущий уровень';
+      GroupBox9.Caption := 'Применяемый уровень';
+        TS1.Text := 'Взрывотехника';
+        TS2.Text := 'Компьютеры';
+        TS3.Text := 'Механика';
+        TS4.Text := 'Полевая мед.';
+        TS5.Text := 'Ремонт тостеров';
+        TS6.Text := 'Снятие сигнализ.';
+        TS7.Text := 'Хирургия';
+        TS8.Text := 'Взлом сейфов';
+        TS9.Text := 'Взлом замков';
+{###################################################}
+    TabSheet4.Caption    := 'Атрибуты';
+      GroupBox10.Caption := 'Текущий уровень';
+      GroupBox11.Caption := 'Навык';
+      GroupBox12.Caption := 'Применяемый уровень';
+        as1.Text := 'Координация';
+        as2.Text := 'Удача';
+        as3.Text := 'Восприятие';
+        as4.Text := 'Сила';
+        as5.Text := 'Скорость';
+        as6.Text := 'Интеллект';
+        as7.Text := 'Харизма';
+
+  SaveBtn.Caption := 'Перезаписать Save';
+  SGid.Text       := 'выбранный SaveGame';
+  SObtn.Caption   := 'Выбрать сохранённую игру';
+  SSnBtn.Caption  := 'Сканировать Save';
 end;
 
 procedure TWL2CED.English1Click(Sender: TObject);
 begin
-    CaracSavBtn.Caption:='Save unit';
-  CaracterBox.Text:='Select unit';
-  CaracterID.Text:='Total Units';
-  CrLbtn.Caption:='Scan character';
-  CurUnitGroup.Caption:='Selected unit';
-    Label2.Caption:='Sex';
-    Label3.Caption:='Age';
-    Label4.Caption:='Level';
-    Label5.Caption:='Current HP';
-    Label6.Caption:='Max HP';
-    Label7.Caption:='Free Skils';
-  EndBtn.Caption:='Exit';
-    N3.Caption:='Thanks';
-    N1.Caption:='Buy coffee for developer';
-    Suppo1.Caption:='Say "thanks" to the developer';
-    N5.Caption:='Info';
-    Aboutproject1.Caption:='About';
-    N2.Caption:='How to use';
-  TabSheet1.Caption:='Weapons';
-    GroupBox1.Caption:='Current level';
-    GroupBox2.Caption:='Applicable level';
-    GroupBox3.Caption:='Skill';
-      WS1.Text:='Blunt weapons';
-      WS10.Text:='Handgun';
-      WS2.Text:='smg';
-      WS3.Text:='Brawling';
-      WS4.Text:='Sniper rifle';
-      WS5.Text:='F.Big weapons';
-      WS6.Text:='Bladed weapons';
-      WS7.Text:='Rifle';
-      WS8.Text:='Energy weapons';
-      WS9.Text:='Shotgun';
-    TabSheet2.Caption:='General';
-      GroupBox6.Caption:='Applicable level';
-      GroupBox5.Caption:='Current level';
-      GroupBox4.Caption:='Skill';
-        RS1.Text:='Calvin Backer skill';
-        RS10.Text:='Barter';
-        RS11.Text:='weapon smith';
-        RS12.Text:='Manipulate';
-        RS2.Text:='Combat shooting';
-        RS3.Text:='Outdoorsman';
-        RS4.Text:='Brute force';
-        RS5.Text:='Animal Whisperer';
-        RS6.Text:='Spot lie';
-        RS7.Text:='Intimidate';
-        RS8.Text:='Perception';
-        RS9.Text:='Leadership';
-    TabSheet3.Caption:='Technical';
-      GroupBox7.Caption:='Skill';
-        TS1.Text:='Demolitions';
-        TS2.Text:='Computer tech';
-        TS3.Text:='Mechanical repair';
-        TS4.Text:='Field medic';
-        TS5.Text:='Toaster repair';
-        TS6.Text:='Alarm disarm';
-        TS7.Text:='Doctor';
-        TS8.Text:='Safe crack';
-        TS9.Text:='PickLock';
-      GroupBox8.Caption:='Current level';
-      GroupBox9.Caption:='Applicable level';
-    TabSheet4.Caption:='Attributes';
-      GroupBox10.Caption:='Current level';
-      GroupBox11.Caption:='Skill';
-        as1.Text:='Coordination';
-        as2.Text:='Luck';
-        as3.Text:='Awareness';
-        as4.Text:='Strength';
-        as5.Text:='Speed';
-        as6.Text:='Intelligence';
-        as7.Text:='Charisma';
+  CaracSavBtn.Caption := 'Save unit';
+  CaracterBox.Text    := 'Select unit';
+  CaracterID.Text     := 'Total Units';
+  CrLbtn.Caption      := 'Scan character';
+  CurUnitGroup.Caption := 'Selected unit';
+    Label2.Caption := 'Sex';
+    Label3.Caption := 'Age';
+    Label4.Caption := 'Level';
+    Label5.Caption := 'Current HP';
+    Label6.Caption := 'Max HP';
+    Label7.Caption := 'Free Skils';
+  EndBtn.Caption          := 'Exit';
+    N3.Caption            := 'Thanks';
+    N1.Caption            := 'Buy coffee for developer';
+    Suppo1.Caption        := 'Say "thanks" to the developer';
+    N5.Caption            := 'Info';
+    Aboutproject1.Caption := 'About';
+    N2.Caption            := 'How to use';
+{###################################################}
+  TabSheet1.Caption   := 'Weapons';
+    GroupBox1.Caption := 'Current level';
+    GroupBox2.Caption := 'Applicable level';
+    GroupBox3.Caption := 'Skill';
+      WS1.Text  := 'Blunt weapons';
+      WS10.Text := 'Handgun';
+      WS2.Text  := 'smg';
+      WS3.Text  := 'Brawling';
+      WS4.Text  := 'Sniper rifle';
+      WS5.Text  := 'F.Big weapons';
+      WS6.Text  := 'Bladed weapons';
+      WS7.Text  := 'Rifle';
+      WS8.Text  := 'Energy weapons';
+      WS9.Text  := 'Shotgun';
+{###################################################}
+    TabSheet2.Caption   := 'General';
+      GroupBox6.Caption := 'Applicable level';
+      GroupBox5.Caption := 'Current level';
+      GroupBox4.Caption := 'Skill';
+        RS1.Text  := 'Calvin Backer skill';
+        RS10.Text := 'Barter';
+        RS11.Text := 'weapon smith';
+        RS12.Text := 'Manipulate';
+        RS2.Text  := 'Combat shooting';
+        RS3.Text  := 'Outdoorsman';
+        RS4.Text  := 'Brute force';
+        RS5.Text  := 'Animal Whisperer';
+        RS6.Text  := 'Spot lie';
+        RS7.Text  := 'Intimidate';
+        RS8.Text  := 'Perception';
+        RS9.Text  := 'Leadership';
+{###################################################}
+    TabSheet3.Caption   := 'Technical';
+      GroupBox7.Caption := 'Skill';
+      GroupBox8.Caption := 'Current level';
+      GroupBox9.Caption := 'Applicable level';
+        TS1.Text := 'Demolitions';
+        TS2.Text := 'Computer tech';
+        TS3.Text := 'Mechanical repair';
+        TS4.Text := 'Field medic';
+        TS5.Text := 'Toaster repair';
+        TS6.Text := 'Alarm disarm';
+        TS7.Text := 'Doctor';
+        TS8.Text := 'Safe crack';
+        TS9.Text := 'PickLock';
+{###################################################}
+    TabSheet4.Caption    := 'Attributes';
+      GroupBox10.Caption := 'Current level';
+      GroupBox11.Caption := 'Skill';
       GroupBox12.Caption:='Applicable level';
-  SaveBtn.Caption:='Overwrite SaveGame';
-  SGid.Text:='Selected SaveGame';
-  SObtn.Caption:='Select saved game';
-  SSnBtn.Caption:='Scan SaveGame';
+        as1.Text := 'Coordination';
+        as2.Text := 'Luck';
+        as3.Text := 'Awareness';
+        as4.Text := 'Strength';
+        as5.Text := 'Speed';
+        as6.Text := 'Intelligence';
+        as7.Text := 'Charisma';
+
+  SaveBtn.Caption := 'Overwrite SaveGame';
+  SGid.Text       := 'Selected SaveGame';
+  SObtn.Caption   := 'Select saved game';
+  SSnBtn.Caption  := 'Scan SaveGame';
 end;
 
 {############################################}
@@ -408,7 +429,7 @@ end;
 
 procedure TWL2CED.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
-  TerminateOrRename
+  TerminateOrRename;
 end;
 
 procedure TWL2CED.FormCreate(Sender: TObject);
@@ -418,7 +439,7 @@ end;
 
 procedure TWL2CED.N1Click(Sender: TObject);
 begin
-  ShellExecute(0, 'open', 'https://sites.google.com/view/little-beggar/%D0%B3%D0%BB%D0%B0%D0%B2%D0%BD%D0%B0%D1%8F', '', '', SW_SHOWNORMAL); //актуализированно
+  ShellExecute(0, 'open', ThanksLnk, '', '', SW_SHOWNORMAL);
 end;
 
 procedure TWL2CED.N2Click(Sender: TObject);
@@ -445,7 +466,7 @@ begin
   openDialog1.InitialDir := 'C:\';
   openDialog1.Filter :='Wasteland2 Save Games files|*.xml';
   if OpenDialog1.Execute
-    then SGid.Text:=(ExtractFileName(OpenDialog1.FileName));
+    then SGid.Text := (ExtractFileName(OpenDialog1.FileName));
   CaracterBox.Clear;
 end;
 
@@ -459,19 +480,19 @@ var
   i, cc, j: integer;
   S1, cn : string;
 begin
-  CrLbtn.Enabled:=true;
-  if EndBtn.caption='Выход'
-    then CaracterBox.Text:= 'Выбрать персонаж';
-  if EndBtn.caption='Exit'
-    then CaracterBox.Text:= 'Select unit';
+  CrLbtn.Enabled := true;
+  if EndBtn.caption = 'Выход'
+    then CaracterBox.Text := 'Выбрать персонаж';
+  if EndBtn.caption = 'Exit'
+    then CaracterBox.Text := 'Select unit';
 {FileType to TXT}
-  OldFileName:=OpenDialog1.FileName;
-  OFNL:=OldFileName.length;
-  NewFileName:=OldFileName;
+  OldFileName := OpenDialog1.FileName;
+  OFNL := OldFileName.length;
+  NewFileName := OldFileName;
   delete(NewFileName,(OFNL-3), OFNL);
-  NewFileName:=NewFileName+'.txt';
+  NewFileName := NewFileName+'.txt';
   RenameFile(OldFileName, NewFileName);
-  FileName :=NewFileName;
+  FileName := NewFileName;
   AssignFile(F, FileName);
   Reset(F, 1);
 {Loading into SA Var}
@@ -505,8 +526,7 @@ end;
 
 procedure TWL2CED.Suppo1Click(Sender: TObject);
 begin
-{ProjectSupport Page}
-  ShellExecute(0, 'open', 'https://sites.google.com/view/little-beggar/%D0%B3%D0%BB%D0%B0%D0%B2%D0%BD%D0%B0%D1%8F', '', '', SW_SHOWNORMAL);
+  ShellExecute(0, 'open', ThanksLnk, '', '', SW_SHOWNORMAL);
 end;
 
 procedure TWL2CED.CaracSavBtnClick(Sender: TObject);
@@ -562,64 +582,62 @@ begin
   t9 := PosToVal(tstb9.Position);
 
 {compiling outputFile}
-  sf1:=sf1+'<'+sf2+'<KeyValuePairOfStringInt32><Key>awareness</Key><Value>'+(inttostr(ASTB3.Position));
+  sf1 := sf1+'<'+sf2+'<KeyValuePairOfStringInt32><Key>awareness</Key><Value>' + (inttostr(ASTB3.Position));
   delete (sf1, 1, 1 );
-  sf1:=sf1+'</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>charisma</Key><Value>'+(inttostr(ASTB7.Position));
-  sf1:=sf1+'</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>coordination</Key><Value>'+(inttostr(ASTB1.Position));
-  sf1:=sf1+'</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>intelligence</Key><Value>'+(inttostr(ASTB6.Position));
-  sf1:=sf1+'</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>luck</Key><Value>'+(inttostr(ASTB2.Position));
-  sf1:=sf1+'</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>speed</Key><Value>'+(inttostr(ASTB5.Position));
-  sf1:=sf1+'</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>strength</Key><Value>'+(inttostr(ASTB4.Position));
-  sf1:=sf1+'</Value></KeyValuePairOfStringInt32></attributes2><skillXps2><KeyValuePairOfStringInt32><Key>alarmDisarm</Key><Value>'+(inttostr(t6));
-  sf1:=sf1+'</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>animalWhisperer</Key><Value>'+(inttostr(r5));
-  sf1:=sf1+'</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>atWeapons</Key><Value>'+(inttostr(w5));
-  sf1:=sf1+'</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>barter</Key><Value>'+(inttostr(r10));
-  sf1:=sf1+'</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>bladedWeapons</Key><Value>'+(inttostr(w6));
-  sf1:=sf1+'</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>bluntWeapons</Key><Value>'+(inttostr(w1));
-  sf1:=sf1+'</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>brawling</Key><Value>'+(inttostr(w3));
-  sf1:=sf1+'</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>bruteForce</Key><Value>'+(inttostr(r4));
-  sf1:=sf1+'</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>calvinBackerSkill</Key><Value>'+(inttostr(r1));
-  sf1:=sf1+'</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>combatShooting</Key><Value>'+(inttostr(r2));
-  sf1:=sf1+'</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>computerTech</Key><Value>'+(inttostr(t2));
-  sf1:=sf1+'</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>demolitions</Key><Value>'+(inttostr(t1));
-  sf1:=sf1+'</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>doctor</Key><Value>'+(inttostr(t7));
-  sf1:=sf1+'</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>energyWeapons</Key><Value>'+(inttostr(w8));
-  sf1:=sf1+'</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>fieldMedic</Key><Value>'+(inttostr(t4));
-  sf1:=sf1+'</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>handgun</Key><Value>'+(inttostr(w10));
-  sf1:=sf1+'</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>intimidate</Key><Value>'+(inttostr(r7));
-  sf1:=sf1+'</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>leadership</Key><Value>'+(inttostr(r9));
-  sf1:=sf1+'</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>manipulate</Key><Value>'+(inttostr(r12));
-  sf1:=sf1+'</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>mechanicalRepair</Key><Value>'+(inttostr(t3));
-  sf1:=sf1+'</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>outdoorsman</Key><Value>'+(inttostr(r3));
-  sf1:=sf1+'</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>perception</Key><Value>'+(inttostr(r8));
-  sf1:=sf1+'</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>pickLock</Key><Value>'+(inttostr(t9));
-  sf1:=sf1+'</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>rifle</Key><Value>'+(inttostr(w7));
-  sf1:=sf1+'</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>safecrack</Key><Value>'+(inttostr(t8));
-  sf1:=sf1+'</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>shotgun</Key><Value>'+(inttostr(w9));
-  sf1:=sf1+'</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>smg</Key><Value>'+(inttostr(w2));
-  sf1:=sf1+'</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>sniperRifle</Key><Value>'+(inttostr(w4));
-  sf1:=sf1+'</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>spotLie</Key><Value>'+(inttostr(r6));
-  sf1:=sf1+'</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>toasterRepair</Key><Value>'+(inttostr(t5));
-  sf1:=sf1+'</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>weaponSmith</Key><Value>'+(inttostr(r11));
-  sf1:=sf1+'</Value></KeyValuePairOfStringInt32></skillXps2><hasCommittedPoints>false</hasCommittedPoints><availableAttributePoints>0</availableAttributePoints><availableSkillPoints>54</availableSkillPoints><availableTraitPoints>0<';
+  sf1 := sf1+'</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>charisma</Key><Value>' + (inttostr(ASTB7.Position));
+  sf1 := sf1+'</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>coordination</Key><Value>' + (inttostr(ASTB1.Position));
+  sf1 := sf1+'</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>intelligence</Key><Value>' + (inttostr(ASTB6.Position));
+  sf1 := sf1+'</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>luck</Key><Value>'+(inttostr(ASTB2.Position));
+  sf1 := sf1+'</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>speed</Key><Value>'+(inttostr(ASTB5.Position));
+  sf1 := sf1+'</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>strength</Key><Value>'+(inttostr(ASTB4.Position));
+  sf1 := sf1+'</Value></KeyValuePairOfStringInt32></attributes2><skillXps2><KeyValuePairOfStringInt32><Key>alarmDisarm</Key><Value>'+(inttostr(t6));
+  sf1 := sf1+'</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>animalWhisperer</Key><Value>'+(inttostr(r5));
+  sf1 := sf1+'</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>atWeapons</Key><Value>'+(inttostr(w5));
+  sf1 := sf1+'</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>barter</Key><Value>'+(inttostr(r10));
+  sf1 := sf1+'</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>bladedWeapons</Key><Value>'+(inttostr(w6));
+  sf1 := sf1+'</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>bluntWeapons</Key><Value>'+(inttostr(w1));
+  sf1 := sf1+'</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>brawling</Key><Value>'+(inttostr(w3));
+  sf1 := sf1+'</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>bruteForce</Key><Value>'+(inttostr(r4));
+  sf1 := sf1+'</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>calvinBackerSkill</Key><Value>'+(inttostr(r1));
+  sf1 := sf1+'</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>combatShooting</Key><Value>'+(inttostr(r2));
+  sf1 := sf1+'</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>computerTech</Key><Value>'+(inttostr(t2));
+  sf1 := sf1+'</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>demolitions</Key><Value>'+(inttostr(t1));
+  sf1 := sf1+'</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>doctor</Key><Value>'+(inttostr(t7));
+  sf1 := sf1+'</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>energyWeapons</Key><Value>'+(inttostr(w8));
+  sf1 := sf1+'</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>fieldMedic</Key><Value>'+(inttostr(t4));
+  sf1 := sf1+'</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>handgun</Key><Value>'+(inttostr(w10));
+  sf1 := sf1+'</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>intimidate</Key><Value>'+(inttostr(r7));
+  sf1 := sf1+'</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>leadership</Key><Value>'+(inttostr(r9));
+  sf1 := sf1+'</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>manipulate</Key><Value>'+(inttostr(r12));
+  sf1 := sf1+'</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>mechanicalRepair</Key><Value>'+(inttostr(t3));
+  sf1 := sf1+'</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>outdoorsman</Key><Value>'+(inttostr(r3));
+  sf1 := sf1+'</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>perception</Key><Value>'+(inttostr(r8));
+  sf1 := sf1+'</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>pickLock</Key><Value>'+(inttostr(t9));
+  sf1 := sf1+'</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>rifle</Key><Value>'+(inttostr(w7));
+  sf1 := sf1+'</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>safecrack</Key><Value>'+(inttostr(t8));
+  sf1 := sf1+'</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>shotgun</Key><Value>'+(inttostr(w9));
+  sf1 := sf1+'</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>smg</Key><Value>'+(inttostr(w2));
+  sf1 := sf1+'</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>sniperRifle</Key><Value>'+(inttostr(w4));
+  sf1 := sf1+'</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>spotLie</Key><Value>'+(inttostr(r6));
+  sf1 := sf1+'</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>toasterRepair</Key><Value>'+(inttostr(t5));
+  sf1 := sf1+'</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>weaponSmith</Key><Value>'+(inttostr(r11));
+  sf1 := sf1+'</Value></KeyValuePairOfStringInt32></skillXps2><hasCommittedPoints>false</hasCommittedPoints><availableAttributePoints>0</availableAttributePoints><availableSkillPoints>54</availableSkillPoints><availableTraitPoints>0<';
 {The last line of output TXT}
   sf1:=sf1+sfl;
 end;
-
-
 
 procedure TWL2CED.CrLbtnClick(Sender: TObject);
 var
   cn1 : string;
 begin
-  CaracSavBtn.Enabled:=true;
-  SaveBtn.Enabled:=true;
+  CaracSavBtn.Enabled := true;
+  SaveBtn.Enabled := true;
 {read caracter's name into cname}
-  cname:= caracterbox.Items.Strings[caracterbox.ItemIndex];
+  cname := caracterbox.Items.Strings[caracterbox.ItemIndex];
   CurUnitGroup.Caption := 'Загружены данные ' + cname;
 {scaning caracter}
-  cn:=S;
-  sname:='</name><displayName>&lt;@&gt;'+cname;
+  cn := S;
+  sname := '</name><displayName>&lt;@&gt;' + cname;
 {clearing file (before caracter description)}
   delete (cn, 1, (ansipos(sname,cn)));
 {clering postfix (after caracter description)}
@@ -628,7 +646,7 @@ begin
 {reading values from savegame}
 {general info}
 {Gender}
-  cn1:=cn;
+  cn1 := cn;
   delete (cn1, 1, (ansipos('{',cn1)-1));
   delete (cn1, (ansipos('}',cn1)), Length(cn1));
   delete (cn1, 1, (Length('{')));
@@ -644,16 +662,16 @@ begin
 {Free SkillPoints}
   edit11.Text := UnregClean (cn, 'availableSkillPoints>', 22);
 {Biografy}
-  cn1:=cn;
+  cn1 := cn;
   delete (cn1, 1, (ansipos('<biography>&lt;@&gt;',cn1)-1));
   {check if biografy exists}
   if ansipos('<biography>&lt;@&gt;',cn1)=0
-    then memo3.Text:='Биография не заполнена'
+    then memo3.Text := 'Биография не заполнена'
     else
     begin
       delete (cn1, (ansipos('</biography>',cn1)), Length(cn1));
       delete (cn1, 1, Length('<biography>&lt;@&gt;'));
-      memo3.Text:=cn1;
+      memo3.Text := cn1;
     end;
 
 {##########################}
@@ -936,9 +954,7 @@ begin
   ASTB7.Position:=ASPB7.Position;
   ASL7.Text:=inttostr(ASTB7.Position)+'/10';
   Asi7.Text:= ASL7.Text;
-
 end;
-
 
 procedure TWL2CED.WSTB1Change(Sender: TObject);
 begin
