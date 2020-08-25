@@ -242,8 +242,42 @@ begin
     44 : result := '10';
   end;
 end;
-{############################################}
 
+{Buttons \ Link section}
+procedure TWL2CED.Followonpatreon1Click(Sender: TObject);
+begin
+  ShellExecute(0, 'open', PatreonLnk, '', '', SW_SHOWNORMAL);
+end;
+
+procedure TWL2CED.Followus1Click(Sender: TObject);
+begin
+  ShellExecute(0, 'open', 'https://www.youtube.com/channel/UCyniVlUauJ1iWYyo-vHfGlA', '', '', SW_SHOWNORMAL); //актуализированно
+end;
+
+procedure TWL2CED.MailtoDevClick(Sender: TObject);
+begin
+ ShellExecute(0, 'open', ContLnk, '', '', SW_SHOWNORMAL);
+end;
+
+procedure TWL2CED.N1Click(Sender: TObject);
+begin
+  ShellExecute(0, 'open', ThanksLnk, '', '', SW_SHOWNORMAL);
+end;
+
+procedure TWL2CED.N2Click(Sender: TObject);
+begin
+  if EndBtn.caption='Выход'
+    then ShellExecute(0, 'open', 'https://youtu.be/EORiIPeyx2Y', '', '', SW_SHOWNORMAL);
+  if EndBtn.caption='Exit'
+    then ShellExecute(0, 'open', 'https://youtu.be/LeS7QBcF6zI', '', '', SW_SHOWNORMAL);
+end;
+
+procedure TWL2CED.Suppo1Click(Sender: TObject);
+begin
+  ShellExecute(0, 'open', ThanksLnk, '', '', SW_SHOWNORMAL);
+end;
+
+{Buttons \ Actions}
 procedure TWL2CED.Aboutproject1Click(Sender: TObject);
 begin
   ShellExecute(0, 'open', ProjLnk, '', '', SW_SHOWNORMAL);
@@ -270,7 +304,7 @@ begin
   EndBtn.Caption        := 'Выход';
     DevInfo.Caption     := 'Разработчик';
     ProjectInfo.Caption := 'О проекте (Help)';
-    MailtoDev.Caption   := 'Написать';
+    MailtoDev.Caption   := 'Контакты';
     N1.Caption            := 'Купить кофе разработчику';
     Suppo1.Caption        := 'Сказать "Спасибо" разработчику';
     N5.Caption            := 'Инфо';
@@ -428,42 +462,6 @@ begin
   SSnBtn.Caption  := 'Scan SaveGame';
 end;
 
-{Link section}
-{############################################}
-procedure TWL2CED.Followonpatreon1Click(Sender: TObject);
-begin
-  ShellExecute(0, 'open', PatreonLnk, '', '', SW_SHOWNORMAL);
-end;
-
-procedure TWL2CED.Followus1Click(Sender: TObject);
-begin
-  ShellExecute(0, 'open', 'https://www.youtube.com/channel/UCyniVlUauJ1iWYyo-vHfGlA', '', '', SW_SHOWNORMAL); //актуализированно
-end;
-
-procedure TWL2CED.MailtoDevClick(Sender: TObject);
-begin
- ShellExecute(0, 'open', ContLnk, '', '', SW_SHOWNORMAL);
-end;
-
-procedure TWL2CED.N1Click(Sender: TObject);
-begin
-  ShellExecute(0, 'open', ThanksLnk, '', '', SW_SHOWNORMAL);
-end;
-
-procedure TWL2CED.N2Click(Sender: TObject);
-begin
-  if EndBtn.caption='Выход'
-    then ShellExecute(0, 'open', 'https://youtu.be/EORiIPeyx2Y', '', '', SW_SHOWNORMAL);
-  if EndBtn.caption='Exit'
-    then ShellExecute(0, 'open', 'https://youtu.be/LeS7QBcF6zI', '', '', SW_SHOWNORMAL);
-end;
-
-procedure TWL2CED.Suppo1Click(Sender: TObject);
-begin
-  ShellExecute(0, 'open', ThanksLnk, '', '', SW_SHOWNORMAL);
-end;
-{############################################}
-
 procedure TWL2CED.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
   TerminateOrRename;
@@ -599,7 +597,6 @@ begin
   t7 := PosToVal(tstb7.Position);
   t8 := PosToVal(tstb8.Position);
   t9 := PosToVal(tstb9.Position);
-
 {compiling outputFile}
   sf1 := sf1 + '<' + sf2 + '<KeyValuePairOfStringInt32><Key>awareness</Key><Value>' + (inttostr(ASTB3.Position));
   delete (sf1, 1, 1 );
@@ -693,10 +690,7 @@ begin
       memo3.Text := cn1;
     end;
 
-{##########################}
-{ Block 1 - weapon skills  }
-{##########################}
-
+{Block 1 - weapon skills  }
 {crushing / дробящее}
   cn1 := CnClean(cn, 'KeyValuePairOfStringInt32><Key>bluntWeapons</Key><Value>');
   {translating to "normal" values}
@@ -770,10 +764,7 @@ begin
   WSL10.Text := inttostr(WSTB10.Position) + '/10';
   wsi10.Text := wsl10.Text;
 
-{##########################}
 {Block 2 - 'General skills'}
-{##########################}
-
 {"Calvin Backer skill" / "Знаток запада"}
   cn1 := CnClean(cn, 'KeyValuePairOfStringInt32><Key>calvinBackerSkill</Key><Value>');
   cn1 := ValToWL2Format(cn1);
