@@ -164,23 +164,15 @@ const
   VideoRu    = '';
   VideoEng   = '';
   ChannelLnk = '';
-
   PatreonLnk = 'https://www.patreon.com/Tokeshy';
-  ThanksLnk  = 'https://sites.google.com/view/little-beggar/%D0%B3%D0%BB%D0%B0%D0%B2%D0%BD%D0%B0%D1%8F';
-  ProjLnk    = 'https://sonkjeferson.wixsite.com/wastelandschared2';
-  ContLnk    = ''; {страница со способами связи}
-
+  ThanksLnk  = 'https://sites.google.com/view/little-beggar/%D0%B3%D0%BB%D0%B0%D0%B2%D0%BD%D0%B0%D1%8F'; {перепроверь}
+  CoffeeLnk  = ''; {сделать}
+  ProjLnk    = 'https://sonkjeferson.wixsite.com/wastelandschared2'; {перепроверь контакты и сапорт}
+  ContLnk    = ''; {сделать}
+  CurrentVersion = '2.0';
 implementation
 
 {$R *.dfm}
-
-{At version 2.0 добавлена возможность смены языка интерфейса
-  - перезалить видео на Youtube, даже 2 - на русском и английском
-  + сделать сайт проекта, с мультиязыковой поддержкой (RU / ENG)
-  + новый сайт с возможностью выбора языка //переход на веб.страницу в соотв. с выбранным в приложении языком
-  + сделать страницы Donate в том числе в крипте .. Гуглосайты?
-  - не забыть про замену ссылок в самом приложении
-  + Добавлена кнопка подписки на YouTube}
 
 {Regular Procedures & Functions}
 procedure TerminateOrRename;
@@ -251,7 +243,7 @@ end;
 
 procedure TWL2CED.Followus1Click(Sender: TObject);
 begin
-  ShellExecute(0, 'open', 'https://www.youtube.com/channel/UCyniVlUauJ1iWYyo-vHfGlA', '', '', SW_SHOWNORMAL); //актуализированно
+  ShellExecute(0, 'open', ChannelLnk, '', '', SW_SHOWNORMAL);
 end;
 
 procedure TWL2CED.MailtoDevClick(Sender: TObject);
@@ -261,15 +253,15 @@ end;
 
 procedure TWL2CED.N1Click(Sender: TObject);
 begin
-  ShellExecute(0, 'open', ThanksLnk, '', '', SW_SHOWNORMAL);
+  ShellExecute(0, 'open', CoffeeLnk, '', '', SW_SHOWNORMAL);
 end;
 
 procedure TWL2CED.N2Click(Sender: TObject);
 begin
   if EndBtn.caption='Выход'
-    then ShellExecute(0, 'open', 'https://youtu.be/EORiIPeyx2Y', '', '', SW_SHOWNORMAL);
+    then ShellExecute(0, 'open', VideoRu, '', '', SW_SHOWNORMAL);
   if EndBtn.caption='Exit'
-    then ShellExecute(0, 'open', 'https://youtu.be/LeS7QBcF6zI', '', '', SW_SHOWNORMAL);
+    then ShellExecute(0, 'open', VideoEng, '', '', SW_SHOWNORMAL);
 end;
 
 procedure TWL2CED.Suppo1Click(Sender: TObject);
@@ -277,12 +269,12 @@ begin
   ShellExecute(0, 'open', ThanksLnk, '', '', SW_SHOWNORMAL);
 end;
 
-{Buttons \ Actions}
 procedure TWL2CED.Aboutproject1Click(Sender: TObject);
 begin
   ShellExecute(0, 'open', ProjLnk, '', '', SW_SHOWNORMAL);
 end;
 
+{Buttons \ Actions}
 procedure TWL2CED.EndBtnClick(Sender: TObject);
 begin
   TerminateOrRename
@@ -834,7 +826,7 @@ begin
   RSPB10.Position := strtoint(cn1);
   RSTB10.Position := RSPB10.Position;
   RSL10.Text := inttostr(RSTB10.Position) + '/10';
-  rsi10.Text = RSL10.Text;
+  rsi10.Text := RSL10.Text;
 {weapon smith / оружейник}
   cn1 := CnClean(cn, 'KeyValuePairOfStringInt32><Key>weaponSmith</Key><Value>');
   cn1 := ValToWL2Format(cn1);
@@ -850,10 +842,7 @@ begin
   RSL12.Text := inttostr(RSTB12.Position) + '/10';
   rsi12.Text := RSL12.Text;
 
-{##########################}
 {Block 3 - Technical skills}
-{##########################}
-
 {Demolitions / взрывотехника}
   cn1 := CnClean(cn, 'KeyValuePairOfStringInt32><Key>demolitions</Key><Value>');
   cn1 := ValToWL2Format(cn1);
@@ -918,10 +907,7 @@ begin
   TSL9.Text := inttostr(TSTB9.Position) + '/10';
   Tsi9.Text := TSL9.Text;
 
-{##########################}
 {   Block 4 - Attributes   }
-{##########################}
-
 {Coordination / Координация}
   cn1 := CnClean(cn, 'KeyValuePairOfStringInt32><Key>coordination</Key><Value>');
   ASPB1.Position := strtoint(cn1);
@@ -966,9 +952,9 @@ begin
   Asi7.Text := ASL7.Text;
 end;
 
+{TrackBar Works}
 procedure TWL2CED.WSTB1Change(Sender: TObject);
 begin
-{TrackBar Works}
 {Weapons}
   WSL1.Text  := inttostr(WSTB1.Position) + '/10';
   WSL2.Text  := inttostr(WSTB2.Position) + '/10';
