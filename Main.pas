@@ -169,7 +169,7 @@ const
   CoffeeLnk  = ''; {сделать}
   ProjLnk    = 'https://sonkjeferson.wixsite.com/wastelandschared2'; {перепроверь контакты и сапорт}
   ContLnk    = ''; {сделать}
-  CurrentVersion = '2.0';
+  CurrentVersion = '2.1.0';
 implementation
 
 {$R *.dfm}
