@@ -1,12 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <BorlandProject>
 	<Transactions>
-    <Transaction>1899.12.30 00:00:00.000.891,D:\# Projects\Progs\# Git\Wasteland-2-caracter-editor\Unit1.dfm=D:\# Projects\Progs\# Git\Wasteland-2-caracter-editor\Main.dfm</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.845,C:\Users\Funt\Desktop\WL2Ced\Unit1.pas=C:\Users\Funt\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.845,C:\Users\Funt\Documents\Embarcadero\Studio\Projects\Unit1.pas=C:\Users\Funt\Desktop\WL2Ced\Unit1.pas</Transaction>
     <Transaction>1899.12.30 00:00:00.000.316,=C:\Users\Funt\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.845,C:\Users\Funt\Desktop\WL2Ced\Unit1.dfm=C:\Users\Funt\Documents\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.159,D:\# Projects\Progs\# Git\Wasteland-2-caracter-editor\Project1.dproj=D:\# Projects\Progs\# Git\Wasteland-2-caracter-editor\WL2Ed.dproj</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.891,D:\# Projects\Progs\# Git\Wasteland-2-caracter-editor\Unit1.pas=D:\# Projects\Progs\# Git\Wasteland-2-caracter-editor\Main.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.925,C:\Users\Funt\Desktop\WL2Ced\Project1.dproj=C:\Users\Funt\Documents\Embarcadero\Studio\Projects\Project1.dproj</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.891,D:\# Projects\Progs\# Git\Wasteland-2-caracter-editor\Main.pas=D:\# Projects\Progs\# Git\Wasteland-2-caracter-editor\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.891,D:\# Projects\Progs\# Git\Wasteland-2-caracter-editor\Main.dfm=D:\# Projects\Progs\# Git\Wasteland-2-caracter-editor\Unit1.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.925,C:\Users\Funt\Documents\Embarcadero\Studio\Projects\Project1.dproj=C:\Users\Funt\Desktop\WL2Ced\Project1.dproj</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.159,D:\# Projects\Progs\# Git\Wasteland-2-caracter-editor\WL2Ed.dproj=D:\# Projects\Progs\# Git\Wasteland-2-caracter-editor\Project1.dproj</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.845,C:\Users\Funt\Documents\Embarcadero\Studio\Projects\Unit1.dfm=C:\Users\Funt\Desktop\WL2Ced\Unit1.dfm</Transaction>
   </Transactions>
 </BorlandProject>
