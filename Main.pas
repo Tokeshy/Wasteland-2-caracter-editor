@@ -161,14 +161,14 @@ var
   savefile : textFile;
 
 const
-  VideoRu    = '';
-  VideoEng   = '';
+  VideoRu    = 'https://www.youtube.com/watch?v=EORiIPeyx2Y';
+  VideoEng   = 'https://www.youtube.com/watch?v=LeS7QBcF6zI';
   ChannelLnk = '';
   PatreonLnk = 'https://www.patreon.com/Tokeshy';
   ThanksLnk  = 'https://sites.google.com/view/little-beggar/%D0%B3%D0%BB%D0%B0%D0%B2%D0%BD%D0%B0%D1%8F'; {перепроверь}
   CoffeeLnk  = ''; {сделать}
   ProjLnk    = 'https://sonkjeferson.wixsite.com/wastelandschared2'; {перепроверь контакты и сапорт}
-  ContLnk    = ''; {сделать}
+  ContLnk    = 'https://www.linkedin.com/in/vitaliherasimenia/';
   CurrentVersion = '2.1.0';
 implementation
 

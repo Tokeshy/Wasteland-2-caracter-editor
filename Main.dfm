@@ -728,10 +728,6 @@ object WL2CED: TWL2CED
     object TabSheet2: TTabSheet
       Caption = #1054#1073#1097#1080#1077
       ImageIndex = 1
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object GroupBox4: TGroupBox
         Left = 0
         Top = 3
@@ -1516,10 +1512,6 @@ object WL2CED: TWL2CED
     object TabSheet3: TTabSheet
       Caption = #1058#1077#1093#1085#1080#1095#1077#1089#1082#1080#1077
       ImageIndex = 2
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object GroupBox7: TGroupBox
         Left = 0
         Top = 3
@@ -2115,10 +2107,6 @@ object WL2CED: TWL2CED
     object TabSheet4: TTabSheet
       Caption = #1040#1090#1088#1080#1073#1091#1090#1099
       ImageIndex = 3
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object GroupBox11: TGroupBox
         Left = 3
         Top = 11
