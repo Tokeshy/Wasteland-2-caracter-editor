@@ -55,7 +55,7 @@ object WL2CED: TWL2CED
     Top = 185
     Width = 617
     Height = 418
-    ActivePage = TabSheet4
+    ActivePage = TabSheet1
     TabOrder = 3
     object TabSheet1: TTabSheet
       Caption = #1054#1088#1091#1078#1077#1081#1085#1099#1077
