@@ -11,7 +11,6 @@ uses
 begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
-  TStyleManager.TrySetStyle('Auric');
   Application.CreateForm(TWL2CED, WL2CED);
   Application.Run;
 end.

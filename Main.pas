@@ -100,21 +100,35 @@ type
     as1: TEdit; as2: TEdit; as3: TEdit; as4: TEdit;
     as5: TEdit; as6: TEdit; as7: TEdit;
     GroupBox10: TGroupBox;
-    aspb1: TProgressBar; aspb2: TProgressBar;
-    aspb3: TProgressBar; aspb4: TProgressBar;
-    aspb5: TProgressBar; aspb6: TProgressBar;
-    aspb7: TProgressBar;
-    asi1: TEdit; asi2: TEdit; asi3: TEdit; asi4: TEdit;
-    asi5: TEdit; asi6: TEdit; asi7: TEdit;
+    ASPB1: TProgressBar;
+    ASPB2: TProgressBar;
+    ASPB3: TProgressBar;
+    ASPB4: TProgressBar;
+    ASPB5: TProgressBar;
+    ASPB6: TProgressBar;
+    ASPB7: TProgressBar;
+    ASI1: TEdit;
+    ASI2: TEdit;
+    ASI3: TEdit;
+    ASI4: TEdit;
+    ASI5: TEdit;
+    ASI6: TEdit;
+    ASI7: TEdit;
     GroupBox12: TGroupBox;
-    astb1: TTrackBar;
-    asl1: TEdit;
-    astb2: TTrackBar; astb3: TTrackBar;
-    astb4: TTrackBar; astb5: TTrackBar;
-    astb6: TTrackBar; astb7: TTrackBar;
-    asl2: TEdit; asl3: TEdit;
-    asl4: TEdit; asl5: TEdit;
-    asl6: TEdit; asl7: TEdit;
+    ASTB1: TTrackBar;
+    ASL1: TEdit;
+    ASTB2: TTrackBar;
+    ASTB3: TTrackBar;
+    ASTB4: TTrackBar;
+    ASTB5: TTrackBar;
+    ASTB6: TTrackBar;
+    ASTB7: TTrackBar;
+    ASL2: TEdit;
+    ASL3: TEdit;
+    ASL4: TEdit;
+    ASL5: TEdit;
+    ASL6: TEdit;
+    ASL7: TEdit;
     CaracSavBtn: TButton;
     SaveBtn: TButton;
     N1: TMenuItem;
@@ -161,6 +175,7 @@ var
   savefile : textFile;
 
 const
+{General}
   VideoRu    = 'https://www.youtube.com/watch?v=EORiIPeyx2Y';
   VideoEng   = 'https://www.youtube.com/watch?v=LeS7QBcF6zI';
   ChannelLnk = '';
@@ -170,6 +185,22 @@ const
   ProjLnk    = 'https://sonkjeferson.wixsite.com/wastelandschared2'; {перепроверь контакты и сапорт}
   ContLnk    = 'https://www.linkedin.com/in/vitaliherasimenia/';
   CurrentVersion = '2.1.0';
+
+{Services}
+  SkillPrefix = 'KeyValuePairOfStringInt32><Key>';
+  SkillPostfix = '</Key><Value>';
+  WSPref : array[1..10] of string = ('bluntWeapons', 'smg', 'brawling',
+    'sniperRifle', 'atWeapons', 'bladedWeapons','rifle','energyWeapons',
+    'shotgun','handgun');
+  GSPref : array[1..12] of string = ('calvinBackerSkill','combatShooting',
+    'outdoorsman','bruteForce','animalWhisperer','spotLie','intimidate',
+    'perception','leadership','barter','weaponSmith','manipulate');
+  TSPref : array[1..9] of string = ('demolitions','computerTech',
+    'mechanicalRepair','fieldMedic','toasterRepair','alarmDisarm','doctor',
+    'safecrack','pickLock');
+  ASPref : array[1..7] of string = ('coordination','luck','awareness','strength',
+    'speed','intelligence','charisma');
+
 implementation
 
 {$R *.dfm}
@@ -541,8 +572,10 @@ end;
 procedure TWL2CED.CaracSavBtnClick(Sender: TObject);
 var
   sf2, sfl: string;
-  w1, w2, w3, w4, w5, w6, w7, w8, w9, w10, r1, r2, r3, r4, r5, r6, r7, r8, r9,
-  r10, r11, r12, t1, t2, t3, t4, t5, t6, t7, t8, t9 :integer;
+  w : array [1..10] of integer;
+  r : array [1..12] of integer;
+  t : array [1..9] of integer;
+  i : integer;
 begin
 {Prefix into sf1}
   sf1 := S;
@@ -556,39 +589,15 @@ begin
   delete (sfl, 1, (ansipos('</availableTraitPoints>',sfl)));
 
 {skils into Wasteland format}
-  w1 := PosToVal(wstb1.Position);
-  w2 := PosToVal(wstb2.Position);
-  w3 := PosToVal(wstb3.Position);
-  w4 := PosToVal(wstb4.Position);
-  w5 := PosToVal(wstb5.Position);
-  w6 := PosToVal(wstb6.Position);
-  w7 := PosToVal(wstb7.Position);
-  w8 := PosToVal(wstb8.Position);
-  w9 := PosToVal(wstb9.Position);
-  w10 := PosToVal(wstb10.Position);
+  for i := 1 to 10 do
+    w[i] := PosToVal((FindComponent('WSTB' + inttostr(i)) as TTrackbar).position);
 
-  r1 := PosToVal(rstb1.Position);
-  r2 := PosToVal(rstb2.Position);
-  r3 := PosToVal(rstb3.Position);
-  r4 := PosToVal(rstb4.Position);
-  r5 := PosToVal(rstb5.Position);
-  r6 := PosToVal(rstb6.Position);
-  r7 := PosToVal(rstb7.Position);
-  r8 := PosToVal(rstb8.Position);
-  r9 := PosToVal(rstb9.Position);
-  r10 := PosToVal(rstb10.Position);
-  r11 := PosToVal(rstb11.Position);
-  r12 := PosToVal(rstb12.Position);
+  for i := 1 to 12 do
+    r[i] := PosToVal((FindComponent('RSTB' + inttostr(i)) as TTrackbar).position);
 
-  t1 := PosToVal(tstb1.Position);
-  t2 := PosToVal(tstb2.Position);
-  t3 := PosToVal(tstb3.Position);
-  t4 := PosToVal(tstb4.Position);
-  t5 := PosToVal(tstb5.Position);
-  t6 := PosToVal(tstb6.Position);
-  t7 := PosToVal(tstb7.Position);
-  t8 := PosToVal(tstb8.Position);
-  t9 := PosToVal(tstb9.Position);
+  for i := 1 to 9 do
+    t[i] := PosToVal((FindComponent('TSTB' + inttostr(i)) as TTrackbar).position);
+
 {compiling outputFile}
   sf1 := sf1 + '<' + sf2 + '<KeyValuePairOfStringInt32><Key>awareness</Key><Value>' + (inttostr(ASTB3.Position));
   delete (sf1, 1, 1 );
@@ -598,37 +607,37 @@ begin
   sf1 := sf1 + '</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>luck</Key><Value>' + (inttostr(ASTB2.Position));
   sf1 := sf1 + '</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>speed</Key><Value>' + (inttostr(ASTB5.Position));
   sf1 := sf1 + '</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>strength</Key><Value>' + (inttostr(ASTB4.Position));
-  sf1 := sf1 + '</Value></KeyValuePairOfStringInt32></attributes2><skillXps2><KeyValuePairOfStringInt32><Key>alarmDisarm</Key><Value>' + (inttostr(t6));
-  sf1 := sf1 + '</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>animalWhisperer</Key><Value>' + (inttostr(r5));
-  sf1 := sf1 + '</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>atWeapons</Key><Value>' + (inttostr(w5));
-  sf1 := sf1 + '</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>barter</Key><Value>' + (inttostr(r10));
-  sf1 := sf1 + '</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>bladedWeapons</Key><Value>' + (inttostr(w6));
-  sf1 := sf1 + '</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>bluntWeapons</Key><Value>' + (inttostr(w1));
-  sf1 := sf1 + '</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>brawling</Key><Value>' + (inttostr(w3));
-  sf1 := sf1 + '</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>bruteForce</Key><Value>' + (inttostr(r4));
-  sf1 := sf1 + '</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>calvinBackerSkill</Key><Value>' + (inttostr(r1));
-  sf1 := sf1 + '</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>combatShooting</Key><Value>' + (inttostr(r2));
-  sf1 := sf1 + '</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>computerTech</Key><Value>' + (inttostr(t2));
-  sf1 := sf1 + '</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>demolitions</Key><Value>' + (inttostr(t1));
-  sf1 := sf1 + '</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>doctor</Key><Value>' + (inttostr(t7));
-  sf1 := sf1 + '</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>energyWeapons</Key><Value>' + (inttostr(w8));
-  sf1 := sf1 + '</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>fieldMedic</Key><Value>' + (inttostr(t4));
-  sf1 := sf1 + '</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>handgun</Key><Value>' + (inttostr(w10));
-  sf1 := sf1 + '</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>intimidate</Key><Value>' + (inttostr(r7));
-  sf1 := sf1 + '</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>leadership</Key><Value>' + (inttostr(r9));
-  sf1 := sf1 + '</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>manipulate</Key><Value>' + (inttostr(r12));
-  sf1 := sf1 + '</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>mechanicalRepair</Key><Value>' + (inttostr(t3));
-  sf1 := sf1 + '</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>outdoorsman</Key><Value>' + (inttostr(r3));
-  sf1 := sf1 + '</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>perception</Key><Value>' + (inttostr(r8));
-  sf1 := sf1 + '</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>pickLock</Key><Value>' + (inttostr(t9));
-  sf1 := sf1 + '</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>rifle</Key><Value>' + (inttostr(w7));
-  sf1 := sf1 + '</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>safecrack</Key><Value>' + (inttostr(t8));
-  sf1 := sf1 + '</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>shotgun</Key><Value>' + (inttostr(w9));
-  sf1 := sf1 + '</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>smg</Key><Value>' + (inttostr(w2));
-  sf1 := sf1 + '</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>sniperRifle</Key><Value>' + (inttostr(w4));
-  sf1 := sf1 + '</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>spotLie</Key><Value>' + (inttostr(r6));
-  sf1 := sf1 + '</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>toasterRepair</Key><Value>' + (inttostr(t5));
-  sf1 := sf1 + '</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>weaponSmith</Key><Value>' + (inttostr(r11));
+  sf1 := sf1 + '</Value></KeyValuePairOfStringInt32></attributes2><skillXps2><KeyValuePairOfStringInt32><Key>alarmDisarm</Key><Value>' + (inttostr(t[6]));
+  sf1 := sf1 + '</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>animalWhisperer</Key><Value>' + (inttostr(r[5]));
+  sf1 := sf1 + '</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>atWeapons</Key><Value>' + (inttostr(w[5]));
+  sf1 := sf1 + '</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>barter</Key><Value>' + (inttostr(r[10]));
+  sf1 := sf1 + '</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>bladedWeapons</Key><Value>' + (inttostr(w[6]));
+  sf1 := sf1 + '</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>bluntWeapons</Key><Value>' + (inttostr(w[1]));
+  sf1 := sf1 + '</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>brawling</Key><Value>' + (inttostr(w[3]));
+  sf1 := sf1 + '</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>bruteForce</Key><Value>' + (inttostr(r[4]));
+  sf1 := sf1 + '</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>calvinBackerSkill</Key><Value>' + (inttostr(r[1]));
+  sf1 := sf1 + '</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>combatShooting</Key><Value>' + (inttostr(r[2]));
+  sf1 := sf1 + '</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>computerTech</Key><Value>' + (inttostr(t[2]));
+  sf1 := sf1 + '</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>demolitions</Key><Value>' + (inttostr(t[1]));
+  sf1 := sf1 + '</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>doctor</Key><Value>' + (inttostr(t[7]));
+  sf1 := sf1 + '</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>energyWeapons</Key><Value>' + (inttostr(w[8]));
+  sf1 := sf1 + '</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>fieldMedic</Key><Value>' + (inttostr(t[4]));
+  sf1 := sf1 + '</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>handgun</Key><Value>' + (inttostr(w[10]));
+  sf1 := sf1 + '</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>intimidate</Key><Value>' + (inttostr(r[7]));
+  sf1 := sf1 + '</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>leadership</Key><Value>' + (inttostr(r[9]));
+  sf1 := sf1 + '</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>manipulate</Key><Value>' + (inttostr(r[12]));
+  sf1 := sf1 + '</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>mechanicalRepair</Key><Value>' + (inttostr(t[3]));
+  sf1 := sf1 + '</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>outdoorsman</Key><Value>' + (inttostr(r[3]));
+  sf1 := sf1 + '</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>perception</Key><Value>' + (inttostr(r[8]));
+  sf1 := sf1 + '</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>pickLock</Key><Value>' + (inttostr(t[9]));
+  sf1 := sf1 + '</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>rifle</Key><Value>' + (inttostr(w[7]));
+  sf1 := sf1 + '</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>safecrack</Key><Value>' + (inttostr(t[8]));
+  sf1 := sf1 + '</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>shotgun</Key><Value>' + (inttostr(w[9]));
+  sf1 := sf1 + '</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>smg</Key><Value>' + (inttostr(w[2]));
+  sf1 := sf1 + '</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>sniperRifle</Key><Value>' + (inttostr(w[4]));
+  sf1 := sf1 + '</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>spotLie</Key><Value>' + (inttostr(r[6]));
+  sf1 := sf1 + '</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>toasterRepair</Key><Value>' + (inttostr(t[5]));
+  sf1 := sf1 + '</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>weaponSmith</Key><Value>' + (inttostr(r[11]));
   sf1 := sf1 + '</Value></KeyValuePairOfStringInt32></skillXps2><hasCommittedPoints>false</hasCommittedPoints><availableAttributePoints>0</availableAttributePoints><availableSkillPoints>54</availableSkillPoints><availableTraitPoints>0<';
 {The last line of output TXT}
   sf1 := sf1 + sfl;
@@ -652,25 +661,20 @@ begin
   delete (cn, (ansipos('</availableSkillPoints><availableTraitPoints>',cn)), Length(cn));
 {now cn include all data about skills and inventory of selected caracter}
 {reading values from savegame}
+
 {general info}
-{Gender}
   cn1 := cn;
   delete (cn1, 1, (ansipos('{',cn1)-1));
   delete (cn1, (ansipos('}',cn1)), Length(cn1));
   delete (cn1, 1, (Length('{')));
-  edit6.Text := cn1;
-{age}
-  edit7.Text := UnregClean (cn, 'age>', 5);
-{lvl}
-  edit8.Text := UnregClean (cn, 'level>', 7);
-{actual HP}
-  edit9.Text := UnregClean (cn, 'curHp>', 7);
-{max HP}
-  edit10.Text := UnregClean (cn, 'maxHp>', 7);
-{Free SkillPoints}
-  edit11.Text := UnregClean (cn, 'availableSkillPoints>', 22);
-{Biografy}
-  cn1 := cn;
+  edit6.Text := cn1; {Gender}
+  edit7.Text := UnregClean (cn, 'age>', 5); {age}
+  edit8.Text := UnregClean (cn, 'level>', 7); {lvl}
+  edit9.Text := UnregClean (cn, 'curHp>', 7); {actual HP}
+  edit10.Text := UnregClean (cn, 'maxHp>', 7); {max HP}
+  edit11.Text := UnregClean (cn, 'availableSkillPoints>', 22); {Free SkillPoints}
+
+  cn1 := cn; {Biografy}
   delete (cn1, 1, (ansipos('<biography>&lt;@&gt;',cn1)-1));
   {check if biografy exists}
   if ansipos('<biography>&lt;@&gt;',cn1)=0
@@ -682,313 +686,110 @@ begin
       memo3.Text := cn1;
     end;
 
-{Block 1 - weapon skills  }
-{crushing / дробящее}
-  cn1 := CnClean(cn, 'KeyValuePairOfStringInt32><Key>bluntWeapons</Key><Value>');
-  {translating to "normal" values}
-  cn1 := ValToWL2Format(cn1);
-  {substitution of values}
-  WSPB1.Position := strtoint(cn1);
-  WSTB1.Position := WSPB1.Position;
-  WSL1.Text := inttostr(WSTB1.Position) + '/10';
-  wsi1.Text := wsl1.Text;
-{submachine gun / пистолеты-пулемёты}
-  cn1 := CnClean(cn, 'KeyValuePairOfStringInt32><Key>smg</Key><Value>');
-  cn1 := ValToWL2Format(cn1);
-  WSPB2.Position := strtoint(cn1);
-  WSTB2.Position := WSPB2.Position;
-  WSL2.Text := inttostr(WSTB2.Position) + '/10';
-  wsi2.Text := wsl2.Text;
-{Melee / Рукопашная}
-  cn1 := CnClean(cn, 'KeyValuePairOfStringInt32><Key>brawling</Key><Value>');
-  cn1 := ValToWL2Format(cn1);
-  WSPB3.Position := strtoint(cn1);
-  WSTB3.Position := WSPB3.Position;
-  WSL3.Text := inttostr(WSTB3.Position) + '/10';
-  wsi3.Text := wsl3.Text;
-{Sniper  / Снайперские}
-  cn1 := CnClean(cn, 'KeyValuePairOfStringInt32><Key>sniperRifle</Key><Value>');
-  cn1 := ValToWL2Format(cn1);
-  WSPB4.Position := strtoint(cn1);
-  WSTB4.Position := WSPB4.Position;
-  WSL4.Text := inttostr(WSTB4.Position) + '/10';
-  wsi4.Text := wsl4.Text;
-{Heavy / Тяжёлое}
-  cn1 := CnClean(cn, 'KeyValuePairOfStringInt32><Key>atWeapons</Key><Value>');
-  cn1 := ValToWL2Format(cn1);
-  WSPB5.Position := strtoint(cn1);
-  WSTB5.Position := WSPB5.Position;
-  WSL5.Text := inttostr(WSTB5.Position) + '/10';
-  wsi5.Text := wsl5.Text;
-{steel arms / Холодное}
-  cn1 := CnClean(cn, 'KeyValuePairOfStringInt32><Key>bladedWeapons</Key><Value>');
-  cn1 := ValToWL2Format(cn1);
-  WSPB6.Position := strtoint(cn1);
-  WSTB6.Position := WSPB6.Position;
-  WSL6.Text := inttostr(WSTB6.Position) + '/10';
-  wsi6.Text := wsl6.Text;
-{Assault / Штурмовые}
-  cn1 := CnClean(cn, 'KeyValuePairOfStringInt32><Key>rifle</Key><Value>');
-  cn1 := ValToWL2Format(cn1);
-  WSPB7.Position := strtoint(cn1);
-  WSTB7.Position := WSPB7.Position;
-  WSL7.Text := inttostr(WSTB7.Position) + '/10';
-  wsi7.Text := wsl7.Text;
-{Power /Энергетическое}
-  cn1 := CnClean(cn, 'KeyValuePairOfStringInt32><Key>energyWeapons</Key><Value>');
-  cn1 := ValToWL2Format(cn1);
-  WSPB8.Position := strtoint(cn1);
-  WSTB8.Position := WSPB8.Position;
-  WSL8.Text := inttostr(WSTB8.Position) + '/10';
-  wsi8.Text := wsl8.Text;
-{shotguns / дробовики}
-  cn1 := CnClean(cn, 'KeyValuePairOfStringInt32><Key>shotgun</Key><Value>');
-  cn1 := ValToWL2Format(cn1);
-  WSPB9.Position := strtoint(cn1);
-  WSTB9.Position := WSPB9.Position;
-  WSL9.Text := inttostr(WSTB9.Position) + '/10';
-  wsi9.Text := wsl9.Text;
-{guns / пистолеты}
-  cn1 := CnClean(cn, 'KeyValuePairOfStringInt32><Key>handgun</Key><Value>');
-  cn1 := ValToWL2Format(cn1);
-  WSPB10.Position := strtoint(cn1);
-  WSTB10.Position := WSPB10.Position;
-  WSL10.Text := inttostr(WSTB10.Position) + '/10';
-  wsi10.Text := wsl10.Text;
+{ Block 1 - weapon skills }
+  for i := 1 to 10 do
+    {i of:
+        1 - crushing / дробящее
+        2 - submachine gun / пистолеты-пулемёты
+        3 - Melee / Рукопашная
+        4 - Sniper  / Снайперские
+        5 - Heavy / Тяжёлое
+        6 - steel arms / Холодное
+        7 - Assault / Штурмовые
+        8 - Power /Энергетическое
+        9 - shotguns / дробовики
+       10 - guns / пистолеты }
+    begin
+      cn1 := CnClean(cn, SkillPrefix + WSPref[i] + SkillPostfix);
+    {translating to "normal" values}
+      cn1 := ValToWL2Format(cn1);   {substitution of values}
+      (FindComponent('WSPB' + inttostr(i)) as TProgressbar).position := strtointdef(cn1, 0);
+      (FindComponent('WSTB' + inttostr(i)) as TTrackbar).position := strtointdef(cn1, 0);
+      (FindComponent('WSL' + inttostr(i)) as TEdit).Text := cn1 + '/10';
+      (FindComponent('WSI' + inttostr(i)) as TEdit).Text := cn1 + '/10';
+    end;
 
-{Block 2 - 'General skills'}
-{"Calvin Backer skill" / "Знаток запада"}
-  cn1 := CnClean(cn, 'KeyValuePairOfStringInt32><Key>calvinBackerSkill</Key><Value>');
-  cn1 := ValToWL2Format(cn1);
-  RSPB1.Position := strtoint(cn1);
-  RSTB1.Position := RSPB1.Position;
-  RSL1.Text := inttostr(RSTB1.Position) + '/10';
-  rsi1.Text := RSL1.Text;
-{Combat shooting / стрелок}
-  cn1 := CnClean(cn, 'KeyValuePairOfStringInt32><Key>combatShooting</Key><Value>');
-  cn1 := ValToWL2Format(cn1);
-  RSPB2.Position := strtoint(cn1);
-  RSTB2.Position := RSPB2.Position;
-  RSL2.Text := inttostr(RSTB2.Position) + '/10';
-  rsi2.Text := RSL2.Text;
-{Outdoorsman / выживание}
-  cn1 := CnClean(cn, 'KeyValuePairOfStringInt32><Key>outdoorsman</Key><Value>');
-  cn1 := ValToWL2Format(cn1);
-  RSPB3.Position := strtoint(cn1);
-  RSTB3.Position := RSPB3.Position;
-  RSL3.Text := inttostr(RSTB3.Position) + '/10';
-  rsi3.Text := RSL3.Text;
-{Brute force / грубая сила}
-  cn1 := CnClean(cn, 'KeyValuePairOfStringInt32><Key>bruteForce</Key><Value>');
-  cn1 := ValToWL2Format(cn1);
-  RSPB4.Position := strtoint(cn1);
-  RSTB4.Position := RSPB4.Position;
-  RSL4.Text := inttostr(RSTB4.Position) + '/10';
-  rsi4.Text := RSL4.Text;
-{Animal Whisperer / дрессировщик}
-  cn1 := CnClean(cn, 'KeyValuePairOfStringInt32><Key>animalWhisperer</Key><Value>');
-  cn1 := ValToWL2Format(cn1);
-  RSPB5.Position := strtoint(cn1);
-  RSTB5.Position := RSPB5.Position;
-  RSL5.Text := inttostr(RSTB5.Position) + '/10';
-  rsi5.Text := RSL5.Text;
-{Spot lie / жополиз}
-  cn1 := CnClean(cn, 'KeyValuePairOfStringInt32><Key>spotLie</Key><Value>');
-  cn1 := ValToWL2Format(cn1);
-  RSPB6.Position := strtoint(cn1);
-  RSTB6.Position := RSPB6.Position;
-  RSL6.Text := inttostr(RSTB6.Position) + '/10';
-  rsi6.Text := RSL6.Text;
-{Intimidate / задира}
-  cn1 := CnClean(cn, 'KeyValuePairOfStringInt32><Key>intimidate</Key><Value>');
-  cn1 := ValToWL2Format(cn1);
-  RSPB7.Position := strtoint(cn1);
-  RSTB7.Position := RSPB7.Position;
-  RSL7.Text := inttostr(RSTB7.Position) + '/10';
-  rsi7.Text := RSL7.Text;
-{Perception / Зоркий глаз}
-  cn1 := CnClean(cn, 'KeyValuePairOfStringInt32><Key>perception</Key><Value>');
-  cn1 := ValToWL2Format(cn1);
-  RSPB8.Position := strtoint(cn1);
-  RSTB8.Position := RSPB8.Position;
-  RSL8.Text := inttostr(RSTB8.Position) + '/10';
-  rsi8.Text := RSL8.Text;
-{Leadership / лидерство}
-  cn1 := CnClean(cn, 'KeyValuePairOfStringInt32><Key>leadership</Key><Value>');
-  cn1 := ValToWL2Format(cn1);
-  RSPB9.Position := strtoint(cn1);
-  RSTB9.Position := RSPB9.Position;
-  RSL9.Text := inttostr(RSTB9.Position) + '/10';
-  rsi9.Text := RSL9.Text;
-{Barter / меняла}
-  cn1 := CnClean(cn, 'KeyValuePairOfStringInt32><Key>barter</Key><Value>');
-  cn1 := ValToWL2Format(cn1);
-  RSPB10.Position := strtoint(cn1);
-  RSTB10.Position := RSPB10.Position;
-  RSL10.Text := inttostr(RSTB10.Position) + '/10';
-  rsi10.Text := RSL10.Text;
-{weapon smith / оружейник}
-  cn1 := CnClean(cn, 'KeyValuePairOfStringInt32><Key>weaponSmith</Key><Value>');
-  cn1 := ValToWL2Format(cn1);
-  RSPB11.Position := strtoint(cn1);
-  RSTB11.Position := RSPB11.Position;
-  RSL11.Text := inttostr(RSTB11.Position) + '/10';
-  rsi11.Text := RSL11.Text;
-{Manipulate / хитрожопый}
-  cn1 := CnClean(cn, 'KeyValuePairOfStringInt32><Key>manipulate</Key><Value>');
-  cn1 := ValToWL2Format(cn1);
-  RSPB12.Position := strtoint(cn1);
-  RSTB12.Position := RSPB12.Position;
-  RSL12.Text := inttostr(RSTB12.Position) + '/10';
-  rsi12.Text := RSL12.Text;
+{ Block 2 - 'General skills' }
+  for i := 1 to 12 do
+    {i of:
+       1 - "Calvin Backer skill" / "Знаток запада"
+       2 - Combat shooting / стрелок
+       3 - Outdoorsman / выживание
+       4 - Brute force / грубая сила
+       5 - Animal Whisperer / дрессировщик
+       6 - Spot lie / жополиз
+       7 - Intimidate / задира
+       8 - Perception / Зоркий глаз
+       9 - Leadership / лидерство
+      10 - Barter / меняла
+      11 - weapon smith / оружейник
+      12 - Manipulate / хитрожопый }
+    begin
+      cn1 := CnClean(cn, SkillPrefix + GSPref[i] + SkillPostfix);
+      cn1 := ValToWL2Format(cn1);
+      (FindComponent('RSPB' + inttostr(i)) as TProgressbar).position := strtointdef(cn1, 0);
+      (FindComponent('RSTB' + inttostr(i)) as TTrackbar).position := strtointdef(cn1, 0);
+      (FindComponent('RSL' + inttostr(i)) as TEdit).Text := cn1 + '/10';
+      (FindComponent('RSI' + inttostr(i)) as TEdit).Text := cn1 + '/10';
+    end;
 
-{Block 3 - Technical skills}
-{Demolitions / взрывотехника}
-  cn1 := CnClean(cn, 'KeyValuePairOfStringInt32><Key>demolitions</Key><Value>');
-  cn1 := ValToWL2Format(cn1);
-  TSPB1.Position := strtoint(cn1);
-  TSTB1.Position := TSPB1.Position;
-  TSL1.Text := inttostr(TSTB1.Position) + '/10';
-  Tsi1.Text := TSL1.Text;
-{Computer tech / компьютеры}
-  cn1 := CnClean(cn, 'KeyValuePairOfStringInt32><Key>computerTech</Key><Value>');
-  cn1 := ValToWL2Format(cn1);
-  TSPB2.Position := strtoint(cn1);
-  TSTB2.Position := TSPB2.Position;
-  TSL2.Text := inttostr(TSTB2.Position) + '/10';
-  Tsi2.Text := TSL2.Text;
-{Mechanical repair / механика}
-  cn1 := CnClean(cn, 'KeyValuePairOfStringInt32><Key>mechanicalRepair</Key><Value>');
-  cn1 := ValToWL2Format(cn1);
-  TSPB3.Position := strtoint(cn1);
-  TSTB3.Position := TSPB3.Position;
-  TSL3.Text := inttostr(TSTB3.Position) + '/10';
-  Tsi3.Text := TSL3.Text;
-{Field medic / полевая медицина}
-  cn1 := CnClean(cn, 'KeyValuePairOfStringInt32><Key>fieldMedic</Key><Value>');
-  cn1 := ValToWL2Format(cn1);
-  TSPB4.Position := strtoint(cn1);
-  TSTB4.Position := TSPB4.Position;
-  TSL4.Text := inttostr(TSTB4.Position) + '/10';
-  Tsi4.Text := TSL4.Text;
-{Toaster repair / ремонт тостеров}
-  cn1 := CnClean(cn, 'KeyValuePairOfStringInt32><Key>toasterRepair</Key><Value>');
-  cn1 := ValToWL2Format(cn1);
-  TSPB5.Position := strtoint(cn1);
-  TSTB5.Position := TSPB5.Position;
-  TSL5.Text := inttostr(TSTB5.Position) + '/10';
-  Tsi5.Text := TSL5.Text;
-{Alarm disarm / снятие сигнализации}
-  cn1 := CnClean(cn, 'KeyValuePairOfStringInt32><Key>alarmDisarm</Key><Value>');
-  cn1 := ValToWL2Format(cn1);
-  TSPB6.Position := strtoint(cn1);
-  TSTB6.Position := TSPB6.Position;
-  TSL6.Text := inttostr(TSTB6.Position) + '/10';
-  Tsi6.Text:= TSL6.Text;
-{Doctor / хирургия}
-  cn1 := CnClean(cn, 'KeyValuePairOfStringInt32><Key>doctor</Key><Value>');
-  cn1 := ValToWL2Format(cn1);
-  TSPB7.Position := strtoint(cn1);
-  TSTB7.Position := TSPB7.Position;
-  TSL7.Text := inttostr(TSTB7.Position) + '/10';
-  Tsi7.Text := TSL7.Text;
-{Safe crack / взлом сейфов}
-  cn1 := CnClean(cn, 'KeyValuePairOfStringInt32><Key>safecrack</Key><Value>');
-  cn1 := ValToWL2Format(cn1);
-  TSPB8.Position := strtoint(cn1);
-  TSTB8.Position := TSPB8.Position;
-  TSL8.Text := inttostr(TSTB8.Position) + '/10';
-  Tsi8.Text := TSL8.Text;
-{PickLock / взлом замков}
-  cn1 := CnClean(cn, 'KeyValuePairOfStringInt32><Key>pickLock</Key><Value>');
-  cn1 := ValToWL2Format(cn1);
-  TSPB9.Position := strtoint(cn1);
-  TSTB9.Position := TSPB9.Position;
-  TSL9.Text := inttostr(TSTB9.Position) + '/10';
-  Tsi9.Text := TSL9.Text;
+{ Block 3 - Technical skills }
+  for i := 1 to 9 do
+    {i of:
+      1 - Demolitions / взрывотехника
+      2 - Computer tech / компьютеры
+      3 - Mechanical repair / механика
+      4 - Field medic / полевая медицина
+      5 - Toaster repair / ремонт тостеров
+      6 - Alarm disarm / снятие сигнализации
+      7 - Doctor / хирургия
+      8 - Safe crack / взлом сейфов
+      9 - PickLock / взлом замков }
+    Begin
+      cn1 := CnClean(cn, SkillPrefix + TSPref[i] + SkillPostfix);
+      cn1 := ValToWL2Format(cn1);
+      (FindComponent('TSPB' + inttostr(i)) as TProgressbar).position := strtointdef(cn1, 0);
+      (FindComponent('TSTB' + inttostr(i)) as TTrackbar).position := strtointdef(cn1, 0);
+      (FindComponent('TSL' + inttostr(i)) as TEdit).Text := cn1 + '/10';
+      (FindComponent('TSI' + inttostr(i)) as TEdit).Text := cn1 + '/10';
+    End;
 
-{   Block 4 - Attributes   }
-{Coordination / Координация}
-  cn1 := CnClean(cn, 'KeyValuePairOfStringInt32><Key>coordination</Key><Value>');
-  ASPB1.Position := strtoint(cn1);
-  ASTB1.Position := ASPB1.Position;
-  ASL1.Text := inttostr(ASTB1.Position) + '/10';
-  Asi1.Text := ASL1.Text;
-{Luck / удача}
-  cn1 := CnClean(cn, 'KeyValuePairOfStringInt32><Key>luck</Key><Value>');
-  ASPB2.Position := strtoint(cn1);
-  ASTB2.Position := ASPB2.Position;
-  ASL2.Text := inttostr(ASTB2.Position) + '/10';
-  Asi2.Text := ASL2.Text;
-{Awareness / восприятие}
-  cn1 := CnClean(cn, 'KeyValuePairOfStringInt32><Key>awareness</Key><Value>');
-  ASPB3.Position := strtoint(cn1);
-  ASTB3.Position := ASPB3.Position;
-  ASL3.Text := inttostr(ASTB3.Position) + '/10';
-  Asi3.Text := ASL3.Text;
-{Strength / сила}
-  cn1 := CnClean(cn, 'KeyValuePairOfStringInt32><Key>strength</Key><Value>');
-  ASPB4.Position := strtoint(cn1);
-  ASTB4.Position := ASPB4.Position;
-  ASL4.Text := inttostr(ASTB4.Position) + '/10';
-  Asi4.Text := ASL4.Text;
-{Speed / скорость}
-  cn1 := CnClean(cn, 'KeyValuePairOfStringInt32><Key>speed</Key><Value>');
-  ASPB5.Position := strtoint(cn1);
-  ASTB5.Position := ASPB5.Position;
-  ASL5.Text := inttostr(ASTB5.Position) + '/10';
-  Asi5.Text := ASL5.Text;
-{Intelligence / интеллект}
-  cn1 := CnClean(cn, 'KeyValuePairOfStringInt32><Key>intelligence</Key><Value>');
-  ASPB6.Position := strtoint(cn1);
-  ASTB6.Position := ASPB6.Position;
-  ASL6.Text := inttostr(ASTB6.Position) + '/10';
-  Asi6.Text := ASL6.Text;
-{Charisma / харизма}
-  cn1 := CnClean(cn, 'KeyValuePairOfStringInt32><Key>charisma</Key><Value>');
-  ASPB7.Position := strtoint(cn1);
-  ASTB7.Position := ASPB7.Position;
-  ASL7.Text := inttostr(ASTB7.Position) + '/10';
-  Asi7.Text := ASL7.Text;
+{ Block 4 - Attributes }
+  for i := 1 to 7 do
+    {i of:
+      1 - Coordination / Координация
+      2 - Luck / удача
+      3 - Awareness / восприятие
+      4 - Strength / сила
+      5 - Speed / скорость
+      6 - Intelligence / интеллект
+      7 - Charisma / харизма}
+    Begin
+      cn1 := CnClean(cn, SkillPrefix + ASPref[i] + SkillPostfix);
+      (FindComponent('ASPB' + inttostr(i)) as TProgressbar).position := strtointdef(cn1, 0);
+      (FindComponent('ASTB' + inttostr(i)) as TTrackbar).position := strtointdef(cn1, 0);
+      (FindComponent('ASL' + inttostr(i)) as TEdit).Text := cn1 + '/10';
+      (FindComponent('ASI' + inttostr(i)) as TEdit).Text := cn1 + '/10';
+    End;
+
 end;
 
 {TrackBar Works}
 procedure TWL2CED.WSTB1Change(Sender: TObject);
+var
+  i : integer;
 begin
-{Weapons}
-  WSL1.Text  := inttostr(WSTB1.Position) + '/10';
-  WSL2.Text  := inttostr(WSTB2.Position) + '/10';
-  WSL3.Text  := inttostr(WSTB3.Position) + '/10';
-  WSL4.Text  := inttostr(WSTB4.Position) + '/10';
-  WSL5.Text  := inttostr(WSTB5.Position) + '/10';
-  WSL6.Text  := inttostr(WSTB6.Position) + '/10';
-  WSL7.Text  := inttostr(WSTB7.Position) + '/10';
-  WSL8.Text  := inttostr(WSTB8.Position) + '/10';
-  WSL9.Text  := inttostr(WSTB9.Position) + '/10';
-  WSL10.Text := inttostr(WSTB10.Position) + '/10';
-{General}
-  RSL1.Text  := inttostr(RSTB1.Position) + '/10';
-  RSL2.Text  := inttostr(RSTB2.Position) + '/10';
-  RSL3.Text  := inttostr(RSTB3.Position) + '/10';
-  RSL4.Text  := inttostr(RSTB4.Position) + '/10';
-  RSL5.Text  := inttostr(RSTB5.Position )+ '/10';
-  RSL6.Text  := inttostr(RSTB6.Position) + '/10';
-  RSL7.Text  := inttostr(RSTB7.Position) + '/10';
-  RSL8.Text  := inttostr(RSTB8.Position) + '/10';
-  RSL9.Text  := inttostr(RSTB9.Position) + '/10';
-  RSL10.Text := inttostr(RSTB10.Position) + '/10';
-  RSL11.Text := inttostr(RSTB11.Position) + '/10';
-  RSL12.Text := inttostr(RSTB12.Position) + '/10';
-{Technical}
-  TSL1.Text := inttostr(TSTB1.Position) + '/10';
-  TSL2.Text := inttostr(TSTB2.Position) + '/10';
-  TSL3.Text := inttostr(TSTB3.Position) + '/10';
-  TSL4.Text := inttostr(TSTB4.Position) + '/10';
-  TSL5.Text := inttostr(TSTB5.Position) + '/10';
-  TSL6.Text := inttostr(TSTB6.Position) + '/10';
-  TSL7.Text := inttostr(TSTB7.Position) + '/10';
-  TSL8.Text := inttostr(TSTB8.Position) + '/10';
-  TSL9.Text := inttostr(TSTB9.Position) + '/10';
+  for i := 1 to 10 do {Weapons}
+    (FindComponent('WSL' + inttostr(i)) as TEdit).Text := inttostr((FindComponent('WSTB' + inttostr(i)) as TTrackbar).position) + '/10';
+
+  for i := 1 to 12 do {General}
+    (FindComponent('RSL' + inttostr(i)) as TEdit).Text := inttostr((FindComponent('RSTB' + inttostr(i)) as TTrackbar).position) + '/10';
+
+  for i := 1 to 9 do {Technical}
+    (FindComponent('TSL' + inttostr(i)) as TEdit).Text := inttostr((FindComponent('TSTB' + inttostr(i)) as TTrackbar).position) + '/10';
+
+  for i := 1 to 7 do {Attributes}
+    (FindComponent('ASL' + inttostr(i)) as TEdit).Text := inttostr((FindComponent('ASTB' + inttostr(i)) as TTrackbar).position) + '/10';
 end;
 
 end.

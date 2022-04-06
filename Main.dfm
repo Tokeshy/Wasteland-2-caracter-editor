@@ -11,7 +11,6 @@ object WL2CED: TWL2CED
   Font.Name = 'Tahoma'
   Font.Style = []
   Menu = MainMenu1
-  OldCreateOrder = False
   OnClose = FormClose
   OnCreate = FormCreate
   PixelsPerInch = 96
@@ -56,7 +55,7 @@ object WL2CED: TWL2CED
     Top = 185
     Width = 617
     Height = 418
-    ActivePage = TabSheet1
+    ActivePage = TabSheet4
     TabOrder = 3
     object TabSheet1: TTabSheet
       Caption = #1054#1088#1091#1078#1077#1081#1085#1099#1077
@@ -2234,7 +2233,7 @@ object WL2CED: TWL2CED
         Height = 238
         Caption = #1058#1077#1082#1091#1097#1080#1081' '#1091#1088#1086#1074#1077#1085#1100
         TabOrder = 1
-        object aspb1: TProgressBar
+        object ASPB1: TProgressBar
           Left = 8
           Top = 20
           Width = 150
@@ -2242,7 +2241,7 @@ object WL2CED: TWL2CED
           Max = 10
           TabOrder = 0
         end
-        object aspb2: TProgressBar
+        object ASPB2: TProgressBar
           Left = 8
           Top = 50
           Width = 150
@@ -2250,7 +2249,7 @@ object WL2CED: TWL2CED
           Max = 10
           TabOrder = 1
         end
-        object aspb3: TProgressBar
+        object ASPB3: TProgressBar
           Left = 8
           Top = 80
           Width = 150
@@ -2258,7 +2257,7 @@ object WL2CED: TWL2CED
           Max = 10
           TabOrder = 2
         end
-        object aspb4: TProgressBar
+        object ASPB4: TProgressBar
           Left = 8
           Top = 110
           Width = 150
@@ -2266,7 +2265,7 @@ object WL2CED: TWL2CED
           Max = 10
           TabOrder = 3
         end
-        object aspb5: TProgressBar
+        object ASPB5: TProgressBar
           Left = 8
           Top = 140
           Width = 150
@@ -2274,7 +2273,7 @@ object WL2CED: TWL2CED
           Max = 10
           TabOrder = 4
         end
-        object aspb6: TProgressBar
+        object ASPB6: TProgressBar
           Left = 8
           Top = 170
           Width = 150
@@ -2282,7 +2281,7 @@ object WL2CED: TWL2CED
           Max = 10
           TabOrder = 5
         end
-        object aspb7: TProgressBar
+        object ASPB7: TProgressBar
           Left = 8
           Top = 200
           Width = 150
@@ -2290,7 +2289,7 @@ object WL2CED: TWL2CED
           Max = 10
           TabOrder = 6
         end
-        object asi1: TEdit
+        object ASI1: TEdit
           Left = 164
           Top = 20
           Width = 50
@@ -2306,7 +2305,7 @@ object WL2CED: TWL2CED
           TabOrder = 7
           Text = '0/10'
         end
-        object asi2: TEdit
+        object ASI2: TEdit
           Left = 164
           Top = 50
           Width = 50
@@ -2322,7 +2321,7 @@ object WL2CED: TWL2CED
           TabOrder = 8
           Text = '0/10'
         end
-        object asi3: TEdit
+        object ASI3: TEdit
           Left = 164
           Top = 80
           Width = 50
@@ -2338,7 +2337,7 @@ object WL2CED: TWL2CED
           TabOrder = 9
           Text = '0/10'
         end
-        object asi4: TEdit
+        object ASI4: TEdit
           Left = 164
           Top = 110
           Width = 50
@@ -2354,7 +2353,7 @@ object WL2CED: TWL2CED
           TabOrder = 10
           Text = '0/10'
         end
-        object asi5: TEdit
+        object ASI5: TEdit
           Left = 164
           Top = 140
           Width = 50
@@ -2370,7 +2369,7 @@ object WL2CED: TWL2CED
           TabOrder = 11
           Text = '0/10'
         end
-        object asi6: TEdit
+        object ASI6: TEdit
           Left = 164
           Top = 170
           Width = 50
@@ -2386,7 +2385,7 @@ object WL2CED: TWL2CED
           TabOrder = 12
           Text = '0/10'
         end
-        object asi7: TEdit
+        object ASI7: TEdit
           Left = 164
           Top = 200
           Width = 50
@@ -2410,7 +2409,7 @@ object WL2CED: TWL2CED
         Height = 238
         Caption = #1055#1088#1080#1084#1077#1085#1103#1077#1084#1099#1081' '#1091#1088#1086#1074#1077#1085#1100
         TabOrder = 2
-        object astb1: TTrackBar
+        object ASTB1: TTrackBar
           Left = 3
           Top = 20
           Width = 150
@@ -2418,7 +2417,7 @@ object WL2CED: TWL2CED
           TabOrder = 0
           OnChange = WSTB1Change
         end
-        object asl1: TEdit
+        object ASL1: TEdit
           Left = 159
           Top = 20
           Width = 50
@@ -2433,7 +2432,7 @@ object WL2CED: TWL2CED
           TabOrder = 1
           Text = '0/10'
         end
-        object astb2: TTrackBar
+        object ASTB2: TTrackBar
           Left = 3
           Top = 50
           Width = 150
@@ -2441,7 +2440,7 @@ object WL2CED: TWL2CED
           TabOrder = 2
           OnChange = WSTB1Change
         end
-        object astb3: TTrackBar
+        object ASTB3: TTrackBar
           Left = 3
           Top = 80
           Width = 150
@@ -2449,7 +2448,7 @@ object WL2CED: TWL2CED
           TabOrder = 3
           OnChange = WSTB1Change
         end
-        object astb4: TTrackBar
+        object ASTB4: TTrackBar
           Left = 3
           Top = 110
           Width = 150
@@ -2457,7 +2456,7 @@ object WL2CED: TWL2CED
           TabOrder = 4
           OnChange = WSTB1Change
         end
-        object astb5: TTrackBar
+        object ASTB5: TTrackBar
           Left = 3
           Top = 140
           Width = 150
@@ -2465,7 +2464,7 @@ object WL2CED: TWL2CED
           TabOrder = 5
           OnChange = WSTB1Change
         end
-        object astb6: TTrackBar
+        object ASTB6: TTrackBar
           Left = 3
           Top = 170
           Width = 150
@@ -2473,7 +2472,7 @@ object WL2CED: TWL2CED
           TabOrder = 6
           OnChange = WSTB1Change
         end
-        object astb7: TTrackBar
+        object ASTB7: TTrackBar
           Left = 3
           Top = 200
           Width = 150
@@ -2481,7 +2480,7 @@ object WL2CED: TWL2CED
           TabOrder = 7
           OnChange = WSTB1Change
         end
-        object asl2: TEdit
+        object ASL2: TEdit
           Left = 159
           Top = 50
           Width = 50
@@ -2496,7 +2495,7 @@ object WL2CED: TWL2CED
           TabOrder = 8
           Text = '0/10'
         end
-        object asl3: TEdit
+        object ASL3: TEdit
           Left = 159
           Top = 80
           Width = 50
@@ -2511,7 +2510,7 @@ object WL2CED: TWL2CED
           TabOrder = 9
           Text = '0/10'
         end
-        object asl4: TEdit
+        object ASL4: TEdit
           Left = 159
           Top = 110
           Width = 50
@@ -2526,7 +2525,7 @@ object WL2CED: TWL2CED
           TabOrder = 10
           Text = '0/10'
         end
-        object asl5: TEdit
+        object ASL5: TEdit
           Left = 159
           Top = 140
           Width = 50
@@ -2541,7 +2540,7 @@ object WL2CED: TWL2CED
           TabOrder = 11
           Text = '0/10'
         end
-        object asl6: TEdit
+        object ASL6: TEdit
           Left = 159
           Top = 170
           Width = 50
@@ -2556,7 +2555,7 @@ object WL2CED: TWL2CED
           TabOrder = 12
           Text = '0/10'
         end
-        object asl7: TEdit
+        object ASL7: TEdit
           Left = 159
           Top = 200
           Width = 50
