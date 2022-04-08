@@ -10,7 +10,7 @@ object WL2CED: TWL2CED
   Font.Height = -11
   Font.Name = 'Tahoma'
   Font.Style = []
-  Menu = MainMenu1
+  Menu = MainMenu
   OnClose = FormClose
   OnCreate = FormCreate
   PixelsPerInch = 96
@@ -50,16 +50,16 @@ object WL2CED: TWL2CED
     TabOrder = 2
     OnClick = CrLbtnClick
   end
-  object PageControl1: TPageControl
+  object SkillBrowsCntr: TPageControl
     Left = 8
     Top = 185
     Width = 617
     Height = 418
-    ActivePage = TabSheet1
+    ActivePage = AttributeSkillsSht
     TabOrder = 3
-    object TabSheet1: TTabSheet
+    object WeaponSkillSht: TTabSheet
       Caption = #1054#1088#1091#1078#1077#1081#1085#1099#1077
-      object GroupBox3: TGroupBox
+      object WSkillGrb: TGroupBox
         Left = 3
         Top = 3
         Width = 142
@@ -227,7 +227,7 @@ object WL2CED: TWL2CED
           Text = #1055#1080#1089#1090#1086#1083#1077#1090#1099
         end
       end
-      object GroupBox1: TGroupBox
+      object WCurrLvlGrb: TGroupBox
         Left = 151
         Top = 2
         Width = 221
@@ -475,7 +475,7 @@ object WL2CED: TWL2CED
           Text = '0/10'
         end
       end
-      object GroupBox2: TGroupBox
+      object WAplyLvlGrb: TGroupBox
         Left = 378
         Top = 3
         Width = 217
@@ -724,10 +724,10 @@ object WL2CED: TWL2CED
         end
       end
     end
-    object TabSheet2: TTabSheet
+    object GeneralSkillSht: TTabSheet
       Caption = #1054#1073#1097#1080#1077
       ImageIndex = 1
-      object GroupBox4: TGroupBox
+      object GSkillGrb: TGroupBox
         Left = 0
         Top = 3
         Width = 149
@@ -927,7 +927,7 @@ object WL2CED: TWL2CED
           Text = #1061#1080#1090#1088#1086#1078#1086#1087#1099#1081
         end
       end
-      object GroupBox5: TGroupBox
+      object GCurrLvlGrb: TGroupBox
         Left = 155
         Top = 3
         Width = 221
@@ -1223,7 +1223,7 @@ object WL2CED: TWL2CED
           Text = '0/10'
         end
       end
-      object GroupBox6: TGroupBox
+      object GAplyLvlGrb: TGroupBox
         Left = 382
         Top = 3
         Width = 217
@@ -1508,10 +1508,10 @@ object WL2CED: TWL2CED
         end
       end
     end
-    object TabSheet3: TTabSheet
+    object TechSkillSht: TTabSheet
       Caption = #1058#1077#1093#1085#1080#1095#1077#1089#1082#1080#1077
       ImageIndex = 2
-      object GroupBox7: TGroupBox
+      object TSkillGrb: TGroupBox
         Left = 0
         Top = 3
         Width = 149
@@ -1663,7 +1663,7 @@ object WL2CED: TWL2CED
           Text = #1042#1079#1083#1086#1084' '#1079#1072#1084#1082#1086#1074
         end
       end
-      object GroupBox8: TGroupBox
+      object TCurrLvlGrb: TGroupBox
         Left = 155
         Top = 3
         Width = 221
@@ -1887,7 +1887,7 @@ object WL2CED: TWL2CED
           Text = '0/10'
         end
       end
-      object GroupBox9: TGroupBox
+      object TAplyLvlGrb: TGroupBox
         Left = 382
         Top = 3
         Width = 217
@@ -2103,10 +2103,10 @@ object WL2CED: TWL2CED
         end
       end
     end
-    object TabSheet4: TTabSheet
+    object AttributeSkillsSht: TTabSheet
       Caption = #1040#1090#1088#1080#1073#1091#1090#1099
       ImageIndex = 3
-      object GroupBox11: TGroupBox
+      object AtrSkillGrb: TGroupBox
         Left = 3
         Top = 11
         Width = 149
@@ -2226,7 +2226,7 @@ object WL2CED: TWL2CED
           Text = #1061#1072#1088#1080#1079#1084#1072
         end
       end
-      object GroupBox10: TGroupBox
+      object AtrCurrLvlGrb: TGroupBox
         Left = 163
         Top = 11
         Width = 221
@@ -2402,7 +2402,7 @@ object WL2CED: TWL2CED
           Text = '0/10'
         end
       end
-      object GroupBox12: TGroupBox
+      object AtrAplyLvlGrb: TGroupBox
         Left = 390
         Top = 11
         Width = 217
@@ -2622,7 +2622,7 @@ object WL2CED: TWL2CED
     Height = 108
     Caption = #1042#1099#1073#1088#1072#1085#1085#1099#1081' '#1102#1085#1080#1090
     TabOrder = 8
-    object Label2: TLabel
+    object SexLbl: TLabel
       Left = 29
       Top = 25
       Width = 27
@@ -2635,7 +2635,7 @@ object WL2CED: TWL2CED
       Font.Style = [fsBold]
       ParentFont = False
     end
-    object Label3: TLabel
+    object AgeLbl: TLabel
       Left = 29
       Top = 51
       Width = 53
@@ -2648,7 +2648,7 @@ object WL2CED: TWL2CED
       Font.Style = [fsBold]
       ParentFont = False
     end
-    object Label4: TLabel
+    object LvlLbl: TLabel
       Left = 29
       Top = 78
       Width = 56
@@ -2661,9 +2661,9 @@ object WL2CED: TWL2CED
       Font.Style = [fsBold]
       ParentFont = False
     end
-    object Label5: TLabel
+    object CurrHPLbl: TLabel
       Left = 174
-      Top = 29
+      Top = 25
       Width = 79
       Height = 16
       Caption = 'T'#1077#1082#1091#1097#1080#1077' HP'
@@ -2674,7 +2674,7 @@ object WL2CED: TWL2CED
       Font.Style = [fsBold]
       ParentFont = False
     end
-    object Label6: TLabel
+    object MaxHPLbl: TLabel
       Left = 174
       Top = 51
       Width = 123
@@ -2687,7 +2687,7 @@ object WL2CED: TWL2CED
       Font.Style = [fsBold]
       ParentFont = False
     end
-    object Label7: TLabel
+    object FreeSkPLbl: TLabel
       Left = 174
       Top = 78
       Width = 116
@@ -2700,7 +2700,7 @@ object WL2CED: TWL2CED
       Font.Style = [fsBold]
       ParentFont = False
     end
-    object Edit6: TEdit
+    object SexEdt: TEdit
       Left = 106
       Top = 24
       Width = 33
@@ -2710,7 +2710,7 @@ object WL2CED: TWL2CED
       TabOrder = 0
       Text = '-'
     end
-    object Edit7: TEdit
+    object AgeEdt: TEdit
       Left = 106
       Top = 51
       Width = 33
@@ -2721,7 +2721,7 @@ object WL2CED: TWL2CED
       TabOrder = 1
       Text = '-'
     end
-    object Edit8: TEdit
+    object LvlEdt: TEdit
       Left = 106
       Top = 78
       Width = 33
@@ -2732,7 +2732,7 @@ object WL2CED: TWL2CED
       TabOrder = 2
       Text = '-'
     end
-    object Edit9: TEdit
+    object CurrHPEdt: TEdit
       Left = 303
       Top = 24
       Width = 49
@@ -2743,7 +2743,7 @@ object WL2CED: TWL2CED
       TabOrder = 3
       Text = '-'
     end
-    object Edit10: TEdit
+    object MaxHPEdt: TEdit
       Left = 303
       Top = 51
       Width = 49
@@ -2754,7 +2754,7 @@ object WL2CED: TWL2CED
       TabOrder = 4
       Text = '-'
     end
-    object Edit11: TEdit
+    object FreeSkPEdt: TEdit
       Left = 303
       Top = 78
       Width = 49
@@ -2765,7 +2765,7 @@ object WL2CED: TWL2CED
       TabOrder = 5
       Text = '-'
     end
-    object Memo3: TMemo
+    object BioMem: TMemo
       Left = 358
       Top = 24
       Width = 245
@@ -2797,13 +2797,13 @@ object WL2CED: TWL2CED
     TabOrder = 10
     OnClick = SaveBtnClick
   end
-  object XPManifest1: TXPManifest
-    Left = 8
-    Top = 618
+  object XPManifest: TXPManifest
+    Left = 24
+    Top = 610
   end
-  object MainMenu1: TMainMenu
-    Left = 56
-    Top = 614
+  object MainMenu: TMainMenu
+    Left = 96
+    Top = 610
     object N5: TMenuItem
       Caption = #1048#1085#1092#1086
       object DevInfo: TMenuItem
@@ -2854,13 +2854,13 @@ object WL2CED: TWL2CED
       end
     end
   end
-  object OpenDialog1: TOpenDialog
-    Left = 104
-    Top = 616
+  object OpenDialog: TOpenDialog
+    Left = 168
+    Top = 610
   end
-  object XMLDocument1: TXMLDocument
-    Left = 160
-    Top = 616
+  object XMLDocument: TXMLDocument
+    Left = 252
+    Top = 610
     DOMVendorDesc = 'MSXML'
   end
 end

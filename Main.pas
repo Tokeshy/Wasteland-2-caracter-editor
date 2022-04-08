@@ -13,16 +13,17 @@ type
     SObtn: TButton;
     CaracterID: TEdit;
     CrLbtn: TButton;
-    XPManifest1: TXPManifest;
-    MainMenu1: TMainMenu;
-    PageControl1: TPageControl;
-    TabSheet1: TTabSheet; TabSheet2: TTabSheet;
-    TabSheet3: TTabSheet;
-    GroupBox3: TGroupBox;
+    XPManifest: TXPManifest;
+    MainMenu: TMainMenu;
+    SkillBrowsCntr: TPageControl;
+    WeaponSkillSht: TTabSheet;
+    GeneralSkillSht: TTabSheet;
+    TechSkillSht: TTabSheet;
+    WSkillGrb: TGroupBox;
     WS1: TEdit;
-    GroupBox1: TGroupBox;
+    WCurrLvlGrb: TGroupBox;
     WSPB1: TProgressBar;
-    GroupBox2: TGroupBox;
+    WAplyLvlGrb: TGroupBox;
     WSTB1: TTrackBar;
     WSL1: TEdit; WS2: TEdit; WS3: TEdit; WS4: TEdit;
     WS5: TEdit; WS6: TEdit; WS7: TEdit; WS8: TEdit;
@@ -39,11 +40,11 @@ type
     WSL2: TEdit; WSL3: TEdit; WSL4: TEdit; WSL5: TEdit;
     WSL6: TEdit; WSL7: TEdit; WSL8: TEdit; WSL9: TEdit;
     WSL10: TEdit;
-    GroupBox4: TGroupBox;
+    GSkillGrb: TGroupBox;
     RS1: TEdit; RS2: TEdit; RS3: TEdit; RS4: TEdit;
     RS5: TEdit; RS6: TEdit; RS7: TEdit; RS8: TEdit;
     RS9: TEdit; RS10: TEdit; RS11: TEdit; RS12: TEdit;
-    GroupBox5: TGroupBox;
+    GCurrLvlGrb: TGroupBox;
     RSPB1: TProgressBar; RSPB2: TProgressBar; RSPB3: TProgressBar; RSPB4: TProgressBar;
     RSPB5: TProgressBar; RSPB6: TProgressBar; RSPB7: TProgressBar; RSPB8: TProgressBar;
     RSPB9: TProgressBar; RSPB10: TProgressBar;
@@ -52,7 +53,7 @@ type
     RSI9: TEdit; RSI10: TEdit;
     RSPB11: TProgressBar; RSPB12: TProgressBar;
     RSI11: TEdit; RSI12: TEdit;
-    GroupBox6: TGroupBox;
+    GAplyLvlGrb: TGroupBox;
     RSTB1: TTrackBar;
     RSL1: TEdit;
     RSTB2: TTrackBar; RSTB3: TTrackBar; RSTB4: TTrackBar; RSTB5: TTrackBar;
@@ -65,19 +66,19 @@ type
     RSL11: TEdit;  RSL12: TEdit;
     SGid: TEdit;
     EndBtn: TButton;
-    TabSheet4: TTabSheet;
-    GroupBox7: TGroupBox;
+    AttributeSkillsSht: TTabSheet;
+    TSkillGrb: TGroupBox;
     TS1: TEdit; TS2: TEdit; TS3: TEdit; TS4: TEdit;
     TS5: TEdit; TS6: TEdit; TS7: TEdit; TS8: TEdit;
     TS9: TEdit;
-    GroupBox8: TGroupBox;
+    TCurrLvlGrb: TGroupBox;
     TSPB1: TProgressBar; TSPB2: TProgressBar; TSPB3: TProgressBar; TSPB4: TProgressBar;
     TSPB5: TProgressBar; TSPB6: TProgressBar; TSPB7: TProgressBar; TSPB8: TProgressBar;
     TSPB9: TProgressBar;
     TSI1: TEdit; TSI2: TEdit; TSI3: TEdit; TSI4: TEdit;
     TSI5: TEdit; TSI6: TEdit; TSI7: TEdit; TSI8: TEdit;
     TSI9: TEdit;
-    GroupBox9: TGroupBox;
+    TAplyLvlGrb: TGroupBox;
     TSTB1: TTrackBar;
     TSL1: TEdit;
     TSTB2: TTrackBar; TSTB3: TTrackBar; TSTB4: TTrackBar; TSTB5: TTrackBar;
@@ -87,19 +88,27 @@ type
     SSnBtn: TButton;
     Aboutproject1: TMenuItem;
     Suppo1: TMenuItem;
-    OpenDialog1: TOpenDialog;
-    XMLDocument1: TXMLDocument;
+    OpenDialog: TOpenDialog;
+    XMLDocument: TXMLDocument;
     CaracterBox: TComboBox;
     CurUnitGroup: TGroupBox;
-    Label2: TLabel; Label3: TLabel; Label4: TLabel; Edit6: TEdit;
-    Edit7: TEdit; Edit8: TEdit;
-    Label5: TLabel; Label6: TLabel; Label7: TLabel; Edit9: TEdit;
-    Edit10: TEdit; Edit11: TEdit;
-    Memo3: TMemo;
-    GroupBox11: TGroupBox;
+    SexLbl: TLabel;
+    AgeLbl: TLabel;
+    LvlLbl: TLabel;
+    SexEdt: TEdit;
+    AgeEdt: TEdit;
+    LvlEdt: TEdit;
+    CurrHPLbl: TLabel;
+    MaxHPLbl: TLabel;
+    FreeSkPLbl: TLabel;
+    CurrHPEdt: TEdit;
+    MaxHPEdt: TEdit;
+    FreeSkPEdt: TEdit;
+    BioMem: TMemo;
+    AtrSkillGrb: TGroupBox;
     as1: TEdit; as2: TEdit; as3: TEdit; as4: TEdit;
     as5: TEdit; as6: TEdit; as7: TEdit;
-    GroupBox10: TGroupBox;
+    AtrCurrLvlGrb: TGroupBox;
     ASPB1: TProgressBar;
     ASPB2: TProgressBar;
     ASPB3: TProgressBar;
@@ -114,7 +123,7 @@ type
     ASI5: TEdit;
     ASI6: TEdit;
     ASI7: TEdit;
-    GroupBox12: TGroupBox;
+    AtrAplyLvlGrb: TGroupBox;
     ASTB1: TTrackBar;
     ASL1: TEdit;
     ASTB2: TTrackBar;
@@ -187,7 +196,7 @@ const
   CurrentVersion = '2.1.0';
 
 {Services}
-  SkillPrefix = 'KeyValuePairOfStringInt32><Key>';
+  SkillPrefix  = 'KeyValuePairOfStringInt32><Key>';
   SkillPostfix = '</Key><Value>';
   WSPref : array[1..10] of string = ('bluntWeapons', 'smg', 'brawling',
     'sniperRifle', 'atWeapons', 'bladedWeapons','rifle','energyWeapons',
@@ -222,7 +231,8 @@ begin
 end;
 
 Function UnregClean (cn, Limiter : string; Len : integer) : string;
-var limSttart, LimEnd : string;
+var
+  limSttart, LimEnd : string;
 begin
   limSttart := '<' + Limiter;
   LimEnd := '</' + Limiter;
@@ -313,31 +323,31 @@ end;
 
 procedure TWL2CED.N4Click(Sender: TObject);
 begin
-  CaracSavBtn.Caption := 'Сохранить персонаж';
-  CaracterBox.Text    := 'Выбрать персонаж';
-  CaracterID.Text     := 'Всего юнитов';
-  CrLbtn.Caption      := 'Сканировать персонаж';
-  CurUnitGroup.Caption := 'Выбранный юнит';
-    Label2.Caption     := 'Пол';
-    Label3.Caption     := 'Возраст';
-    Label4.Caption     := 'Уровень';
-    Label5.Caption     := 'Tекущие HP';
-    Label6.Caption     := 'Максимальные HP';
-    Label7.Caption     := 'Свободные Skil'+#39+'ы';
-  EndBtn.Caption        := 'Выход';
-    DevInfo.Caption     := 'Разработчик';
-    ProjectInfo.Caption := 'О проекте (Help)';
-    MailtoDev.Caption   := 'Контакты';
+  CaracSavBtn.Caption     := 'Сохранить персонаж';
+  CaracterBox.Text        := 'Выбрать персонаж';
+  CaracterID.Text         := 'Всего юнитов';
+  CrLbtn.Caption          := 'Сканировать персонаж';
+  CurUnitGroup.Caption    := 'Выбранный юнит';
+    SexLbl.Caption        := 'Пол';
+    AgeLbl.Caption        := 'Возраст';
+    LvlLbl.Caption        := 'Уровень';
+    CurrHPLbl.Caption     := 'Tекущие HP';
+    MaxHPLbl.Caption      := 'Максимальные HP';
+    FreeSkPLbl.Caption    := 'Свободные Skil'+#39+'ы';
+  EndBtn.Caption          := 'Выход';
+    DevInfo.Caption       := 'Разработчик';
+    ProjectInfo.Caption   := 'О проекте (Help)';
+    MailtoDev.Caption     := 'Контакты';
     N1.Caption            := 'Купить кофе разработчику';
     Suppo1.Caption        := 'Сказать "Спасибо" разработчику';
     N5.Caption            := 'Инфо';
     Aboutproject1.Caption := 'О проекте';
     N2.Caption            := 'Как пользоваться';
 {###################################################}
-  TabSheet1.Caption   := 'Оружейные';
-    GroupBox1.Caption := 'Текущий уровень';
-    GroupBox2.Caption := 'Применяемый уровень';
-    GroupBox3.Caption := 'Навык';
+  WeaponSkillSht.Caption := 'Оружейные';
+    WCurrLvlGrb.Caption  := 'Текущий уровень';
+    WAplyLvlGrb.Caption  := 'Применяемый уровень';
+    WSkillGrb.Caption    := 'Навык';
       WS1.Text  := 'Дробящее';
       WS10.Text := 'Пистолеты';
       WS2.Text  := 'Пист.-пулемёт';
@@ -349,10 +359,10 @@ begin
       WS8.Text  := 'Энергетическое';
       WS9.Text  := 'Дробовики';
 {###################################################}
-    TabSheet2.Caption   := 'Общие';
-      GroupBox6.Caption := 'Применяемый уровень';
-      GroupBox5.Caption := 'Текущий уровень';
-      GroupBox4.Caption := 'Навык';
+    GeneralSkillSht.Caption := 'Общие';
+      GAplyLvlGrb.Caption   := 'Применяемый уровень';
+      GCurrLvlGrb.Caption   := 'Текущий уровень';
+      GSkillGrb.Caption     := 'Навык';
         RS1.Text  := '"Знаток запада"';
         RS10.Text := 'Меняла';
         RS11.Text := 'Оружейник';
@@ -366,10 +376,10 @@ begin
         RS8.Text  := 'Зоркий глаз';
         RS9.Text  := 'Лидерство';
 {###################################################}
-    TabSheet3.Caption   := 'Технические';
-      GroupBox7.Caption := 'Навык';
-      GroupBox8.Caption := 'Текущий уровень';
-      GroupBox9.Caption := 'Применяемый уровень';
+    TechSkillSht.Caption  := 'Технические';
+      TSkillGrb.Caption   := 'Навык';
+      TCurrLvlGrb.Caption := 'Текущий уровень';
+      TAplyLvlGrb.Caption := 'Применяемый уровень';
         TS1.Text := 'Взрывотехника';
         TS2.Text := 'Компьютеры';
         TS3.Text := 'Механика';
@@ -380,10 +390,10 @@ begin
         TS8.Text := 'Взлом сейфов';
         TS9.Text := 'Взлом замков';
 {###################################################}
-    TabSheet4.Caption    := 'Атрибуты';
-      GroupBox10.Caption := 'Текущий уровень';
-      GroupBox11.Caption := 'Навык';
-      GroupBox12.Caption := 'Применяемый уровень';
+    AttributeSkillsSht.Caption := 'Атрибуты';
+      AtrCurrLvlGrb.Caption    := 'Текущий уровень';
+      AtrSkillGrb.Caption      := 'Навык';
+      AtrAplyLvlGrb.Caption    := 'Применяемый уровень';
         as1.Text := 'Координация';
         as2.Text := 'Удача';
         as3.Text := 'Восприятие';
@@ -400,17 +410,17 @@ end;
 
 procedure TWL2CED.English1Click(Sender: TObject);
 begin
-  CaracSavBtn.Caption := 'Save unit';
-  CaracterBox.Text    := 'Select unit';
-  CaracterID.Text     := 'Total Units';
-  CrLbtn.Caption      := 'Scan character';
+  CaracSavBtn.Caption  := 'Save unit';
+  CaracterBox.Text     := 'Select unit';
+  CaracterID.Text      := 'Total Units';
+  CrLbtn.Caption       := 'Scan character';
   CurUnitGroup.Caption := 'Selected unit';
-    Label2.Caption := 'Sex';
-    Label3.Caption := 'Age';
-    Label4.Caption := 'Level';
-    Label5.Caption := 'Current HP';
-    Label6.Caption := 'Max HP';
-    Label7.Caption := 'Free Skils';
+    SexLbl.Caption := 'Sex';
+    AgeLbl.Caption := 'Age';
+    LvlLbl.Caption := 'Level';
+    CurrHPLbl.Caption  := 'Current HP';
+    MaxHPLbl.Caption   := 'Max HP';
+    FreeSkPLbl.Caption := 'Free Skils';
   EndBtn.Caption        := 'Exit';
     DevInfo.Caption     := 'Developer';
     ProjectInfo.Caption := 'Help';
@@ -421,10 +431,10 @@ begin
     Aboutproject1.Caption := 'About';
     N2.Caption            := 'How to use';
 {###################################################}
-  TabSheet1.Caption   := 'Weapons';
-    GroupBox1.Caption := 'Current level';
-    GroupBox2.Caption := 'Applicable level';
-    GroupBox3.Caption := 'Skill';
+  WeaponSkillSht.Caption := 'Weapons';
+    WCurrLvlGrb.Caption  := 'Current level';
+    WAplyLvlGrb.Caption  := 'Applicable level';
+    WSkillGrb.Caption    := 'Skill';
       WS1.Text  := 'Blunt weapons';
       WS10.Text := 'Handgun';
       WS2.Text  := 'smg';
@@ -436,10 +446,10 @@ begin
       WS8.Text  := 'Energy weapons';
       WS9.Text  := 'Shotgun';
 {###################################################}
-    TabSheet2.Caption   := 'General';
-      GroupBox6.Caption := 'Applicable level';
-      GroupBox5.Caption := 'Current level';
-      GroupBox4.Caption := 'Skill';
+    GeneralSkillSht.Caption := 'General';
+      GAplyLvlGrb.Caption   := 'Applicable level';
+      GCurrLvlGrb.Caption   := 'Current level';
+      GSkillGrb.Caption     := 'Skill';
         RS1.Text  := 'Calvin Backer skill';
         RS10.Text := 'Barter';
         RS11.Text := 'weapon smith';
@@ -453,10 +463,10 @@ begin
         RS8.Text  := 'Perception';
         RS9.Text  := 'Leadership';
 {###################################################}
-    TabSheet3.Caption   := 'Technical';
-      GroupBox7.Caption := 'Skill';
-      GroupBox8.Caption := 'Current level';
-      GroupBox9.Caption := 'Applicable level';
+    TechSkillSht.Caption  := 'Technical';
+      TSkillGrb.Caption   := 'Skill';
+      TCurrLvlGrb.Caption := 'Current level';
+      TAplyLvlGrb.Caption := 'Applicable level';
         TS1.Text := 'Demolitions';
         TS2.Text := 'Computer tech';
         TS3.Text := 'Mechanical repair';
@@ -467,10 +477,10 @@ begin
         TS8.Text := 'Safe crack';
         TS9.Text := 'PickLock';
 {###################################################}
-    TabSheet4.Caption    := 'Attributes';
-      GroupBox10.Caption := 'Current level';
-      GroupBox11.Caption := 'Skill';
-      GroupBox12.Caption:='Applicable level';
+    AttributeSkillsSht.Caption := 'Attributes';
+      AtrCurrLvlGrb.Caption    := 'Current level';
+      AtrSkillGrb.Caption      := 'Skill';
+      AtrAplyLvlGrb.Caption    := 'Applicable level';
         as1.Text := 'Coordination';
         as2.Text := 'Luck';
         as3.Text := 'Awareness';
@@ -492,7 +502,7 @@ end;
 
 procedure TWL2CED.FormCreate(Sender: TObject);
 begin
-  memo3.Clear;
+  BioMem.Clear;
 end;
 
 procedure TWL2CED.SaveBtnClick(Sender: TObject);
@@ -508,10 +518,10 @@ end;
 
 procedure TWL2CED.SObtnClick(Sender: TObject);
 begin
-  openDialog1.InitialDir := 'C:\';
-  openDialog1.Filter := 'Wasteland2 Save Games files|*.xml';
-  if OpenDialog1.Execute
-    then SGid.Text := (ExtractFileName(OpenDialog1.FileName));
+  openDialog.InitialDir := 'C:\';
+  openDialog.Filter := 'Wasteland2 Save Games files|*.xml';
+  if OpenDialog.Execute
+    then SGid.Text := (ExtractFileName(OpenDialog.FileName));
   CaracterBox.Clear;
 end;
 
@@ -531,7 +541,7 @@ begin
   if EndBtn.caption = 'Exit'
     then CaracterBox.Text := 'Select unit';
 {FileType to TXT}
-  OldFileName := OpenDialog1.FileName;
+  OldFileName := OpenDialog.FileName;
   OFNL := OldFileName.length;
   NewFileName := OldFileName;
   delete(NewFileName,(OFNL-3), OFNL);
@@ -649,7 +659,7 @@ var
 begin
   CaracSavBtn.Enabled := true;
   SaveBtn.Enabled := true;
-{read caracter's name into cname}
+{read caracter's name into 'cname'}
   cname := caracterbox.Items.Strings[caracterbox.ItemIndex];
   CurUnitGroup.Caption := 'Загружены данные ' + cname;
 {scaning caracter}
@@ -667,38 +677,41 @@ begin
   delete (cn1, 1, (ansipos('{',cn1)-1));
   delete (cn1, (ansipos('}',cn1)), Length(cn1));
   delete (cn1, 1, (Length('{')));
-  edit6.Text := cn1; {Gender}
-  edit7.Text := UnregClean (cn, 'age>', 5); {age}
-  edit8.Text := UnregClean (cn, 'level>', 7); {lvl}
-  edit9.Text := UnregClean (cn, 'curHp>', 7); {actual HP}
-  edit10.Text := UnregClean (cn, 'maxHp>', 7); {max HP}
-  edit11.Text := UnregClean (cn, 'availableSkillPoints>', 22); {Free SkillPoints}
-
-  cn1 := cn; {Biografy}
+  SexEdt.Text := cn1;
+  AgeEdt.Text := UnregClean (cn, 'age>', 5);
+  LvlEdt.Text := UnregClean (cn, 'level>', 7);
+  CurrHPEdt.Text := UnregClean (cn, 'curHp>', 7);
+  MaxHPEdt.Text := UnregClean (cn, 'maxHp>', 7);
+  FreeSkPEdt.Text := UnregClean (cn, 'availableSkillPoints>', 22);
+{Biografy}
+  cn1 := cn;
   delete (cn1, 1, (ansipos('<biography>&lt;@&gt;',cn1)-1));
-  {check if biografy exists}
-  if ansipos('<biography>&lt;@&gt;',cn1)=0
-    then memo3.Text := 'Биография не заполнена'
+  if ansipos('<biography>&lt;@&gt;',cn1) = 0 {check if biografy exists}
+    then BioMem.Text := 'Биография не заполнена'
     else
     begin
       delete (cn1, (ansipos('</biography>',cn1)), Length(cn1));
       delete (cn1, 1, Length('<biography>&lt;@&gt;'));
-      memo3.Text := cn1;
+      BioMem.Text := cn1;
     end;
 
-{ Block 1 - weapon skills }
+{ Skill's ID MAP:
+  ID |       Weapon          |               General               |           Technical                |          Attributes        |
+   1 | Crushing / дробящее   | Calvin Backer skill / Знаток запада | Demolitions / взрывотехника        | Coordination / Координация |
+   2 | Submachine gun / ПП   | Combat shooting / стрелок           | Computer tech / компьютеры         | Luck / удача               |
+   3 | Melee / Рукопашная    | Outdoorsman / выживание             | Mechanical repair / механика       | Awareness / восприятие     |
+   4 | Sniper  / Снайперские | Brute force / грубая сила           | Field medic / полевая медицина     | Strength / сила            |
+   5 | Heavy / Тяжёлое       | Animal Whisperer / дрессировщик     | Toaster repair / ремонт тостеров   | Speed / скорость           |
+   6 | Steel arms / Холодное | Spot lie / жополиз                  | Alarm disarm / снятие сигнализации | Intelligence / интеллект   |
+   7 | Assault / Штурмовые   | Intimidate / задира                 | Doctor / хирургия                  | Charisma / харизма         |
+   8 | Power /Энергетическое | Perception / Зоркий глаз            | Safe crack / взлом сейфов          | -------------------------- |
+   9 | Shotguns / дробовики  | Leadership / лидерство              | PickLock / взлом замков            | -------------------------- |
+  10 | Guns / пистолеты      | Barter / меняла                     | ---------------------------------- | -------------------------- |
+  11 | --------------------- | Weapon smith / оружейник            | ---------------------------------- | -------------------------- |
+  12 | --------------------- | Manipulate / хитрожопый             | ---------------------------------- | -------------------------- |}
+
+{ Block 1 - Weapon skills }
   for i := 1 to 10 do
-    {i of:
-        1 - crushing / дробящее
-        2 - submachine gun / пистолеты-пулемёты
-        3 - Melee / Рукопашная
-        4 - Sniper  / Снайперские
-        5 - Heavy / Тяжёлое
-        6 - steel arms / Холодное
-        7 - Assault / Штурмовые
-        8 - Power /Энергетическое
-        9 - shotguns / дробовики
-       10 - guns / пистолеты }
     begin
       cn1 := CnClean(cn, SkillPrefix + WSPref[i] + SkillPostfix);
     {translating to "normal" values}
@@ -709,21 +722,8 @@ begin
       (FindComponent('WSI' + inttostr(i)) as TEdit).Text := cn1 + '/10';
     end;
 
-{ Block 2 - 'General skills' }
+{ Block 2 - General skills }
   for i := 1 to 12 do
-    {i of:
-       1 - "Calvin Backer skill" / "Знаток запада"
-       2 - Combat shooting / стрелок
-       3 - Outdoorsman / выживание
-       4 - Brute force / грубая сила
-       5 - Animal Whisperer / дрессировщик
-       6 - Spot lie / жополиз
-       7 - Intimidate / задира
-       8 - Perception / Зоркий глаз
-       9 - Leadership / лидерство
-      10 - Barter / меняла
-      11 - weapon smith / оружейник
-      12 - Manipulate / хитрожопый }
     begin
       cn1 := CnClean(cn, SkillPrefix + GSPref[i] + SkillPostfix);
       cn1 := ValToWL2Format(cn1);
@@ -735,16 +735,6 @@ begin
 
 { Block 3 - Technical skills }
   for i := 1 to 9 do
-    {i of:
-      1 - Demolitions / взрывотехника
-      2 - Computer tech / компьютеры
-      3 - Mechanical repair / механика
-      4 - Field medic / полевая медицина
-      5 - Toaster repair / ремонт тостеров
-      6 - Alarm disarm / снятие сигнализации
-      7 - Doctor / хирургия
-      8 - Safe crack / взлом сейфов
-      9 - PickLock / взлом замков }
     Begin
       cn1 := CnClean(cn, SkillPrefix + TSPref[i] + SkillPostfix);
       cn1 := ValToWL2Format(cn1);
@@ -756,14 +746,6 @@ begin
 
 { Block 4 - Attributes }
   for i := 1 to 7 do
-    {i of:
-      1 - Coordination / Координация
-      2 - Luck / удача
-      3 - Awareness / восприятие
-      4 - Strength / сила
-      5 - Speed / скорость
-      6 - Intelligence / интеллект
-      7 - Charisma / харизма}
     Begin
       cn1 := CnClean(cn, SkillPrefix + ASPref[i] + SkillPostfix);
       (FindComponent('ASPB' + inttostr(i)) as TProgressbar).position := strtointdef(cn1, 0);
@@ -771,7 +753,6 @@ begin
       (FindComponent('ASL' + inttostr(i)) as TEdit).Text := cn1 + '/10';
       (FindComponent('ASI' + inttostr(i)) as TEdit).Text := cn1 + '/10';
     End;
-
 end;
 
 {TrackBar Works}
