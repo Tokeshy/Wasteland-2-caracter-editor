@@ -4,7 +4,8 @@ uses
   Vcl.Forms,
   Main in 'Main.pas' {WL2CED},
   Vcl.Themes,
-  Vcl.Styles;
+  Vcl.Styles,
+  Translator in 'Translator.pas';
 
 {$R *.res}
 

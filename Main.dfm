@@ -2770,8 +2770,6 @@ object WL2CED: TWL2CED
       Top = 24
       Width = 245
       Height = 73
-      Lines.Strings = (
-        'Memo3')
       ReadOnly = True
       ScrollBars = ssVertical
       TabOrder = 6
