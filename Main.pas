@@ -86,10 +86,8 @@ type
     TSL2: TEdit; TSL3: TEdit; TSL4: TEdit; TSL5: TEdit;
     TSL6: TEdit; TSL7: TEdit; TSL8: TEdit; TSL9: TEdit;
     SSnBtn: TButton;
-    Aboutproject1: TMenuItem;
-    Suppo1: TMenuItem;
+    AboutProjectBtn: TMenuItem;
     OpenDialog: TOpenDialog;
-    XMLDocument: TXMLDocument;
     CaracterBox: TComboBox;
     CurUnitGroup: TGroupBox;
     SexLbl: TLabel;
@@ -140,35 +138,34 @@ type
     ASL7: TEdit;
     CaracSavBtn: TButton;
     SaveBtn: TButton;
-    N1: TMenuItem;
-    N2: TMenuItem;
-    language1: TMenuItem;
-    English1: TMenuItem;
-    N4: TMenuItem;
-    N5: TMenuItem;
-    Followus1: TMenuItem;
-    Followonpatreon1: TMenuItem;
+    CoffeeBtn: TMenuItem;
+    HowToUseBtn: TMenuItem;
+    LangSection: TMenuItem;
+    ToEng: TMenuItem;
+    ToRus: TMenuItem;
+    InfoSection: TMenuItem;
+    FollowUsBtn: TMenuItem;
+    FollowOnPatreonBtn: TMenuItem;
     DevInfo: TMenuItem;
     ProjectInfo: TMenuItem;
-    MailtoDev: TMenuItem;
+    DevContactBtn: TMenuItem;
     procedure WSTB1Change(Sender: TObject);
     procedure EndBtnClick(Sender: TObject);
-    procedure Aboutproject1Click(Sender: TObject);
+    procedure AboutProjectBtnClick(Sender: TObject);
     procedure SObtnClick(Sender: TObject);
     procedure SSnBtnClick(Sender: TObject);
     procedure CrLbtnClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure CaracSavBtnClick(Sender: TObject);
     procedure SaveBtnClick(Sender: TObject);
-    procedure Suppo1Click(Sender: TObject);
-    procedure N1Click(Sender: TObject);
-    procedure N2Click(Sender: TObject);
-    procedure N4Click(Sender: TObject);
-    procedure English1Click(Sender: TObject);
-    procedure Followus1Click(Sender: TObject);
+    procedure CoffeeBtnClick(Sender: TObject);
+    procedure HowToUseBtnClick(Sender: TObject);
+    procedure ToRusClick(Sender: TObject);
+    procedure ToEngClick(Sender: TObject);
+    procedure FollowUsBtnClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
-    procedure Followonpatreon1Click(Sender: TObject);
-    procedure MailtoDevClick(Sender: TObject);
+    procedure FollowOnPatreonBtnClick(Sender: TObject);
+    procedure DevContactBtnClick(Sender: TObject);
 
   private
     { Private declarations }
@@ -185,13 +182,10 @@ var
 
 const
 {General}
-  VideoRu    = 'https://www.youtube.com/watch?v=EORiIPeyx2Y';
-  VideoEng   = 'https://www.youtube.com/watch?v=LeS7QBcF6zI';
-  ChannelLnk = '';
+  ChannelLnk = 'https://www.youtube.com/channel/UCyniVlUauJ1iWYyo-vHfGlA';
   PatreonLnk = 'https://www.patreon.com/Tokeshy';
-  ThanksLnk  = 'https://sites.google.com/view/little-beggar/%D0%B3%D0%BB%D0%B0%D0%B2%D0%BD%D0%B0%D1%8F'; {перепроверь}
-  CoffeeLnk  = ''; {сделать}
-  ProjLnk    = 'https://sonkjeferson.wixsite.com/wastelandschared2'; {перепроверь контакты и сапорт}
+  CoffeeLnk  = 'https://sites.google.com/view/little-beggar/%D0%B3%D0%BB%D0%B0%D0%B2%D0%BD%D0%B0%D1%8F';
+  ProjLnk    = 'https://sonkjeferson.wixsite.com/wastelandschared2';
   ContLnk    = 'https://www.linkedin.com/in/vitaliherasimenia/';
   CurrentVersion = '2.1.0';
 
@@ -277,40 +271,32 @@ begin
 end;
 
 {Buttons \ Link section}
-procedure TWL2CED.Followonpatreon1Click(Sender: TObject);
+procedure TWL2CED.FollowOnPatreonBtnClick(Sender: TObject);
 begin
   ShellExecute(0, 'open', PatreonLnk, '', '', SW_SHOWNORMAL);
 end;
 
-procedure TWL2CED.Followus1Click(Sender: TObject);
+procedure TWL2CED.FollowUsBtnClick(Sender: TObject);
 begin
   ShellExecute(0, 'open', ChannelLnk, '', '', SW_SHOWNORMAL);
 end;
 
-procedure TWL2CED.MailtoDevClick(Sender: TObject);
+procedure TWL2CED.DevContactBtnClick(Sender: TObject);
 begin
  ShellExecute(0, 'open', ContLnk, '', '', SW_SHOWNORMAL);
 end;
 
-procedure TWL2CED.N1Click(Sender: TObject);
+procedure TWL2CED.CoffeeBtnClick(Sender: TObject);
 begin
   ShellExecute(0, 'open', CoffeeLnk, '', '', SW_SHOWNORMAL);
 end;
 
-procedure TWL2CED.N2Click(Sender: TObject);
+procedure TWL2CED.HowToUseBtnClick(Sender: TObject);
 begin
-  if EndBtn.caption='Выход'
-    then ShellExecute(0, 'open', VideoRu, '', '', SW_SHOWNORMAL);
-  if EndBtn.caption='Exit'
-    then ShellExecute(0, 'open', VideoEng, '', '', SW_SHOWNORMAL);
+  ShellExecute(0, 'open', Pchar(VideoLink), '', '', SW_SHOWNORMAL);
 end;
 
-procedure TWL2CED.Suppo1Click(Sender: TObject);
-begin
-  ShellExecute(0, 'open', ThanksLnk, '', '', SW_SHOWNORMAL);
-end;
-
-procedure TWL2CED.Aboutproject1Click(Sender: TObject);
+procedure TWL2CED.AboutProjectBtnClick(Sender: TObject);
 begin
   ShellExecute(0, 'open', ProjLnk, '', '', SW_SHOWNORMAL);
 end;
@@ -321,12 +307,12 @@ begin
   TerminateOrRename;
 end;
 
-procedure TWL2CED.N4Click(Sender: TObject);
+procedure TWL2CED.ToRusClick(Sender: TObject);
 begin
   ToRussian;
 end;
 
-procedure TWL2CED.English1Click(Sender: TObject);
+procedure TWL2CED.ToEngClick(Sender: TObject);
 begin
   ToEnglish;
 end;
@@ -338,6 +324,8 @@ end;
 
 procedure TWL2CED.FormCreate(Sender: TObject);
 begin
+  WL2CED.Caption := WL2CED.Caption + CurrentVersion;
+  ToEnglish;
   BioMem.Clear;
 end;
 
@@ -373,10 +361,7 @@ var
   S1, cn : string;
 begin
   CrLbtn.Enabled := true;
-  if EndBtn.caption = 'Выход'
-    then CaracterBox.Text := 'Выбрать персонаж';
-  if EndBtn.caption = 'Exit'
-    then CaracterBox.Text := 'Select unit';
+
 {FileType to TXT}
   OldFileName := OpenDialog.FileName;
   OFNL := OldFileName.length;
@@ -410,10 +395,7 @@ begin
     end;
   end;
 
-  if EndBtn.caption = 'Выход'
-    then CaracterID.Text := 'Найдено юнитов - ' +  inttostr(cc);
-  if EndBtn.caption = 'Exit'
-    then CaracterID.Text := 'Units found - ' +  inttostr(cc);
+  CaracterID.Text := CaracterID.Text + ' - ' + inttostr(cc);
 end;
 
 procedure TWL2CED.CaracSavBtnClick(Sender: TObject);
@@ -500,7 +482,7 @@ begin
   SaveBtn.Enabled := true;
 {read caracter's name into 'cname'}
   cname := caracterbox.Items.Strings[caracterbox.ItemIndex];
-  CurUnitGroup.Caption := 'Загружены данные ' + cname;
+  CurUnitGroup.Caption := CurUnitGroup.Caption + ' - ' + cname;
 {scaning caracter}
   cn := S;
   sname := '</name><displayName>&lt;@&gt;' + cname;
@@ -526,7 +508,7 @@ begin
   cn1 := cn;
   delete (cn1, 1, (ansipos('<biography>&lt;@&gt;',cn1)-1));
   if ansipos('<biography>&lt;@&gt;',cn1) = 0 {check if biografy exists}
-    then BioMem.Text := 'Биография не заполнена'
+    then BioMem.Text := NoBioText
     else
     begin
       delete (cn1, (ansipos('</biography>',cn1)), Length(cn1));

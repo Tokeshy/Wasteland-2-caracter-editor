@@ -1,7 +1,7 @@
 object WL2CED: TWL2CED
   Left = 0
   Top = 0
-  Caption = 'Wastelands'#160'2 character editor Rev'#160'2.0'
+  Caption = 'Wastelands'#160'2 character editor Rev'#160
   ClientHeight = 674
   ClientWidth = 633
   Color = clBtnFace
@@ -55,7 +55,7 @@ object WL2CED: TWL2CED
     Top = 185
     Width = 617
     Height = 418
-    ActivePage = AttributeSkillsSht
+    ActivePage = WeaponSkillSht
     TabOrder = 3
     object WeaponSkillSht: TTabSheet
       Caption = #1054#1088#1091#1078#1077#1081#1085#1099#1077
@@ -2802,63 +2802,54 @@ object WL2CED: TWL2CED
   object MainMenu: TMainMenu
     Left = 96
     Top = 610
-    object N5: TMenuItem
+    object InfoSection: TMenuItem
       Caption = #1048#1085#1092#1086
       object DevInfo: TMenuItem
         Caption = #1056#1072#1079#1088#1072#1073#1086#1090#1095#1080#1082
-        object N1: TMenuItem
+        object CoffeeBtn: TMenuItem
           Caption = #1050#1091#1087#1080#1090#1100' '#1082#1086#1092#1077' '#1088#1072#1079#1088#1072#1073#1086#1090#1095#1080#1082#1091
-          OnClick = N1Click
+          OnClick = CoffeeBtnClick
         end
-        object Suppo1: TMenuItem
-          Caption = #1057#1082#1072#1079#1072#1090#1100' "'#1057#1087#1072#1089#1080#1073#1086'" '#1088#1072#1079#1088#1072#1073#1086#1090#1095#1080#1082#1091
-          OnClick = Suppo1Click
-        end
-        object Followonpatreon1: TMenuItem
+        object FollowOnPatreonBtn: TMenuItem
           Caption = 'Follow on patreon'
           Hint = 'support a developer on the Patreon platform'
-          OnClick = Followonpatreon1Click
+          OnClick = FollowOnPatreonBtnClick
         end
-        object MailtoDev: TMenuItem
+        object DevContactBtn: TMenuItem
           Caption = #1050#1086#1085#1090#1072#1082#1090#1099
-          OnClick = MailtoDevClick
+          OnClick = DevContactBtnClick
         end
       end
       object ProjectInfo: TMenuItem
         Caption = #1054' '#1087#1088#1086#1077#1082#1090#1077
-        object N2: TMenuItem
+        object HowToUseBtn: TMenuItem
           Caption = #1050#1072#1082' '#1087#1086#1083#1100#1079#1086#1074#1072#1090#1100#1089#1103
-          OnClick = N2Click
+          OnClick = HowToUseBtnClick
         end
-        object Aboutproject1: TMenuItem
+        object AboutProjectBtn: TMenuItem
           Caption = #1054' '#1087#1088#1086#1077#1082#1090#1077
-          OnClick = Aboutproject1Click
+          OnClick = AboutProjectBtnClick
         end
       end
-      object Followus1: TMenuItem
+      object FollowUsBtn: TMenuItem
         Caption = 'Follow us (YouTube)'
-        OnClick = Followus1Click
+        OnClick = FollowUsBtnClick
       end
     end
-    object language1: TMenuItem
+    object LangSection: TMenuItem
       Caption = #1071#1079#1099#1082' \ Language'
-      object English1: TMenuItem
+      object ToEng: TMenuItem
         Caption = 'English'
-        OnClick = English1Click
+        OnClick = ToEngClick
       end
-      object N4: TMenuItem
+      object ToRus: TMenuItem
         Caption = #1056#1091#1089#1089#1082#1080#1081
-        OnClick = N4Click
+        OnClick = ToRusClick
       end
     end
   end
   object OpenDialog: TOpenDialog
     Left = 168
     Top = 610
-  end
-  object XMLDocument: TXMLDocument
-    Left = 252
-    Top = 610
-    DOMVendorDesc = 'MSXML'
   end
 end
