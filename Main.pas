@@ -10,24 +10,31 @@ uses
 
 type
   TWL2CED = class(TForm)
-    SObtn: TButton;
-    CaracterID: TEdit;
-    CrLbtn: TButton;
+    Btn_OpenSave: TButton;
+    Edt_CaracterID: TEdit;
+    Btn_ScanCaracter: TButton;
     XPManifest: TXPManifest;
     MainMenu: TMainMenu;
     SkillBrowsCntr: TPageControl;
-    WeaponSkillSht: TTabSheet;
-    GeneralSkillSht: TTabSheet;
-    TechSkillSht: TTabSheet;
-    WSkillGrb: TGroupBox;
-    WS1: TEdit;
-    WCurrLvlGrb: TGroupBox;
+    PG_WeaponSkill: TTabSheet;
+    PG_GeneralSkill: TTabSheet;
+    PG_TechSkill: TTabSheet;
+    Grp_WpnSkill: TGroupBox;
+    Edt_WpnS1: TEdit;
+    Grp_WpnCurrLvl: TGroupBox;
     WSPB1: TProgressBar;
-    WAplyLvlGrb: TGroupBox;
+    Grp_WpnAplyLvl: TGroupBox;
     WSTB1: TTrackBar;
-    WSL1: TEdit; WS2: TEdit; WS3: TEdit; WS4: TEdit;
-    WS5: TEdit; WS6: TEdit; WS7: TEdit; WS8: TEdit;
-    WS9: TEdit; WS10: TEdit;
+    WSL1: TEdit;
+    Edt_WpnS2: TEdit;
+    Edt_WpnS3: TEdit;
+    Edt_WpnS4: TEdit;
+    Edt_WpnS5: TEdit;
+    Edt_WpnS6: TEdit;
+    Edt_WpnS7: TEdit;
+    Edt_WpnS8: TEdit;
+    Edt_WpnS9: TEdit;
+    Edt_WpnS10: TEdit;
     WSPB2: TProgressBar; WSPB3: TProgressBar; WSPB4: TProgressBar; WSPB5: TProgressBar;
     WSPB6: TProgressBar; WSPB7: TProgressBar; WSPB8: TProgressBar; WSPB9: TProgressBar;
     WSPB10: TProgressBar;
@@ -40,11 +47,20 @@ type
     WSL2: TEdit; WSL3: TEdit; WSL4: TEdit; WSL5: TEdit;
     WSL6: TEdit; WSL7: TEdit; WSL8: TEdit; WSL9: TEdit;
     WSL10: TEdit;
-    GSkillGrb: TGroupBox;
-    RS1: TEdit; RS2: TEdit; RS3: TEdit; RS4: TEdit;
-    RS5: TEdit; RS6: TEdit; RS7: TEdit; RS8: TEdit;
-    RS9: TEdit; RS10: TEdit; RS11: TEdit; RS12: TEdit;
-    GCurrLvlGrb: TGroupBox;
+    Grp_GnSkill: TGroupBox;
+    Edt_RS1: TEdit;
+    Edt_RS2: TEdit;
+    Edt_RS3: TEdit;
+    Edt_RS4: TEdit;
+    Edt_RS5: TEdit;
+    Edt_RS6: TEdit;
+    Edt_RS7: TEdit;
+    Edt_RS8: TEdit;
+    Edt_RS9: TEdit;
+    Edt_RS10: TEdit;
+    Edt_RS11: TEdit;
+    Edt_RS12: TEdit;
+    Grp_GnCurrLvl: TGroupBox;
     RSPB1: TProgressBar; RSPB2: TProgressBar; RSPB3: TProgressBar; RSPB4: TProgressBar;
     RSPB5: TProgressBar; RSPB6: TProgressBar; RSPB7: TProgressBar; RSPB8: TProgressBar;
     RSPB9: TProgressBar; RSPB10: TProgressBar;
@@ -53,7 +69,7 @@ type
     RSI9: TEdit; RSI10: TEdit;
     RSPB11: TProgressBar; RSPB12: TProgressBar;
     RSI11: TEdit; RSI12: TEdit;
-    GAplyLvlGrb: TGroupBox;
+    Grp_GnAplyLvl: TGroupBox;
     RSTB1: TTrackBar;
     RSL1: TEdit;
     RSTB2: TTrackBar; RSTB3: TTrackBar; RSTB4: TTrackBar; RSTB5: TTrackBar;
@@ -64,49 +80,60 @@ type
     RSL10: TEdit;
     RSTB11: TTrackBar; RSTB12: TTrackBar;
     RSL11: TEdit;  RSL12: TEdit;
-    SGid: TEdit;
-    EndBtn: TButton;
-    AttributeSkillsSht: TTabSheet;
-    TSkillGrb: TGroupBox;
-    TS1: TEdit; TS2: TEdit; TS3: TEdit; TS4: TEdit;
-    TS5: TEdit; TS6: TEdit; TS7: TEdit; TS8: TEdit;
-    TS9: TEdit;
-    TCurrLvlGrb: TGroupBox;
+    Edt_SelectedCrt: TEdit;
+    Btn_Quit: TButton;
+    PG_AttributeSkills: TTabSheet;
+    Grp_TechSkill: TGroupBox;
+    Edt_TechS1: TEdit;
+    Edt_TechS2: TEdit;
+    Edt_TechS3: TEdit;
+    Edt_TechS4: TEdit;
+    Edt_TechS5: TEdit;
+    Edt_TechS6: TEdit;
+    Edt_TechS7: TEdit;
+    Edt_TechS8: TEdit;
+    Edt_TechS9: TEdit;
+    Grp_TechCurrLvl: TGroupBox;
     TSPB1: TProgressBar; TSPB2: TProgressBar; TSPB3: TProgressBar; TSPB4: TProgressBar;
     TSPB5: TProgressBar; TSPB6: TProgressBar; TSPB7: TProgressBar; TSPB8: TProgressBar;
     TSPB9: TProgressBar;
     TSI1: TEdit; TSI2: TEdit; TSI3: TEdit; TSI4: TEdit;
     TSI5: TEdit; TSI6: TEdit; TSI7: TEdit; TSI8: TEdit;
     TSI9: TEdit;
-    TAplyLvlGrb: TGroupBox;
+    Grp_TechAplyLvl: TGroupBox;
     TSTB1: TTrackBar;
     TSL1: TEdit;
     TSTB2: TTrackBar; TSTB3: TTrackBar; TSTB4: TTrackBar; TSTB5: TTrackBar;
     TSTB6: TTrackBar; TSTB7: TTrackBar; TSTB8: TTrackBar; TSTB9: TTrackBar;
     TSL2: TEdit; TSL3: TEdit; TSL4: TEdit; TSL5: TEdit;
     TSL6: TEdit; TSL7: TEdit; TSL8: TEdit; TSL9: TEdit;
-    SSnBtn: TButton;
-    AboutProjectBtn: TMenuItem;
+    Btn_ScanSave: TButton;
+    MIt_AboutProject: TMenuItem;
     OpenDialog: TOpenDialog;
-    CaracterBox: TComboBox;
-    CurUnitGroup: TGroupBox;
-    SexLbl: TLabel;
-    AgeLbl: TLabel;
-    LvlLbl: TLabel;
-    SexEdt: TEdit;
-    AgeEdt: TEdit;
-    LvlEdt: TEdit;
-    CurrHPLbl: TLabel;
-    MaxHPLbl: TLabel;
-    FreeSkPLbl: TLabel;
-    CurrHPEdt: TEdit;
-    MaxHPEdt: TEdit;
-    FreeSkPEdt: TEdit;
-    BioMem: TMemo;
-    AtrSkillGrb: TGroupBox;
-    as1: TEdit; as2: TEdit; as3: TEdit; as4: TEdit;
-    as5: TEdit; as6: TEdit; as7: TEdit;
-    AtrCurrLvlGrb: TGroupBox;
+    CmbB_Caracter: TComboBox;
+    Grp_CurUnit: TGroupBox;
+    Lbl_Sex: TLabel;
+    Lbl_Age: TLabel;
+    Lbl_CurrLvl: TLabel;
+    Edt_Sex: TEdit;
+    Edt_Age: TEdit;
+    Edt_CurrLvl: TEdit;
+    Lbl_CurrHP: TLabel;
+    Lbl_MaxHP: TLabel;
+    Lbl_FreeSkPnt: TLabel;
+    Edt_CurrHP: TEdit;
+    Edt_MaxHP: TEdit;
+    Edt_FreeSkPnt: TEdit;
+    Mem_CrBio: TMemo;
+    Grp_CurUnitAtrSkill: TGroupBox;
+    Edt_AS1: TEdit;
+    Edt_AS2: TEdit;
+    Edt_AS3: TEdit;
+    Edt_AS4: TEdit;
+    Edt_AS5: TEdit;
+    Edt_AS6: TEdit;
+    Edt_AS7: TEdit;
+    Grp_AtrCurrLvl: TGroupBox;
     ASPB1: TProgressBar;
     ASPB2: TProgressBar;
     ASPB3: TProgressBar;
@@ -121,7 +148,7 @@ type
     ASI5: TEdit;
     ASI6: TEdit;
     ASI7: TEdit;
-    AtrAplyLvlGrb: TGroupBox;
+    Grp_AtrAplyLvl: TGroupBox;
     ASTB1: TTrackBar;
     ASL1: TEdit;
     ASTB2: TTrackBar;
@@ -136,36 +163,36 @@ type
     ASL5: TEdit;
     ASL6: TEdit;
     ASL7: TEdit;
-    CaracSavBtn: TButton;
-    SaveBtn: TButton;
-    CoffeeBtn: TMenuItem;
-    HowToUseBtn: TMenuItem;
-    LangSection: TMenuItem;
-    ToEng: TMenuItem;
-    ToRus: TMenuItem;
-    InfoSection: TMenuItem;
-    FollowUsBtn: TMenuItem;
-    FollowOnPatreonBtn: TMenuItem;
-    DevInfo: TMenuItem;
-    ProjectInfo: TMenuItem;
-    DevContactBtn: TMenuItem;
+    Btn_CaracSave: TButton;
+    Btn_RRSave: TButton;
+    MIt_Coffee: TMenuItem;
+    MIt_HowToUse: TMenuItem;
+    MIt_LangPref: TMenuItem;
+    MIt_ToEng: TMenuItem;
+    MIt_ToRus: TMenuItem;
+    MIt_InfoSection: TMenuItem;
+    MIt_FollowUs: TMenuItem;
+    MIt_FollowPatreon: TMenuItem;
+    MIt_DevInfo: TMenuItem;
+    MIt_ProjectInfo: TMenuItem;
+    MIt_DevContact: TMenuItem;
     procedure WSTB1Change(Sender: TObject);
-    procedure EndBtnClick(Sender: TObject);
-    procedure AboutProjectBtnClick(Sender: TObject);
-    procedure SObtnClick(Sender: TObject);
-    procedure SSnBtnClick(Sender: TObject);
-    procedure CrLbtnClick(Sender: TObject);
+    procedure Btn_QuitClick(Sender: TObject);
+    procedure MIt_AboutProjectClick(Sender: TObject);
+    procedure Btn_OpenSaveClick(Sender: TObject);
+    procedure Btn_ScanSaveClick(Sender: TObject);
+    procedure Btn_ScanCaracterClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
-    procedure CaracSavBtnClick(Sender: TObject);
-    procedure SaveBtnClick(Sender: TObject);
-    procedure CoffeeBtnClick(Sender: TObject);
-    procedure HowToUseBtnClick(Sender: TObject);
-    procedure ToRusClick(Sender: TObject);
-    procedure ToEngClick(Sender: TObject);
-    procedure FollowUsBtnClick(Sender: TObject);
+    procedure Btn_CaracSaveClick(Sender: TObject);
+    procedure Btn_RRSaveClick(Sender: TObject);
+    procedure MIt_CoffeeClick(Sender: TObject);
+    procedure MIt_HowToUseClick(Sender: TObject);
+    procedure MIt_ToRusClick(Sender: TObject);
+    procedure MIt_ToEngClick(Sender: TObject);
+    procedure MIt_FollowUsClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
-    procedure FollowOnPatreonBtnClick(Sender: TObject);
-    procedure DevContactBtnClick(Sender: TObject);
+    procedure MIt_FollowPatreonClick(Sender: TObject);
+    procedure MIt_DevContactClick(Sender: TObject);
 
   private
     { Private declarations }
@@ -190,8 +217,9 @@ const
   CurrentVersion = '2.1.0';
 
 {Services}
-  SkillPrefix  = 'KeyValuePairOfStringInt32><Key>';
-  SkillPostfix = '</Key><Value>';
+  Cnst_SkillPref  = 'KeyValuePairOfStringInt32><Key>';
+  Cnst_SkillPstfix = '</Key><Value>';
+  SkillFullPref = '</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>';
   WSPref : array[1..10] of string = ('bluntWeapons', 'smg', 'brawling',
     'sniperRifle', 'atWeapons', 'bladedWeapons','rifle','energyWeapons',
     'shotgun','handgun');
@@ -211,7 +239,7 @@ implementation
 {Regular Procedures & Functions}
 procedure TerminateOrRename;
 begin
-  if (WL2CED.SGid.text <> 'выбранный SaveGame') and (WL2CED.SGid.text <> 'Selected SaveGame')
+  if (WL2CED.Edt_SelectedCrt.text <> 'выбранный SaveGame') and (WL2CED.Edt_SelectedCrt.text <> 'Selected SaveGame')
     then RenameFile(NewFileName, OldFileName);
   application.Terminate;
 end;
@@ -271,50 +299,50 @@ begin
 end;
 
 {Buttons \ Link section}
-procedure TWL2CED.FollowOnPatreonBtnClick(Sender: TObject);
+procedure TWL2CED.MIt_FollowPatreonClick(Sender: TObject);
 begin
   ShellExecute(0, 'open', PatreonLnk, '', '', SW_SHOWNORMAL);
 end;
 
-procedure TWL2CED.FollowUsBtnClick(Sender: TObject);
+procedure TWL2CED.MIt_FollowUsClick(Sender: TObject);
 begin
   ShellExecute(0, 'open', ChannelLnk, '', '', SW_SHOWNORMAL);
 end;
 
-procedure TWL2CED.DevContactBtnClick(Sender: TObject);
+procedure TWL2CED.MIt_DevContactClick(Sender: TObject);
 begin
  ShellExecute(0, 'open', ContLnk, '', '', SW_SHOWNORMAL);
 end;
 
-procedure TWL2CED.CoffeeBtnClick(Sender: TObject);
+procedure TWL2CED.MIt_CoffeeClick(Sender: TObject);
 begin
   ShellExecute(0, 'open', CoffeeLnk, '', '', SW_SHOWNORMAL);
 end;
 
-procedure TWL2CED.HowToUseBtnClick(Sender: TObject);
+procedure TWL2CED.MIt_HowToUseClick(Sender: TObject);
 begin
   ShellExecute(0, 'open', Pchar(VideoLink), '', '', SW_SHOWNORMAL);
 end;
 
-procedure TWL2CED.AboutProjectBtnClick(Sender: TObject);
+procedure TWL2CED.MIt_AboutProjectClick(Sender: TObject);
 begin
   ShellExecute(0, 'open', ProjLnk, '', '', SW_SHOWNORMAL);
 end;
 
 {Buttons \ Actions}
-procedure TWL2CED.EndBtnClick(Sender: TObject);
+procedure TWL2CED.Btn_QuitClick(Sender: TObject);
 begin
   TerminateOrRename;
 end;
 
-procedure TWL2CED.ToRusClick(Sender: TObject);
+procedure TWL2CED.MIt_ToRusClick(Sender: TObject);
 begin
-  ToRussian;
+  Proc_Translate(1);
 end;
 
-procedure TWL2CED.ToEngClick(Sender: TObject);
+procedure TWL2CED.MIt_ToEngClick(Sender: TObject);
 begin
-  ToEnglish;
+  Proc_Translate(0);
 end;
 
 procedure TWL2CED.FormClose(Sender: TObject; var Action: TCloseAction);
@@ -325,11 +353,11 @@ end;
 procedure TWL2CED.FormCreate(Sender: TObject);
 begin
   WL2CED.Caption := WL2CED.Caption + CurrentVersion;
-  ToEnglish;
-  BioMem.Clear;
+  Proc_Translate(0);
+  Mem_CrBio.Clear;
 end;
 
-procedure TWL2CED.SaveBtnClick(Sender: TObject);
+procedure TWL2CED.Btn_RRSaveClick(Sender: TObject);
 var
   f : textFile;
 begin
@@ -341,26 +369,25 @@ begin
   RenameFile(NewFileName, OldFileName);
 end;
 
-procedure TWL2CED.SObtnClick(Sender: TObject);
+procedure TWL2CED.Btn_OpenSaveClick(Sender: TObject);
 begin
   openDialog.InitialDir := 'C:\';
   openDialog.Filter := 'Wasteland2 Save Games files|*.xml';
   if OpenDialog.Execute
-    then SGid.Text := (ExtractFileName(OpenDialog.FileName));
-  CaracterBox.Clear;
+    then Edt_SelectedCrt.Text := (ExtractFileName(OpenDialog.FileName));
+  CmbB_Caracter.Clear;
 end;
 
-procedure TWL2CED.SSnBtnClick(Sender: TObject);
+procedure TWL2CED.Btn_ScanSaveClick(Sender: TObject);
 const
   Fn = 'utf8.txt';
 var
   F : File;
-  SSrc,wsf, posf, w : UTF8String;
-  a1, a2, fcd :longint;
-  i, cc, j: integer;
+  SSrc : UTF8String;
+  i, cc : integer;
   S1, cn : string;
 begin
-  CrLbtn.Enabled := true;
+  Btn_ScanCaracter.Enabled := true;
 
 {FileType to TXT}
   OldFileName := OpenDialog.FileName;
@@ -391,14 +418,14 @@ begin
       delete (cn, 1, Length(s1));
       delete (cn, (ansipos('{',cn)), Length(cn));
     {Feeling ComboBox}
-      CaracterBox.Items.Add(cn);
+      CmbB_Caracter.Items.Add(cn);
     end;
   end;
 
-  CaracterID.Text := CaracterID.Text + ' - ' + inttostr(cc);
+  Edt_CaracterID.Text := Edt_CaracterID.Text + ' - ' + inttostr(cc);
 end;
 
-procedure TWL2CED.CaracSavBtnClick(Sender: TObject);
+procedure TWL2CED.Btn_CaracSaveClick(Sender: TObject);
 var
   sf2, sfl: string;
   w : array [1..10] of integer;
@@ -431,58 +458,59 @@ begin
   sf1 := sf1 + '<' + sf2 + '<KeyValuePairOfStringInt32><Key>coordination</Key><Value>' + (inttostr(ASTB1.Position));
   delete (sf1, 1, 1 );
 
-  sf1 := sf1 + '</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>luck</Key><Value>' + (inttostr(ASTB2.Position));
-  sf1 := sf1 + '</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>awareness</Key><Value>' + (inttostr(ASTB3.Position));
-  sf1 := sf1 + '</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>strength</Key><Value>' + (inttostr(ASTB4.Position));
-  sf1 := sf1 + '</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>speed</Key><Value>' + (inttostr(ASTB5.Position));
-  sf1 := sf1 + '</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>intelligence</Key><Value>' + (inttostr(ASTB6.Position));
-  sf1 := sf1 + '</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>charisma</Key><Value>' + (inttostr(ASTB7.Position));
+  sf1 := sf1 + SkillFullPref + 'luck' + Cnst_SkillPstfix + (inttostr(ASTB2.Position));
+  sf1 := sf1 + SkillFullPref + 'awareness' + Cnst_SkillPstfix + (inttostr(ASTB3.Position));
+  sf1 := sf1 + SkillFullPref + 'strength' + Cnst_SkillPstfix + (inttostr(ASTB4.Position));
+  sf1 := sf1 + SkillFullPref + 'speed' + Cnst_SkillPstfix + (inttostr(ASTB5.Position));
+  sf1 := sf1 + SkillFullPref + 'intelligence' + Cnst_SkillPstfix + (inttostr(ASTB6.Position));
+  sf1 := sf1 + SkillFullPref + 'charisma' + Cnst_SkillPstfix + (inttostr(ASTB7.Position));
 
-  sf1 := sf1 + '</Value></KeyValuePairOfStringInt32></attributes2><skillXps2><KeyValuePairOfStringInt32><Key>alarmDisarm</Key><Value>' + (inttostr(t[6]));
-  sf1 := sf1 + '</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>animalWhisperer</Key><Value>' + (inttostr(r[5]));
-  sf1 := sf1 + '</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>atWeapons</Key><Value>' + (inttostr(w[5]));
-  sf1 := sf1 + '</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>barter</Key><Value>' + (inttostr(r[10]));
-  sf1 := sf1 + '</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>bladedWeapons</Key><Value>' + (inttostr(w[6]));
-  sf1 := sf1 + '</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>bluntWeapons</Key><Value>' + (inttostr(w[1]));
-  sf1 := sf1 + '</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>brawling</Key><Value>' + (inttostr(w[3]));
-  sf1 := sf1 + '</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>bruteForce</Key><Value>' + (inttostr(r[4]));
-  sf1 := sf1 + '</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>calvinBackerSkill</Key><Value>' + (inttostr(r[1]));
-  sf1 := sf1 + '</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>combatShooting</Key><Value>' + (inttostr(r[2]));
-  sf1 := sf1 + '</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>computerTech</Key><Value>' + (inttostr(t[2]));
-  sf1 := sf1 + '</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>demolitions</Key><Value>' + (inttostr(t[1]));
-  sf1 := sf1 + '</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>doctor</Key><Value>' + (inttostr(t[7]));
-  sf1 := sf1 + '</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>energyWeapons</Key><Value>' + (inttostr(w[8]));
-  sf1 := sf1 + '</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>fieldMedic</Key><Value>' + (inttostr(t[4]));
-  sf1 := sf1 + '</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>handgun</Key><Value>' + (inttostr(w[10]));
-  sf1 := sf1 + '</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>intimidate</Key><Value>' + (inttostr(r[7]));
-  sf1 := sf1 + '</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>leadership</Key><Value>' + (inttostr(r[9]));
-  sf1 := sf1 + '</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>manipulate</Key><Value>' + (inttostr(r[12]));
-  sf1 := sf1 + '</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>mechanicalRepair</Key><Value>' + (inttostr(t[3]));
-  sf1 := sf1 + '</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>outdoorsman</Key><Value>' + (inttostr(r[3]));
-  sf1 := sf1 + '</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>perception</Key><Value>' + (inttostr(r[8]));
-  sf1 := sf1 + '</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>pickLock</Key><Value>' + (inttostr(t[9]));
-  sf1 := sf1 + '</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>rifle</Key><Value>' + (inttostr(w[7]));
-  sf1 := sf1 + '</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>safecrack</Key><Value>' + (inttostr(t[8]));
-  sf1 := sf1 + '</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>shotgun</Key><Value>' + (inttostr(w[9]));
-  sf1 := sf1 + '</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>smg</Key><Value>' + (inttostr(w[2]));
-  sf1 := sf1 + '</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>sniperRifle</Key><Value>' + (inttostr(w[4]));
-  sf1 := sf1 + '</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>spotLie</Key><Value>' + (inttostr(r[6]));
-  sf1 := sf1 + '</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>toasterRepair</Key><Value>' + (inttostr(t[5]));
-  sf1 := sf1 + '</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>weaponSmith</Key><Value>' + (inttostr(r[11]));
+  sf1 := sf1 + '</Value></KeyValuePairOfStringInt32></attributes2><skillXps2><KeyValuePairOfStringInt32><Key>alarmDisarm' + Cnst_SkillPstfix + (inttostr(t[6]));
+
+  sf1 := sf1 + SkillFullPref + 'animalWhisperer' + Cnst_SkillPstfix + (inttostr(r[5]));
+  sf1 := sf1 + SkillFullPref + 'atWeapons' + Cnst_SkillPstfix + (inttostr(w[5]));
+  sf1 := sf1 + SkillFullPref + 'barter' + Cnst_SkillPstfix + (inttostr(r[10]));
+  sf1 := sf1 + SkillFullPref + 'bladedWeapons' + Cnst_SkillPstfix + (inttostr(w[6]));
+  sf1 := sf1 + SkillFullPref + 'bluntWeapons' + Cnst_SkillPstfix + (inttostr(w[1]));
+  sf1 := sf1 + SkillFullPref + 'brawling' + Cnst_SkillPstfix + (inttostr(w[3]));
+  sf1 := sf1 + SkillFullPref + 'bruteForce' + Cnst_SkillPstfix + (inttostr(r[4]));
+  sf1 := sf1 + SkillFullPref + 'calvinBackerSkill' + Cnst_SkillPstfix + (inttostr(r[1]));
+  sf1 := sf1 + SkillFullPref + 'combatShooting' + Cnst_SkillPstfix + (inttostr(r[2]));
+  sf1 := sf1 + SkillFullPref + 'computerTech' + Cnst_SkillPstfix + (inttostr(t[2]));
+  sf1 := sf1 + SkillFullPref + 'demolitions' + Cnst_SkillPstfix + (inttostr(t[1]));
+  sf1 := sf1 + SkillFullPref + 'doctor' + Cnst_SkillPstfix + (inttostr(t[7]));
+  sf1 := sf1 + SkillFullPref + 'energyWeapons' + Cnst_SkillPstfix + (inttostr(w[8]));
+  sf1 := sf1 + SkillFullPref + 'fieldMedic' + Cnst_SkillPstfix + (inttostr(t[4]));
+  sf1 := sf1 + SkillFullPref + 'handgun' + Cnst_SkillPstfix + (inttostr(w[10]));
+  sf1 := sf1 + SkillFullPref + 'intimidate' + Cnst_SkillPstfix + (inttostr(r[7]));
+  sf1 := sf1 + SkillFullPref + 'leadership' + Cnst_SkillPstfix + (inttostr(r[9]));
+  sf1 := sf1 + SkillFullPref + 'manipulate' + Cnst_SkillPstfix + (inttostr(r[12]));
+  sf1 := sf1 + SkillFullPref + 'mechanicalRepair' + Cnst_SkillPstfix + (inttostr(t[3]));
+  sf1 := sf1 + SkillFullPref + 'outdoorsman' + Cnst_SkillPstfix + (inttostr(r[3]));
+  sf1 := sf1 + SkillFullPref + 'perception' + Cnst_SkillPstfix + (inttostr(r[8]));
+  sf1 := sf1 + SkillFullPref + 'pickLock' + Cnst_SkillPstfix + (inttostr(t[9]));
+  sf1 := sf1 + SkillFullPref + 'rifle' + Cnst_SkillPstfix + (inttostr(w[7]));
+  sf1 := sf1 + SkillFullPref + 'safecrack' + Cnst_SkillPstfix + (inttostr(t[8]));
+  sf1 := sf1 + SkillFullPref + 'shotgun' + Cnst_SkillPstfix + (inttostr(w[9]));
+  sf1 := sf1 + SkillFullPref + 'smg' + Cnst_SkillPstfix + (inttostr(w[2]));
+  sf1 := sf1 + SkillFullPref + 'sniperRifle' + Cnst_SkillPstfix + (inttostr(w[4]));
+  sf1 := sf1 + SkillFullPref + 'spotLie' + Cnst_SkillPstfix + (inttostr(r[6]));
+  sf1 := sf1 + SkillFullPref + 'toasterRepair' + Cnst_SkillPstfix + (inttostr(t[5]));
+  sf1 := sf1 + SkillFullPref + 'weaponSmith' + Cnst_SkillPstfix + (inttostr(r[11]));
   sf1 := sf1 + '</Value></KeyValuePairOfStringInt32></skillXps2><hasCommittedPoints>false</hasCommittedPoints><availableAttributePoints>0</availableAttributePoints><availableSkillPoints>54</availableSkillPoints><availableTraitPoints>0<';
-{The last line of output TXT}
+{The last line of output file}
   sf1 := sf1 + sfl;
 end;
 
-procedure TWL2CED.CrLbtnClick(Sender: TObject);
+procedure TWL2CED.Btn_ScanCaracterClick(Sender: TObject);
 var
   cn1 : string;
 begin
-  CaracSavBtn.Enabled := true;
-  SaveBtn.Enabled := true;
+  Btn_CaracSave.Enabled := true;
+  Btn_RRSave.Enabled := true;
 {read caracter's name into 'cname'}
-  cname := caracterbox.Items.Strings[caracterbox.ItemIndex];
-  CurUnitGroup.Caption := CurUnitGroup.Caption + ' - ' + cname;
+  cname := CmbB_Caracter.Items.Strings[CmbB_Caracter.ItemIndex];
+  Grp_CurUnit.Caption := Grp_CurUnit.Caption + ' - ' + cname;
 {scaning caracter}
   cn := S;
   sname := '</name><displayName>&lt;@&gt;' + cname;
@@ -498,22 +526,22 @@ begin
   delete (cn1, 1, (ansipos('{',cn1)-1));
   delete (cn1, (ansipos('}',cn1)), Length(cn1));
   delete (cn1, 1, (Length('{')));
-  SexEdt.Text := cn1;
-  AgeEdt.Text := UnregClean (cn, 'age>', 5);
-  LvlEdt.Text := UnregClean (cn, 'level>', 7);
-  CurrHPEdt.Text := UnregClean (cn, 'curHp>', 7);
-  MaxHPEdt.Text := UnregClean (cn, 'maxHp>', 7);
-  FreeSkPEdt.Text := UnregClean (cn, 'availableSkillPoints>', 22);
+  Edt_Sex.Text := cn1;
+  Edt_Age.Text := UnregClean (cn, 'age>', 5);
+  Edt_CurrLvl.Text := UnregClean (cn, 'level>', 7);
+  Edt_CurrHP.Text := UnregClean (cn, 'curHp>', 7);
+  Edt_MaxHP.Text := UnregClean (cn, 'maxHp>', 7);
+  Edt_FreeSkPnt.Text := UnregClean (cn, 'availableSkillPoints>', 22);
 {Biografy}
   cn1 := cn;
   delete (cn1, 1, (ansipos('<biography>&lt;@&gt;',cn1)-1));
   if ansipos('<biography>&lt;@&gt;',cn1) = 0 {check if biografy exists}
-    then BioMem.Text := NoBioText
+    then Mem_CrBio.Text := NoBioText
     else
     begin
       delete (cn1, (ansipos('</biography>',cn1)), Length(cn1));
       delete (cn1, 1, Length('<biography>&lt;@&gt;'));
-      BioMem.Text := cn1;
+      Mem_CrBio.Text := cn1;
     end;
 
 { Skill's ID MAP:
@@ -534,7 +562,7 @@ begin
 { Block 1 - Weapon skills }
   for i := 1 to 10 do
     begin
-      cn1 := CnClean(cn, SkillPrefix + WSPref[i] + SkillPostfix);
+      cn1 := CnClean(cn, Cnst_SkillPref + WSPref[i] + Cnst_SkillPstfix);
     {translating to "normal" values}
       cn1 := ValToWL2Format(cn1);   {substitution of values}
       (FindComponent('WSPB' + inttostr(i)) as TProgressbar).position := strtointdef(cn1, 0);
@@ -546,7 +574,7 @@ begin
 { Block 2 - General skills }
   for i := 1 to 12 do
     begin
-      cn1 := CnClean(cn, SkillPrefix + GSPref[i] + SkillPostfix);
+      cn1 := CnClean(cn, Cnst_SkillPref + GSPref[i] + Cnst_SkillPstfix);
       cn1 := ValToWL2Format(cn1);
       (FindComponent('RSPB' + inttostr(i)) as TProgressbar).position := strtointdef(cn1, 0);
       (FindComponent('RSTB' + inttostr(i)) as TTrackbar).position := strtointdef(cn1, 0);
@@ -557,7 +585,7 @@ begin
 { Block 3 - Technical skills }
   for i := 1 to 9 do
     Begin
-      cn1 := CnClean(cn, SkillPrefix + TSPref[i] + SkillPostfix);
+      cn1 := CnClean(cn, Cnst_SkillPref + TSPref[i] + Cnst_SkillPstfix);
       cn1 := ValToWL2Format(cn1);
       (FindComponent('TSPB' + inttostr(i)) as TProgressbar).position := strtointdef(cn1, 0);
       (FindComponent('TSTB' + inttostr(i)) as TTrackbar).position := strtointdef(cn1, 0);
@@ -568,7 +596,7 @@ begin
 { Block 4 - Attributes }
   for i := 1 to 7 do
     Begin
-      cn1 := CnClean(cn, SkillPrefix + ASPref[i] + SkillPostfix);
+      cn1 := CnClean(cn, Cnst_SkillPref + ASPref[i] + Cnst_SkillPstfix);
       (FindComponent('ASPB' + inttostr(i)) as TProgressbar).position := strtointdef(cn1, 0);
       (FindComponent('ASTB' + inttostr(i)) as TTrackbar).position := strtointdef(cn1, 0);
       (FindComponent('ASL' + inttostr(i)) as TEdit).Text := cn1 + '/10';

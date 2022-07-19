@@ -11,20 +11,21 @@ object WL2CED: TWL2CED
   Font.Name = 'Tahoma'
   Font.Style = []
   Menu = MainMenu
+  OldCreateOrder = True
   OnClose = FormClose
   OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 13
-  object SObtn: TButton
+  object Btn_OpenSave: TButton
     Left = 8
     Top = 8
     Width = 177
     Height = 25
     Caption = #1042#1099#1073#1088#1072#1090#1100' '#1089#1086#1093#1088#1072#1085#1105#1085#1085#1091#1102' '#1080#1075#1088#1091
     TabOrder = 0
-    OnClick = SObtnClick
+    OnClick = Btn_OpenSaveClick
   end
-  object CaracterID: TEdit
+  object Edt_CaracterID: TEdit
     Left = 8
     Top = 39
     Width = 177
@@ -40,7 +41,7 @@ object WL2CED: TWL2CED
     TabOrder = 1
     Text = #1042#1089#1077#1075#1086' '#1102#1085#1080#1090#1086#1074
   end
-  object CrLbtn: TButton
+  object Btn_ScanCaracter: TButton
     Left = 471
     Top = 39
     Width = 154
@@ -48,25 +49,25 @@ object WL2CED: TWL2CED
     Caption = #1057#1082#1072#1085#1080#1088#1086#1074#1072#1090#1100' '#1087#1077#1088#1089#1086#1085#1072#1078
     Enabled = False
     TabOrder = 2
-    OnClick = CrLbtnClick
+    OnClick = Btn_ScanCaracterClick
   end
   object SkillBrowsCntr: TPageControl
     Left = 8
     Top = 185
     Width = 617
     Height = 418
-    ActivePage = WeaponSkillSht
+    ActivePage = PG_AttributeSkills
     TabOrder = 3
-    object WeaponSkillSht: TTabSheet
+    object PG_WeaponSkill: TTabSheet
       Caption = #1054#1088#1091#1078#1077#1081#1085#1099#1077
-      object WSkillGrb: TGroupBox
+      object Grp_WpnSkill: TGroupBox
         Left = 3
         Top = 3
         Width = 142
         Height = 326
         Caption = #1053#1072#1074#1099#1082
         TabOrder = 0
-        object WS1: TEdit
+        object Edt_WpnS1: TEdit
           Left = 12
           Top = 20
           Width = 119
@@ -82,7 +83,7 @@ object WL2CED: TWL2CED
           TabOrder = 0
           Text = #1044#1088#1086#1073#1103#1097#1077#1077
         end
-        object WS2: TEdit
+        object Edt_WpnS2: TEdit
           Left = 12
           Top = 50
           Width = 119
@@ -98,7 +99,7 @@ object WL2CED: TWL2CED
           TabOrder = 1
           Text = #1055#1080#1089#1090'.-'#1087#1091#1083#1077#1084#1105#1090
         end
-        object WS3: TEdit
+        object Edt_WpnS3: TEdit
           Left = 10
           Top = 80
           Width = 121
@@ -114,7 +115,7 @@ object WL2CED: TWL2CED
           TabOrder = 2
           Text = #1056#1091#1082#1086#1087#1072#1096#1085#1072#1103
         end
-        object WS4: TEdit
+        object Edt_WpnS4: TEdit
           Left = 10
           Top = 110
           Width = 121
@@ -130,7 +131,7 @@ object WL2CED: TWL2CED
           TabOrder = 3
           Text = #1057#1085#1072#1081#1087#1077#1088#1089#1082#1080#1077
         end
-        object WS5: TEdit
+        object Edt_WpnS5: TEdit
           Left = 10
           Top = 140
           Width = 121
@@ -146,7 +147,7 @@ object WL2CED: TWL2CED
           TabOrder = 4
           Text = #1058#1103#1078#1105#1083#1086#1077
         end
-        object WS6: TEdit
+        object Edt_WpnS6: TEdit
           Left = 10
           Top = 170
           Width = 121
@@ -162,7 +163,7 @@ object WL2CED: TWL2CED
           TabOrder = 5
           Text = #1061#1086#1083#1086#1076#1085#1086#1077
         end
-        object WS7: TEdit
+        object Edt_WpnS7: TEdit
           Left = 10
           Top = 200
           Width = 121
@@ -178,7 +179,7 @@ object WL2CED: TWL2CED
           TabOrder = 6
           Text = #1064#1090#1091#1088#1084#1086#1074#1099#1077
         end
-        object WS8: TEdit
+        object Edt_WpnS8: TEdit
           Left = 10
           Top = 230
           Width = 121
@@ -194,7 +195,7 @@ object WL2CED: TWL2CED
           TabOrder = 7
           Text = #1069#1085#1077#1088#1075#1077#1090#1080#1095#1077#1089#1082#1086#1077
         end
-        object WS9: TEdit
+        object Edt_WpnS9: TEdit
           Left = 10
           Top = 260
           Width = 121
@@ -210,7 +211,7 @@ object WL2CED: TWL2CED
           TabOrder = 8
           Text = #1044#1088#1086#1073#1086#1074#1080#1082#1080
         end
-        object WS10: TEdit
+        object Edt_WpnS10: TEdit
           Left = 10
           Top = 290
           Width = 121
@@ -227,7 +228,7 @@ object WL2CED: TWL2CED
           Text = #1055#1080#1089#1090#1086#1083#1077#1090#1099
         end
       end
-      object WCurrLvlGrb: TGroupBox
+      object Grp_WpnCurrLvl: TGroupBox
         Left = 151
         Top = 2
         Width = 221
@@ -475,7 +476,7 @@ object WL2CED: TWL2CED
           Text = '0/10'
         end
       end
-      object WAplyLvlGrb: TGroupBox
+      object Grp_WpnAplyLvl: TGroupBox
         Left = 378
         Top = 3
         Width = 217
@@ -724,17 +725,17 @@ object WL2CED: TWL2CED
         end
       end
     end
-    object GeneralSkillSht: TTabSheet
+    object PG_GeneralSkill: TTabSheet
       Caption = #1054#1073#1097#1080#1077
       ImageIndex = 1
-      object GSkillGrb: TGroupBox
+      object Grp_GnSkill: TGroupBox
         Left = 0
         Top = 3
         Width = 149
         Height = 382
         Caption = #1053#1072#1074#1099#1082
         TabOrder = 0
-        object RS1: TEdit
+        object Edt_RS1: TEdit
           Left = 16
           Top = 20
           Width = 119
@@ -750,7 +751,7 @@ object WL2CED: TWL2CED
           TabOrder = 0
           Text = '"'#1047#1085#1072#1090#1086#1082' '#1079#1072#1087#1072#1076#1072'"'
         end
-        object RS2: TEdit
+        object Edt_RS2: TEdit
           Left = 16
           Top = 50
           Width = 119
@@ -766,7 +767,7 @@ object WL2CED: TWL2CED
           TabOrder = 1
           Text = #1057#1090#1088#1077#1083#1086#1082
         end
-        object RS3: TEdit
+        object Edt_RS3: TEdit
           Left = 16
           Top = 80
           Width = 121
@@ -782,7 +783,7 @@ object WL2CED: TWL2CED
           TabOrder = 2
           Text = #1042#1099#1078#1080#1074#1072#1085#1080#1077
         end
-        object RS4: TEdit
+        object Edt_RS4: TEdit
           Left = 16
           Top = 110
           Width = 121
@@ -798,7 +799,7 @@ object WL2CED: TWL2CED
           TabOrder = 3
           Text = #1043#1088#1091#1073#1072#1103' '#1089#1080#1083#1072
         end
-        object RS5: TEdit
+        object Edt_RS5: TEdit
           Left = 16
           Top = 140
           Width = 121
@@ -814,7 +815,7 @@ object WL2CED: TWL2CED
           TabOrder = 4
           Text = #1044#1088#1077#1089#1089#1080#1088#1086#1074#1097#1080#1082
         end
-        object RS6: TEdit
+        object Edt_RS6: TEdit
           Left = 16
           Top = 170
           Width = 121
@@ -830,7 +831,7 @@ object WL2CED: TWL2CED
           TabOrder = 5
           Text = #1046#1086#1087#1086#1083#1080#1079
         end
-        object RS7: TEdit
+        object Edt_RS7: TEdit
           Left = 16
           Top = 200
           Width = 121
@@ -846,7 +847,7 @@ object WL2CED: TWL2CED
           TabOrder = 6
           Text = #1047#1072#1076#1080#1088#1072
         end
-        object RS8: TEdit
+        object Edt_RS8: TEdit
           Left = 16
           Top = 230
           Width = 121
@@ -862,7 +863,7 @@ object WL2CED: TWL2CED
           TabOrder = 7
           Text = #1047#1086#1088#1082#1080#1081' '#1075#1083#1072#1079
         end
-        object RS9: TEdit
+        object Edt_RS9: TEdit
           Left = 16
           Top = 260
           Width = 121
@@ -878,7 +879,7 @@ object WL2CED: TWL2CED
           TabOrder = 8
           Text = #1051#1080#1076#1077#1088#1089#1090#1074#1086
         end
-        object RS10: TEdit
+        object Edt_RS10: TEdit
           Left = 16
           Top = 290
           Width = 121
@@ -894,7 +895,7 @@ object WL2CED: TWL2CED
           TabOrder = 9
           Text = #1052#1077#1085#1103#1083#1072
         end
-        object RS11: TEdit
+        object Edt_RS11: TEdit
           Left = 16
           Top = 320
           Width = 121
@@ -910,7 +911,7 @@ object WL2CED: TWL2CED
           TabOrder = 10
           Text = #1054#1088#1091#1078#1077#1081#1085#1080#1082
         end
-        object RS12: TEdit
+        object Edt_RS12: TEdit
           Left = 16
           Top = 350
           Width = 121
@@ -927,7 +928,7 @@ object WL2CED: TWL2CED
           Text = #1061#1080#1090#1088#1086#1078#1086#1087#1099#1081
         end
       end
-      object GCurrLvlGrb: TGroupBox
+      object Grp_GnCurrLvl: TGroupBox
         Left = 155
         Top = 3
         Width = 221
@@ -1223,7 +1224,7 @@ object WL2CED: TWL2CED
           Text = '0/10'
         end
       end
-      object GAplyLvlGrb: TGroupBox
+      object Grp_GnAplyLvl: TGroupBox
         Left = 382
         Top = 3
         Width = 217
@@ -1508,17 +1509,17 @@ object WL2CED: TWL2CED
         end
       end
     end
-    object TechSkillSht: TTabSheet
+    object PG_TechSkill: TTabSheet
       Caption = #1058#1077#1093#1085#1080#1095#1077#1089#1082#1080#1077
       ImageIndex = 2
-      object TSkillGrb: TGroupBox
+      object Grp_TechSkill: TGroupBox
         Left = 0
         Top = 3
         Width = 149
         Height = 294
         Caption = #1053#1072#1074#1099#1082
         TabOrder = 0
-        object TS1: TEdit
+        object Edt_TechS1: TEdit
           Left = 16
           Top = 20
           Width = 119
@@ -1534,7 +1535,7 @@ object WL2CED: TWL2CED
           TabOrder = 0
           Text = #1042#1079#1088#1099#1074#1086#1090#1077#1093#1085#1080#1082#1072
         end
-        object TS2: TEdit
+        object Edt_TechS2: TEdit
           Left = 16
           Top = 50
           Width = 119
@@ -1550,7 +1551,7 @@ object WL2CED: TWL2CED
           TabOrder = 1
           Text = #1050#1086#1084#1087#1100#1102#1090#1077#1088#1099
         end
-        object TS3: TEdit
+        object Edt_TechS3: TEdit
           Left = 16
           Top = 80
           Width = 121
@@ -1566,7 +1567,7 @@ object WL2CED: TWL2CED
           TabOrder = 2
           Text = #1052#1077#1093#1072#1085#1080#1082#1072
         end
-        object TS4: TEdit
+        object Edt_TechS4: TEdit
           Left = 16
           Top = 110
           Width = 121
@@ -1582,7 +1583,7 @@ object WL2CED: TWL2CED
           TabOrder = 3
           Text = #1055#1086#1083#1077#1074#1072#1103' '#1084#1077#1076'.'
         end
-        object TS5: TEdit
+        object Edt_TechS5: TEdit
           Left = 16
           Top = 140
           Width = 121
@@ -1598,7 +1599,7 @@ object WL2CED: TWL2CED
           TabOrder = 4
           Text = #1056#1077#1084#1086#1085#1090' '#1090#1086#1089#1090#1077#1088#1086#1074
         end
-        object TS6: TEdit
+        object Edt_TechS6: TEdit
           Left = 16
           Top = 170
           Width = 121
@@ -1614,7 +1615,7 @@ object WL2CED: TWL2CED
           TabOrder = 5
           Text = #1057#1085#1103#1090#1080#1077' '#1089#1080#1075#1085#1072#1083#1080#1079'.'
         end
-        object TS7: TEdit
+        object Edt_TechS7: TEdit
           Left = 16
           Top = 200
           Width = 121
@@ -1630,7 +1631,7 @@ object WL2CED: TWL2CED
           TabOrder = 6
           Text = #1061#1080#1088#1091#1088#1075#1080#1103
         end
-        object TS8: TEdit
+        object Edt_TechS8: TEdit
           Left = 16
           Top = 230
           Width = 121
@@ -1646,7 +1647,7 @@ object WL2CED: TWL2CED
           TabOrder = 7
           Text = #1042#1079#1083#1086#1084' '#1089#1077#1081#1092#1086#1074
         end
-        object TS9: TEdit
+        object Edt_TechS9: TEdit
           Left = 16
           Top = 260
           Width = 121
@@ -1663,7 +1664,7 @@ object WL2CED: TWL2CED
           Text = #1042#1079#1083#1086#1084' '#1079#1072#1084#1082#1086#1074
         end
       end
-      object TCurrLvlGrb: TGroupBox
+      object Grp_TechCurrLvl: TGroupBox
         Left = 155
         Top = 3
         Width = 221
@@ -1887,7 +1888,7 @@ object WL2CED: TWL2CED
           Text = '0/10'
         end
       end
-      object TAplyLvlGrb: TGroupBox
+      object Grp_TechAplyLvl: TGroupBox
         Left = 382
         Top = 3
         Width = 217
@@ -2103,17 +2104,17 @@ object WL2CED: TWL2CED
         end
       end
     end
-    object AttributeSkillsSht: TTabSheet
+    object PG_AttributeSkills: TTabSheet
       Caption = #1040#1090#1088#1080#1073#1091#1090#1099
       ImageIndex = 3
-      object AtrSkillGrb: TGroupBox
+      object Grp_CurUnitAtrSkill: TGroupBox
         Left = 3
         Top = 11
         Width = 149
         Height = 238
         Caption = #1053#1072#1074#1099#1082
         TabOrder = 0
-        object as1: TEdit
+        object Edt_AS1: TEdit
           Left = 16
           Top = 20
           Width = 119
@@ -2129,7 +2130,7 @@ object WL2CED: TWL2CED
           TabOrder = 0
           Text = #1050#1086#1086#1088#1076#1080#1085#1072#1094#1080#1103
         end
-        object as2: TEdit
+        object Edt_AS2: TEdit
           Left = 16
           Top = 50
           Width = 119
@@ -2145,7 +2146,7 @@ object WL2CED: TWL2CED
           TabOrder = 1
           Text = #1059#1076#1072#1095#1072
         end
-        object as3: TEdit
+        object Edt_AS3: TEdit
           Left = 16
           Top = 80
           Width = 121
@@ -2161,7 +2162,7 @@ object WL2CED: TWL2CED
           TabOrder = 2
           Text = #1042#1086#1089#1087#1088#1080#1103#1090#1080#1077
         end
-        object as4: TEdit
+        object Edt_AS4: TEdit
           Left = 16
           Top = 110
           Width = 121
@@ -2177,7 +2178,7 @@ object WL2CED: TWL2CED
           TabOrder = 3
           Text = #1057#1080#1083#1072
         end
-        object as5: TEdit
+        object Edt_AS5: TEdit
           Left = 16
           Top = 140
           Width = 121
@@ -2193,7 +2194,7 @@ object WL2CED: TWL2CED
           TabOrder = 4
           Text = #1057#1082#1086#1088#1086#1089#1090#1100
         end
-        object as6: TEdit
+        object Edt_AS6: TEdit
           Left = 16
           Top = 170
           Width = 121
@@ -2209,7 +2210,7 @@ object WL2CED: TWL2CED
           TabOrder = 5
           Text = #1048#1085#1090#1077#1083#1083#1077#1082#1090
         end
-        object as7: TEdit
+        object Edt_AS7: TEdit
           Left = 16
           Top = 200
           Width = 121
@@ -2226,7 +2227,7 @@ object WL2CED: TWL2CED
           Text = #1061#1072#1088#1080#1079#1084#1072
         end
       end
-      object AtrCurrLvlGrb: TGroupBox
+      object Grp_AtrCurrLvl: TGroupBox
         Left = 163
         Top = 11
         Width = 221
@@ -2402,7 +2403,7 @@ object WL2CED: TWL2CED
           Text = '0/10'
         end
       end
-      object AtrAplyLvlGrb: TGroupBox
+      object Grp_AtrAplyLvl: TGroupBox
         Left = 390
         Top = 11
         Width = 217
@@ -2573,7 +2574,7 @@ object WL2CED: TWL2CED
       end
     end
   end
-  object SGid: TEdit
+  object Edt_SelectedCrt: TEdit
     Left = 191
     Top = 8
     Width = 274
@@ -2589,25 +2590,25 @@ object WL2CED: TWL2CED
     TabOrder = 4
     Text = #1074#1099#1073#1088#1072#1085#1085#1099#1081' SaveGame'
   end
-  object EndBtn: TButton
+  object Btn_Quit: TButton
     Left = 553
     Top = 640
     Width = 72
     Height = 25
     Caption = #1042#1099#1093#1086#1076
     TabOrder = 5
-    OnClick = EndBtnClick
+    OnClick = Btn_QuitClick
   end
-  object SSnBtn: TButton
+  object Btn_ScanSave: TButton
     Left = 471
     Top = 8
     Width = 154
     Height = 25
     Caption = #1057#1082#1072#1085#1080#1088#1086#1074#1072#1090#1100' Save'
     TabOrder = 6
-    OnClick = SSnBtnClick
+    OnClick = Btn_ScanSaveClick
   end
-  object CaracterBox: TComboBox
+  object CmbB_Caracter: TComboBox
     Left = 191
     Top = 40
     Width = 274
@@ -2615,14 +2616,14 @@ object WL2CED: TWL2CED
     TabOrder = 7
     Text = #1042#1099#1073#1088#1072#1090#1100' '#1087#1077#1088#1089#1086#1085#1072#1078
   end
-  object CurUnitGroup: TGroupBox
+  object Grp_CurUnit: TGroupBox
     Left = 8
     Top = 71
     Width = 617
     Height = 108
     Caption = #1042#1099#1073#1088#1072#1085#1085#1099#1081' '#1102#1085#1080#1090
     TabOrder = 8
-    object SexLbl: TLabel
+    object Lbl_Sex: TLabel
       Left = 29
       Top = 25
       Width = 27
@@ -2635,7 +2636,7 @@ object WL2CED: TWL2CED
       Font.Style = [fsBold]
       ParentFont = False
     end
-    object AgeLbl: TLabel
+    object Lbl_Age: TLabel
       Left = 29
       Top = 51
       Width = 53
@@ -2648,7 +2649,7 @@ object WL2CED: TWL2CED
       Font.Style = [fsBold]
       ParentFont = False
     end
-    object LvlLbl: TLabel
+    object Lbl_CurrLvl: TLabel
       Left = 29
       Top = 78
       Width = 56
@@ -2661,7 +2662,7 @@ object WL2CED: TWL2CED
       Font.Style = [fsBold]
       ParentFont = False
     end
-    object CurrHPLbl: TLabel
+    object Lbl_CurrHP: TLabel
       Left = 174
       Top = 25
       Width = 79
@@ -2674,7 +2675,7 @@ object WL2CED: TWL2CED
       Font.Style = [fsBold]
       ParentFont = False
     end
-    object MaxHPLbl: TLabel
+    object Lbl_MaxHP: TLabel
       Left = 174
       Top = 51
       Width = 123
@@ -2687,7 +2688,7 @@ object WL2CED: TWL2CED
       Font.Style = [fsBold]
       ParentFont = False
     end
-    object FreeSkPLbl: TLabel
+    object Lbl_FreeSkPnt: TLabel
       Left = 174
       Top = 78
       Width = 116
@@ -2700,7 +2701,7 @@ object WL2CED: TWL2CED
       Font.Style = [fsBold]
       ParentFont = False
     end
-    object SexEdt: TEdit
+    object Edt_Sex: TEdit
       Left = 106
       Top = 24
       Width = 33
@@ -2710,7 +2711,7 @@ object WL2CED: TWL2CED
       TabOrder = 0
       Text = '-'
     end
-    object AgeEdt: TEdit
+    object Edt_Age: TEdit
       Left = 106
       Top = 51
       Width = 33
@@ -2721,7 +2722,7 @@ object WL2CED: TWL2CED
       TabOrder = 1
       Text = '-'
     end
-    object LvlEdt: TEdit
+    object Edt_CurrLvl: TEdit
       Left = 106
       Top = 78
       Width = 33
@@ -2732,7 +2733,7 @@ object WL2CED: TWL2CED
       TabOrder = 2
       Text = '-'
     end
-    object CurrHPEdt: TEdit
+    object Edt_CurrHP: TEdit
       Left = 303
       Top = 24
       Width = 49
@@ -2743,7 +2744,7 @@ object WL2CED: TWL2CED
       TabOrder = 3
       Text = '-'
     end
-    object MaxHPEdt: TEdit
+    object Edt_MaxHP: TEdit
       Left = 303
       Top = 51
       Width = 49
@@ -2754,7 +2755,7 @@ object WL2CED: TWL2CED
       TabOrder = 4
       Text = '-'
     end
-    object FreeSkPEdt: TEdit
+    object Edt_FreeSkPnt: TEdit
       Left = 303
       Top = 78
       Width = 49
@@ -2765,7 +2766,7 @@ object WL2CED: TWL2CED
       TabOrder = 5
       Text = '-'
     end
-    object BioMem: TMemo
+    object Mem_CrBio: TMemo
       Left = 358
       Top = 24
       Width = 245
@@ -2775,7 +2776,7 @@ object WL2CED: TWL2CED
       TabOrder = 6
     end
   end
-  object CaracSavBtn: TButton
+  object Btn_CaracSave: TButton
     Left = 345
     Top = 609
     Width = 137
@@ -2783,9 +2784,9 @@ object WL2CED: TWL2CED
     Caption = #1057#1086#1093#1088#1072#1085#1080#1090#1100' '#1087#1077#1088#1089#1086#1085#1072#1078
     Enabled = False
     TabOrder = 9
-    OnClick = CaracSavBtnClick
+    OnClick = Btn_CaracSaveClick
   end
-  object SaveBtn: TButton
+  object Btn_RRSave: TButton
     Left = 488
     Top = 609
     Width = 137
@@ -2793,7 +2794,7 @@ object WL2CED: TWL2CED
     Caption = #1055#1077#1088#1077#1079#1072#1087#1080#1089#1072#1090#1100' Save'
     Enabled = False
     TabOrder = 10
-    OnClick = SaveBtnClick
+    OnClick = Btn_RRSaveClick
   end
   object XPManifest: TXPManifest
     Left = 24
@@ -2802,49 +2803,49 @@ object WL2CED: TWL2CED
   object MainMenu: TMainMenu
     Left = 96
     Top = 610
-    object InfoSection: TMenuItem
+    object MIt_InfoSection: TMenuItem
       Caption = #1048#1085#1092#1086
-      object DevInfo: TMenuItem
+      object MIt_DevInfo: TMenuItem
         Caption = #1056#1072#1079#1088#1072#1073#1086#1090#1095#1080#1082
-        object CoffeeBtn: TMenuItem
+        object MIt_Coffee: TMenuItem
           Caption = #1050#1091#1087#1080#1090#1100' '#1082#1086#1092#1077' '#1088#1072#1079#1088#1072#1073#1086#1090#1095#1080#1082#1091
-          OnClick = CoffeeBtnClick
+          OnClick = MIt_CoffeeClick
         end
-        object FollowOnPatreonBtn: TMenuItem
+        object MIt_FollowPatreon: TMenuItem
           Caption = 'Follow on patreon'
           Hint = 'support a developer on the Patreon platform'
-          OnClick = FollowOnPatreonBtnClick
+          OnClick = MIt_FollowPatreonClick
         end
-        object DevContactBtn: TMenuItem
+        object MIt_DevContact: TMenuItem
           Caption = #1050#1086#1085#1090#1072#1082#1090#1099
-          OnClick = DevContactBtnClick
+          OnClick = MIt_DevContactClick
         end
       end
-      object ProjectInfo: TMenuItem
+      object MIt_ProjectInfo: TMenuItem
         Caption = #1054' '#1087#1088#1086#1077#1082#1090#1077
-        object HowToUseBtn: TMenuItem
+        object MIt_HowToUse: TMenuItem
           Caption = #1050#1072#1082' '#1087#1086#1083#1100#1079#1086#1074#1072#1090#1100#1089#1103
-          OnClick = HowToUseBtnClick
+          OnClick = MIt_HowToUseClick
         end
-        object AboutProjectBtn: TMenuItem
+        object MIt_AboutProject: TMenuItem
           Caption = #1054' '#1087#1088#1086#1077#1082#1090#1077
-          OnClick = AboutProjectBtnClick
+          OnClick = MIt_AboutProjectClick
         end
       end
-      object FollowUsBtn: TMenuItem
+      object MIt_FollowUs: TMenuItem
         Caption = 'Follow us (YouTube)'
-        OnClick = FollowUsBtnClick
+        OnClick = MIt_FollowUsClick
       end
     end
-    object LangSection: TMenuItem
+    object MIt_LangPref: TMenuItem
       Caption = #1071#1079#1099#1082' \ Language'
-      object ToEng: TMenuItem
+      object MIt_ToEng: TMenuItem
         Caption = 'English'
-        OnClick = ToEngClick
+        OnClick = MIt_ToEngClick
       end
-      object ToRus: TMenuItem
+      object MIt_ToRus: TMenuItem
         Caption = #1056#1091#1089#1089#1082#1080#1081
-        OnClick = ToRusClick
+        OnClick = MIt_ToRusClick
       end
     end
   end

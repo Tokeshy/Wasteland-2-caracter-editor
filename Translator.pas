@@ -1,203 +1,121 @@
 unit Translator;
 
 interface
-  procedure ToEnglish;
-  procedure ToRussian;
+  procedure Proc_Translate (LngID : integer);
 
 var
   NoBioText, VideoLink : string;
 
 implementation
 uses
-  Main;
+  Main, Vcl.StdCtrls, Vcl.Menus, Vcl.ComCtrls;
 
-procedure ToEnglish;
+const
+{elements}
+  Const_BtnLst : array [1..6] of string = ('Btn_CaracSave', 'Btn_ScanCaracter',
+    'Btn_Quit', 'Btn_RRSave', 'Btn_OpenSave', 'Btn_ScanSave');
+  Const_EdtLst : array [1..40] of string = ('Edt_CaracterID', 'Edt_WpnS1',
+    'Edt_WpnS10', 'Edt_WpnS2', 'Edt_WpnS3', 'Edt_WpnS4', 'Edt_WpnS5', 'Edt_WpnS6',
+    'Edt_WpnS7', 'Edt_WpnS8', 'Edt_WpnS9', 'Edt_RS1', 'Edt_RS10', 'Edt_RS11',
+    'Edt_RS12', 'Edt_RS2', 'Edt_RS3', 'Edt_RS4', 'Edt_RS5', 'Edt_RS6', 'Edt_RS7',
+    'Edt_RS8', 'Edt_RS9', 'Edt_TechS1', 'Edt_TechS2', 'Edt_TechS3', 'Edt_TechS4',
+    'Edt_TechS5', 'Edt_TechS6', 'Edt_TechS7', 'Edt_TechS8', 'Edt_TechS9', 'Edt_AS1',
+    'Edt_AS2', 'Edt_AS3', 'Edt_AS4', 'Edt_AS5', 'Edt_AS6', 'Edt_AS7', 'Edt_SelectedCrt');
+  Const_GrpLst : array[0..12] of string = ('Grp_CurUnit', 'Grp_WpnSkill',
+    'Grp_WpnCurrLvl', 'Grp_WpnAplyLvl', 'Grp_GnSkill', 'Grp_GnCurrLvl',
+    'Grp_GnAplyLvl', 'Grp_TechSkill', 'Grp_TechCurrLvl', 'Grp_TechAplyLvl',
+    'Grp_CurUnitAtrSkill', 'Grp_AtrCurrLvl', 'Grp_AtrAplyLvl');
+  Const_LblLst : array[1..6] of string = ('Lbl_Sex', 'Lbl_Age', 'Lbl_CurrLvl',
+    'Lbl_CurrHP', 'Lbl_MaxHP', 'Lbl_FreeSkPnt');
+  Const_MItLst : array[1..8] of string = ('MIt_DevInfo', 'MIt_ProjectInfo',
+    'MIt_DevContact', 'MIt_Coffee', 'MIt_FollowPatreon', 'MIt_InfoSection',
+    'MIt_AboutProject', 'MIt_HowToUse');
+  Const_PGLst : array [1..4] of string = ('PG_WeaponSkill', 'PG_GeneralSkill',
+    'PG_TechSkill', 'PG_AttributeSkills');
+
+{Translation}
+  Const_CmBTr : array[0..1] of string = ('Select unit', 'Выбрать персонаж');
+  Const_BtnTrLst : array[1..6] of array[0..1] of string = (('Save unit', 'Сохранить персонаж'),
+    ('Scan character','Сканировать персонаж'),('Exit','Выход'),
+    ('Overwrite SaveGame','Перезаписать Save'),('Select saved game','Выбрать сохранённую игру'),
+    ('Scan SaveGame','Сканировать Save'));
+  Const_EdtTrLst : array[1..40] of array[0..1] of string = (('Total Units', 'Всего юнитов'),
+    ('Blunt weapons', 'Дробящее'), ('Handgun', 'Пистолеты'), ('smg', 'Пист.-пулемёт'),
+    ('Brawling', 'Рукопашная'), ('Sniper rifle', 'Снайперские'), ('F.Big weapons', 'Тяжёлое'),
+    ('Bladed weapons', 'Холодное'), ('Rifle', 'Штурмовые'), ('Energy weapons', 'Энергетическое'),
+    ('Shotgun', 'Дробовики'), ('Calvin Backer skill', '"Знаток запада"'),
+    ('Barter', 'Меняла'), ('weapon smith', 'Оружейник'), ('Manipulate', 'Хитрожопый'),
+    ('Combat shooting', 'Стрелок'), ('Outdoorsman', 'Выживание'),
+    ('Brute force', 'Грубая сила'), ('Animal Whisperer', 'Дрессировщик'),
+    ('Spot lie', 'Жополиз'), ('Intimidate', 'Задира'), ('Perception', 'Зоркий глаз'),
+    ('Leadership', 'Лидерство'), ('Demolitions', 'Взрывотехника'), ('Computer tech', 'Компьютеры'),
+    ('Mechanical repair', 'Механика'), ('Field medic', 'Полевая мед.'),
+    ('Toaster repair', 'Ремонт тостеров'), ('Alarm disarm', 'Снятие сигнализ.'),
+    ('Doctor', 'Хирургия'), ('Safe crack', 'Взлом сейфов'), ('PickLock', 'Взлом замков'),
+    ('Coordination', 'Координация'), ('Luck', 'Удача'), ('Awareness', 'Восприятие'),
+    ('Strength', 'Сила'), ('Speed', 'Скорость'), ('Intelligence', 'Интеллект'),
+    ('Charisma', 'Харизма'), ('Selected SaveGame', 'выбранный SaveGame'));
+  Const_GrpTrLst : array[0..3] of array[0..1] of string = (('Selected unit', 'Выбранный юнит'),
+    ('Skill', 'Навык'), ('Current level', 'Текущий уровень'),
+    ('Applicable level', 'Применяемый уровень'));
+  Const_LblTrLst : array[1..6] of array[0..1] of string = (('Sex', 'Пол'),
+    ('Age', 'Возраст'), ('Level', 'Уровень'), ('Current HP', 'Tекущие HP'),
+    ('Max HP', 'Максимальные HP'), ('Free Skils', 'Свободные Skil'+#39+'ы'));
+  Const_MItTrLst : array[1..8] of array[0..1] of string = (('Developer', 'Разработчик'),
+    ('Help', 'О проекте (Help)'), ('Contact', 'Контакты'),
+    ('Buy coffee for developer', 'Купить кофе разработчику'),
+    ('Follow on patreon', 'поддержать на Patreon'), ('Info', 'Инфо'),
+    ('About project', 'О проекте'), ('How to use', 'Как пользоваться'));
+  Const_PGTrLst : array[1..4] of array[0..1] of string = (('Weapons', 'Оружейные'),
+    ('General', 'Общие'), ('Technical', 'Технические'), ('Attributes', 'Атрибуты'));
+
+
+procedure Proc_Translate (LngID : integer);
+var
+  i : integer;
 begin
-  with Main.WL2CED do
-  begin
-    CaracSavBtn.Caption   := 'Save unit';
-    CaracterBox.Text      := 'Select unit';
-    CaracterID.Text       := 'Total Units';
-    CrLbtn.Caption        := 'Scan character';
-    CurUnitGroup.Caption  := 'Selected unit';
-    SexLbl.Caption        := 'Sex';
-    AgeLbl.Caption        := 'Age';
-    LvlLbl.Caption        := 'Level';
-    CurrHPLbl.Caption     := 'Current HP';
-    MaxHPLbl.Caption      := 'Max HP';
-    FreeSkPLbl.Caption    := 'Free Skils';
-    EndBtn.Caption        := 'Exit';
+  case LngID of
+    0 : begin
+          NoBioText := 'No biography info detected';
+          VideoLink := 'https://www.youtube.com/watch?v=LeS7QBcF6zI';
+        end;
 
-    DevInfo.Caption            := 'Developer';
-    ProjectInfo.Caption        := 'Help';
-    DevContactBtn.Caption      := 'Contact';
-    CoffeeBtn.Caption          := 'Buy coffee for developer';
-    FollowOnPatreonBtn.Caption := 'Follow on patreon';
-    InfoSection.Caption        := 'Info';
-    AboutProjectBtn.Caption    := 'About project';
-    HowToUseBtn.Caption        := 'How to use';
-
-    WeaponSkillSht.Caption := 'Weapons';
-    WCurrLvlGrb.Caption    := 'Current level';
-    WAplyLvlGrb.Caption    := 'Applicable level';
-    WSkillGrb.Caption      := 'Skill';
-    WS1.Text  := 'Blunt weapons';
-    WS10.Text := 'Handgun';
-    WS2.Text  := 'smg';
-    WS3.Text  := 'Brawling';
-    WS4.Text  := 'Sniper rifle';
-    WS5.Text  := 'F.Big weapons';
-    WS6.Text  := 'Bladed weapons';
-    WS7.Text  := 'Rifle';
-    WS8.Text  := 'Energy weapons';
-    WS9.Text  := 'Shotgun';
-
-    GeneralSkillSht.Caption := 'General';
-    GAplyLvlGrb.Caption     := 'Applicable level';
-    GCurrLvlGrb.Caption     := 'Current level';
-    GSkillGrb.Caption       := 'Skill';
-    RS1.Text  := 'Calvin Backer skill';
-    RS10.Text := 'Barter';
-    RS11.Text := 'weapon smith';
-    RS12.Text := 'Manipulate';
-    RS2.Text  := 'Combat shooting';
-    RS3.Text  := 'Outdoorsman';
-    RS4.Text  := 'Brute force';
-    RS5.Text  := 'Animal Whisperer';
-    RS6.Text  := 'Spot lie';
-    RS7.Text  := 'Intimidate';
-    RS8.Text  := 'Perception';
-    RS9.Text  := 'Leadership';
-
-    TechSkillSht.Caption := 'Technical';
-    TSkillGrb.Caption    := 'Skill';
-    TCurrLvlGrb.Caption  := 'Current level';
-    TAplyLvlGrb.Caption  := 'Applicable level';
-    TS1.Text := 'Demolitions';
-    TS2.Text := 'Computer tech';
-    TS3.Text := 'Mechanical repair';
-    TS4.Text := 'Field medic';
-    TS5.Text := 'Toaster repair';
-    TS6.Text := 'Alarm disarm';
-    TS7.Text := 'Doctor';
-    TS8.Text := 'Safe crack';
-    TS9.Text := 'PickLock';
-
-    AttributeSkillsSht.Caption := 'Attributes';
-    AtrCurrLvlGrb.Caption      := 'Current level';
-    AtrSkillGrb.Caption        := 'Skill';
-    AtrAplyLvlGrb.Caption      := 'Applicable level';
-    as1.Text := 'Coordination';
-    as2.Text := 'Luck';
-    as3.Text := 'Awareness';
-    as4.Text := 'Strength';
-    as5.Text := 'Speed';
-    as6.Text := 'Intelligence';
-    as7.Text := 'Charisma';
-
-    SaveBtn.Caption := 'Overwrite SaveGame';
-    SGid.Text       := 'Selected SaveGame';
-    SObtn.Caption   := 'Select saved game';
-    SSnBtn.Caption  := 'Scan SaveGame';
-
-    NoBioText := 'No biography info detected';
-    VideoLink := 'https://www.youtube.com/watch?v=LeS7QBcF6zI';
-  end;
-end;
-
-procedure ToRussian;
-begin
-  with Main.WL2CED do
-  begin
-    CaracSavBtn.Caption   := 'Сохранить персонаж';
-    CaracterBox.Text      := 'Выбрать персонаж';
-    CaracterID.Text       := 'Всего юнитов';
-    CrLbtn.Caption        := 'Сканировать персонаж';
-    CurUnitGroup.Caption  := 'Выбранный юнит';
-    SexLbl.Caption        := 'Пол';
-    AgeLbl.Caption        := 'Возраст';
-    LvlLbl.Caption        := 'Уровень';
-    CurrHPLbl.Caption     := 'Tекущие HP';
-    MaxHPLbl.Caption      := 'Максимальные HP';
-    FreeSkPLbl.Caption    := 'Свободные Skil'+#39+'ы';
-    EndBtn.Caption        := 'Выход';
-
-    DevInfo.Caption            := 'Разработчик';
-    ProjectInfo.Caption        := 'О проекте (Help)';
-    DevContactBtn.Caption      := 'Контакты';
-    CoffeeBtn.Caption          := 'Купить кофе разработчику';
-    FollowOnPatreonBtn.Caption := 'поддержать на Patreon';
-    InfoSection.Caption        := 'Инфо';
-    AboutProjectBtn.Caption    := 'О проекте';
-    HowToUseBtn.Caption        := 'Как пользоваться';
-
-    WeaponSkillSht.Caption := 'Оружейные';
-    WCurrLvlGrb.Caption    := 'Текущий уровень';
-    WAplyLvlGrb.Caption    := 'Применяемый уровень';
-    WSkillGrb.Caption      := 'Навык';
-    WS1.Text  := 'Дробящее';
-    WS10.Text := 'Пистолеты';
-    WS2.Text  := 'Пист.-пулемёт';
-    WS3.Text  := 'Рукопашная';
-    WS4.Text  := 'Снайперские';
-    WS5.Text  := 'Тяжёлое';
-    WS6.Text  := 'Холодное';
-    WS7.Text  := 'Штурмовые';
-    WS8.Text  := 'Энергетическое';
-    WS9.Text  := 'Дробовики';
-
-    GeneralSkillSht.Caption := 'Общие';
-    GAplyLvlGrb.Caption     := 'Применяемый уровень';
-    GCurrLvlGrb.Caption     := 'Текущий уровень';
-    GSkillGrb.Caption       := 'Навык';
-    RS1.Text  := '"Знаток запада"';
-    RS10.Text := 'Меняла';
-    RS11.Text := 'Оружейник';
-    RS12.Text := 'Хитрожопый';
-    RS2.Text  := 'Стрелок';
-    RS3.Text  := 'Выживание';
-    RS4.Text  := 'Грубая сила';
-    RS5.Text  := 'Дрессировщик';
-    RS6.Text  := 'Жополиз';
-    RS7.Text  := 'Задира';
-    RS8.Text  := 'Зоркий глаз';
-    RS9.Text  := 'Лидерство';
-
-    TechSkillSht.Caption := 'Технические';
-    TSkillGrb.Caption    := 'Навык';
-    TCurrLvlGrb.Caption  := 'Текущий уровень';
-    TAplyLvlGrb.Caption  := 'Применяемый уровень';
-    TS1.Text := 'Взрывотехника';
-    TS2.Text := 'Компьютеры';
-    TS3.Text := 'Механика';
-    TS4.Text := 'Полевая мед.';
-    TS5.Text := 'Ремонт тостеров';
-    TS6.Text := 'Снятие сигнализ.';
-    TS7.Text := 'Хирургия';
-    TS8.Text := 'Взлом сейфов';
-    TS9.Text := 'Взлом замков';
-
-    AttributeSkillsSht.Caption := 'Атрибуты';
-    AtrCurrLvlGrb.Caption      := 'Текущий уровень';
-    AtrSkillGrb.Caption        := 'Навык';
-    AtrAplyLvlGrb.Caption      := 'Применяемый уровень';
-    as1.Text := 'Координация';
-    as2.Text := 'Удача';
-    as3.Text := 'Восприятие';
-    as4.Text := 'Сила';
-    as5.Text := 'Скорость';
-    as6.Text := 'Интеллект';
-    as7.Text := 'Харизма';
-
-    SaveBtn.Caption := 'Перезаписать Save';
-    SGid.Text       := 'выбранный SaveGame';
-    SObtn.Caption   := 'Выбрать сохранённую игру';
-    SSnBtn.Caption  := 'Сканировать Save';
-
-    NoBioText := 'Раздел биографии не заполнен';
-    VideoLink := 'https://www.youtube.com/watch?v=EORiIPeyx2Y';
+    1 : begin
+          NoBioText := 'Раздел биографии не заполнен';
+          VideoLink := 'https://www.youtube.com/watch?v=EORiIPeyx2Y';
+        end;
   end;
 
+  with Main.WL2CED do
+    begin
+      CmbB_Caracter.Text := Const_CmBTr[LngID];
+      for i := 1 to 6 do  // Buttons
+        (FindComponent(Const_BtnLst[i]) as TButton).caption := Const_BtnTrLst[i][LngID];
+
+      for i := 1 to 40 do  // Edit'es
+        (FindComponent(Const_EdtLst[i]) as TEdit).Text := Const_EdtTrLst[i][LngID];
+
+      for i := 0 to 12 do  // GroupBox'es
+        begin
+          (FindComponent(Const_GrpLst[0]) as TGroupBox).caption := Const_GrpTrLst[0][LngID];
+          if i in [1, 4, 7, 10] then
+            (FindComponent(Const_GrpLst[i]) as TGroupBox).caption := Const_GrpTrLst[1][LngID]
+          else if i in [2, 5, 8, 11] then
+            (FindComponent(Const_GrpLst[i]) as TGroupBox).caption := Const_GrpTrLst[2][LngID]
+          else if i in [3, 6, 9, 12] then
+            (FindComponent(Const_GrpLst[i]) as TGroupBox).caption := Const_GrpTrLst[3][LngID];
+        end;
+
+      for i := 1 to 6 do  // Labels
+        (FindComponent(Const_LblLst[i]) as TLabel).caption := Const_LblTrLst[i][LngID];
+
+      for i := 1 to 8 do  // MenuItems
+        (FindComponent(Const_MItLst[i]) as TMenuItem).caption := Const_MItTrLst[i][LngID];
+
+      for i := 1 to 4 do  // TabSheets
+        (FindComponent(Const_PGLst[i]) as TTabSheet).caption := Const_PGTrLst[i][LngID];
+    end;
 end;
+
 
 end.
