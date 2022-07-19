@@ -56,7 +56,7 @@ object WL2CED: TWL2CED
     Top = 185
     Width = 617
     Height = 418
-    ActivePage = PG_AttributeSkills
+    ActivePage = PG_WeaponSkill
     TabOrder = 3
     object PG_WeaponSkill: TTabSheet
       Caption = #1054#1088#1091#1078#1077#1081#1085#1099#1077

@@ -214,7 +214,7 @@ const
   CoffeeLnk  = 'https://sites.google.com/view/little-beggar/%D0%B3%D0%BB%D0%B0%D0%B2%D0%BD%D0%B0%D1%8F';
   ProjLnk    = 'https://sonkjeferson.wixsite.com/wastelandschared2';
   ContLnk    = 'https://www.linkedin.com/in/vitaliherasimenia/';
-  CurrentVersion = '2.1.0';
+  CurrentVersion = '2.1.01';
 
 {Services}
   Cnst_SkillPref  = 'KeyValuePairOfStringInt32><Key>';

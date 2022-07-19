@@ -89,15 +89,16 @@ begin
   with Main.WL2CED do
     begin
       CmbB_Caracter.Text := Const_CmBTr[LngID];
+      (FindComponent(Const_GrpLst[0]) as TGroupBox).caption := Const_GrpTrLst[0][LngID];
+
       for i := 1 to 6 do  // Buttons
         (FindComponent(Const_BtnLst[i]) as TButton).caption := Const_BtnTrLst[i][LngID];
 
       for i := 1 to 40 do  // Edit'es
         (FindComponent(Const_EdtLst[i]) as TEdit).Text := Const_EdtTrLst[i][LngID];
 
-      for i := 0 to 12 do  // GroupBox'es
+      for i := 1 to 12 do  // GroupBox'es
         begin
-          (FindComponent(Const_GrpLst[0]) as TGroupBox).caption := Const_GrpTrLst[0][LngID];
           if i in [1, 4, 7, 10] then
             (FindComponent(Const_GrpLst[i]) as TGroupBox).caption := Const_GrpTrLst[1][LngID]
           else if i in [2, 5, 8, 11] then
