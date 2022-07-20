@@ -428,10 +428,10 @@ end;
 procedure TWL2CED.Btn_CaracSaveClick(Sender: TObject);
 var
   sf2, sfl: string;
-  w : array [1..10] of integer;
-  r : array [1..12] of integer;
-  t : array [1..9] of integer;
-  i : integer;
+  w : array [1..10] of integer;  // Weapon skills
+  r : array [1..12] of integer;  // General
+  t : array [1..9] of integer;   // Technical
+  i : integer;  // Simple iterator
 begin
 {Prefix into sf1}
   sf1 := S;

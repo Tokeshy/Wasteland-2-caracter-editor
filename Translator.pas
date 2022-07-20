@@ -8,7 +8,8 @@ var
 
 implementation
 uses
-  Main, Vcl.StdCtrls, Vcl.Menus, Vcl.ComCtrls;
+  Main,
+  Vcl.StdCtrls, Vcl.Menus, Vcl.ComCtrls;  // This line is for FindComponent purposes
 
 const
 {elements}
@@ -71,6 +72,9 @@ const
 
 
 procedure Proc_Translate (LngID : integer);
+{here we made translation of visual elements of App
+currently there are 2 lang, but you can add any number
+just make some changes in Const _*Tr* constant )) }
 var
   i : integer;
 begin
