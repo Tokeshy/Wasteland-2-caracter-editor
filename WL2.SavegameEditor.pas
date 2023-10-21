@@ -1,4 +1,4 @@
-﻿unit Main;
+﻿unit WL2.SavegameEditor;
 
 interface
 
@@ -171,7 +171,6 @@ type
     MIt_ToEng: TMenuItem;
     MIt_ToRus: TMenuItem;
     MIt_InfoSection: TMenuItem;
-    MIt_FollowUs: TMenuItem;
     MIt_FollowPatreon: TMenuItem;
     MIt_DevInfo: TMenuItem;
     MIt_ProjectInfo: TMenuItem;
@@ -214,7 +213,7 @@ const
   CoffeeLnk  = 'https://sites.google.com/view/little-beggar/%D0%B3%D0%BB%D0%B0%D0%B2%D0%BD%D0%B0%D1%8F';
   ProjLnk    = 'https://sonkjeferson.wixsite.com/wastelandschared2';
   ContLnk    = 'https://www.linkedin.com/in/vitaliherasimenia/';
-  CurrentVersion = '2.1.01';
+  CurrentVersion = '2.1.02';
 
 {Services}
   Cnst_SkillPref  = 'KeyValuePairOfStringInt32><Key>';
@@ -359,12 +358,12 @@ end;
 
 procedure TWL2CED.Btn_RRSaveClick(Sender: TObject);
 var
-  f : textFile;
+  lTextFile: textFile;
 begin
-  AssignFile(f, NewFileName);
-  Rewrite(f);
-  write(f, sf1);
-  CloseFile(f);
+  AssignFile(lTextFile, NewFileName);
+  Rewrite(lTextFile);
+  write(lTextFile, sf1);
+  CloseFile(lTextFile);
   sf1 := '';
   RenameFile(NewFileName, OldFileName);
 end;
@@ -382,7 +381,7 @@ procedure TWL2CED.Btn_ScanSaveClick(Sender: TObject);
 const
   Fn = 'utf8.txt';
 var
-  F : File;
+  lTextFile : File;
   SSrc : UTF8String;
   i, cc : integer;
   S1, cn : string;
@@ -397,12 +396,12 @@ begin
   NewFileName := NewFileName + '.txt';
   RenameFile(OldFileName, NewFileName);
   FileName := NewFileName;
-  AssignFile(F, FileName);
-  Reset(F, 1);
+  AssignFile(lTextFile, FileName);
+  Reset(lTextFile, 1);
 {Loading into SA Var}
-  SetLength(SSrc, FileSize(F));
-  BlockRead(F, Pointer(SSrc)^, Length(SSrc));
-  CloseFile(F);
+  SetLength(SSrc, FileSize(lTextFile));
+  BlockRead(lTextFile, Pointer(SSrc)^, Length(SSrc));
+  CloseFile(lTextFile);
   S := Utf8ToAnsi(SSrc);
   sa := S;
 {Counting Caracters}
@@ -428,10 +427,10 @@ end;
 procedure TWL2CED.Btn_CaracSaveClick(Sender: TObject);
 var
   sf2, sfl: string;
-  w : array [1..10] of integer;  // Weapon skills
-  r : array [1..12] of integer;  // General
-  t : array [1..9] of integer;   // Technical
-  i : integer;  // Simple iterator
+  lWeaponSkills: array [1..10] of integer;
+  lGeneralSkills: array [1..12] of integer;
+  lTechSkills: array [1..9] of integer;
+  i : integer;
 begin
 {Prefix into sf1}
   sf1 := S;
@@ -446,13 +445,13 @@ begin
 
 {skils into Wasteland format}
   for i := 1 to 10 do
-    w[i] := PosToVal((FindComponent('WSTB' + inttostr(i)) as TTrackbar).position);
+    lWeaponSkills[i] := PosToVal((FindComponent('WSTB' + inttostr(i)) as TTrackbar).position);
 
   for i := 1 to 12 do
-    r[i] := PosToVal((FindComponent('RSTB' + inttostr(i)) as TTrackbar).position);
+    lGeneralSkills[i] := PosToVal((FindComponent('RSTB' + inttostr(i)) as TTrackbar).position);
 
   for i := 1 to 9 do
-    t[i] := PosToVal((FindComponent('TSTB' + inttostr(i)) as TTrackbar).position);
+    lTechSkills[i] := PosToVal((FindComponent('TSTB' + inttostr(i)) as TTrackbar).position);
 
 {compiling outputFile}
   sf1 := sf1 + '<' + sf2 + '<KeyValuePairOfStringInt32><Key>coordination</Key><Value>' + (inttostr(ASTB1.Position));
@@ -465,38 +464,38 @@ begin
   sf1 := sf1 + SkillFullPref + 'intelligence' + Cnst_SkillPstfix + (inttostr(ASTB6.Position));
   sf1 := sf1 + SkillFullPref + 'charisma' + Cnst_SkillPstfix + (inttostr(ASTB7.Position));
 
-  sf1 := sf1 + '</Value></KeyValuePairOfStringInt32></attributes2><skillXps2><KeyValuePairOfStringInt32><Key>alarmDisarm' + Cnst_SkillPstfix + (inttostr(t[6]));
+  sf1 := sf1 + '</Value></KeyValuePairOfStringInt32></attributes2><skillXps2><KeyValuePairOfStringInt32><Key>alarmDisarm' + Cnst_SkillPstfix + (inttostr(lTechSkills[6]));
 
-  sf1 := sf1 + SkillFullPref + 'animalWhisperer' + Cnst_SkillPstfix + (inttostr(r[5]));
-  sf1 := sf1 + SkillFullPref + 'atWeapons' + Cnst_SkillPstfix + (inttostr(w[5]));
-  sf1 := sf1 + SkillFullPref + 'barter' + Cnst_SkillPstfix + (inttostr(r[10]));
-  sf1 := sf1 + SkillFullPref + 'bladedWeapons' + Cnst_SkillPstfix + (inttostr(w[6]));
-  sf1 := sf1 + SkillFullPref + 'bluntWeapons' + Cnst_SkillPstfix + (inttostr(w[1]));
-  sf1 := sf1 + SkillFullPref + 'brawling' + Cnst_SkillPstfix + (inttostr(w[3]));
-  sf1 := sf1 + SkillFullPref + 'bruteForce' + Cnst_SkillPstfix + (inttostr(r[4]));
-  sf1 := sf1 + SkillFullPref + 'calvinBackerSkill' + Cnst_SkillPstfix + (inttostr(r[1]));
-  sf1 := sf1 + SkillFullPref + 'combatShooting' + Cnst_SkillPstfix + (inttostr(r[2]));
-  sf1 := sf1 + SkillFullPref + 'computerTech' + Cnst_SkillPstfix + (inttostr(t[2]));
-  sf1 := sf1 + SkillFullPref + 'demolitions' + Cnst_SkillPstfix + (inttostr(t[1]));
-  sf1 := sf1 + SkillFullPref + 'doctor' + Cnst_SkillPstfix + (inttostr(t[7]));
-  sf1 := sf1 + SkillFullPref + 'energyWeapons' + Cnst_SkillPstfix + (inttostr(w[8]));
-  sf1 := sf1 + SkillFullPref + 'fieldMedic' + Cnst_SkillPstfix + (inttostr(t[4]));
-  sf1 := sf1 + SkillFullPref + 'handgun' + Cnst_SkillPstfix + (inttostr(w[10]));
-  sf1 := sf1 + SkillFullPref + 'intimidate' + Cnst_SkillPstfix + (inttostr(r[7]));
-  sf1 := sf1 + SkillFullPref + 'leadership' + Cnst_SkillPstfix + (inttostr(r[9]));
-  sf1 := sf1 + SkillFullPref + 'manipulate' + Cnst_SkillPstfix + (inttostr(r[12]));
-  sf1 := sf1 + SkillFullPref + 'mechanicalRepair' + Cnst_SkillPstfix + (inttostr(t[3]));
-  sf1 := sf1 + SkillFullPref + 'outdoorsman' + Cnst_SkillPstfix + (inttostr(r[3]));
-  sf1 := sf1 + SkillFullPref + 'perception' + Cnst_SkillPstfix + (inttostr(r[8]));
-  sf1 := sf1 + SkillFullPref + 'pickLock' + Cnst_SkillPstfix + (inttostr(t[9]));
-  sf1 := sf1 + SkillFullPref + 'rifle' + Cnst_SkillPstfix + (inttostr(w[7]));
-  sf1 := sf1 + SkillFullPref + 'safecrack' + Cnst_SkillPstfix + (inttostr(t[8]));
-  sf1 := sf1 + SkillFullPref + 'shotgun' + Cnst_SkillPstfix + (inttostr(w[9]));
-  sf1 := sf1 + SkillFullPref + 'smg' + Cnst_SkillPstfix + (inttostr(w[2]));
-  sf1 := sf1 + SkillFullPref + 'sniperRifle' + Cnst_SkillPstfix + (inttostr(w[4]));
-  sf1 := sf1 + SkillFullPref + 'spotLie' + Cnst_SkillPstfix + (inttostr(r[6]));
-  sf1 := sf1 + SkillFullPref + 'toasterRepair' + Cnst_SkillPstfix + (inttostr(t[5]));
-  sf1 := sf1 + SkillFullPref + 'weaponSmith' + Cnst_SkillPstfix + (inttostr(r[11]));
+  sf1 := sf1 + SkillFullPref + 'animalWhisperer' + Cnst_SkillPstfix + (inttostr(lGeneralSkills[5]));
+  sf1 := sf1 + SkillFullPref + 'atWeapons' + Cnst_SkillPstfix + (inttostr(lWeaponSkills[5]));
+  sf1 := sf1 + SkillFullPref + 'barter' + Cnst_SkillPstfix + (inttostr(lGeneralSkills[10]));
+  sf1 := sf1 + SkillFullPref + 'bladedWeapons' + Cnst_SkillPstfix + (inttostr(lWeaponSkills[6]));
+  sf1 := sf1 + SkillFullPref + 'bluntWeapons' + Cnst_SkillPstfix + (inttostr(lWeaponSkills[1]));
+  sf1 := sf1 + SkillFullPref + 'brawling' + Cnst_SkillPstfix + (inttostr(lWeaponSkills[3]));
+  sf1 := sf1 + SkillFullPref + 'bruteForce' + Cnst_SkillPstfix + (inttostr(lGeneralSkills[4]));
+  sf1 := sf1 + SkillFullPref + 'calvinBackerSkill' + Cnst_SkillPstfix + (inttostr(lGeneralSkills[1]));
+  sf1 := sf1 + SkillFullPref + 'combatShooting' + Cnst_SkillPstfix + (inttostr(lGeneralSkills[2]));
+  sf1 := sf1 + SkillFullPref + 'computerTech' + Cnst_SkillPstfix + (inttostr(lTechSkills[2]));
+  sf1 := sf1 + SkillFullPref + 'demolitions' + Cnst_SkillPstfix + (inttostr(lTechSkills[1]));
+  sf1 := sf1 + SkillFullPref + 'doctor' + Cnst_SkillPstfix + (inttostr(lTechSkills[7]));
+  sf1 := sf1 + SkillFullPref + 'energyWeapons' + Cnst_SkillPstfix + (inttostr(lWeaponSkills[8]));
+  sf1 := sf1 + SkillFullPref + 'fieldMedic' + Cnst_SkillPstfix + (inttostr(lTechSkills[4]));
+  sf1 := sf1 + SkillFullPref + 'handgun' + Cnst_SkillPstfix + (inttostr(lWeaponSkills[10]));
+  sf1 := sf1 + SkillFullPref + 'intimidate' + Cnst_SkillPstfix + (inttostr(lGeneralSkills[7]));
+  sf1 := sf1 + SkillFullPref + 'leadership' + Cnst_SkillPstfix + (inttostr(lGeneralSkills[9]));
+  sf1 := sf1 + SkillFullPref + 'manipulate' + Cnst_SkillPstfix + (inttostr(lGeneralSkills[12]));
+  sf1 := sf1 + SkillFullPref + 'mechanicalRepair' + Cnst_SkillPstfix + (inttostr(lTechSkills[3]));
+  sf1 := sf1 + SkillFullPref + 'outdoorsman' + Cnst_SkillPstfix + (inttostr(lGeneralSkills[3]));
+  sf1 := sf1 + SkillFullPref + 'perception' + Cnst_SkillPstfix + (inttostr(lGeneralSkills[8]));
+  sf1 := sf1 + SkillFullPref + 'pickLock' + Cnst_SkillPstfix + (inttostr(lTechSkills[9]));
+  sf1 := sf1 + SkillFullPref + 'rifle' + Cnst_SkillPstfix + (inttostr(lWeaponSkills[7]));
+  sf1 := sf1 + SkillFullPref + 'safecrack' + Cnst_SkillPstfix + (inttostr(lTechSkills[8]));
+  sf1 := sf1 + SkillFullPref + 'shotgun' + Cnst_SkillPstfix + (inttostr(lWeaponSkills[9]));
+  sf1 := sf1 + SkillFullPref + 'smg' + Cnst_SkillPstfix + (inttostr(lWeaponSkills[2]));
+  sf1 := sf1 + SkillFullPref + 'sniperRifle' + Cnst_SkillPstfix + (inttostr(lWeaponSkills[4]));
+  sf1 := sf1 + SkillFullPref + 'spotLie' + Cnst_SkillPstfix + (inttostr(lGeneralSkills[6]));
+  sf1 := sf1 + SkillFullPref + 'toasterRepair' + Cnst_SkillPstfix + (inttostr(lTechSkills[5]));
+  sf1 := sf1 + SkillFullPref + 'weaponSmith' + Cnst_SkillPstfix + (inttostr(lGeneralSkills[11]));
   sf1 := sf1 + '</Value></KeyValuePairOfStringInt32></skillXps2><hasCommittedPoints>false</hasCommittedPoints><availableAttributePoints>0</availableAttributePoints><availableSkillPoints>54</availableSkillPoints><availableTraitPoints>0<';
 {The last line of output file}
   sf1 := sf1 + sfl;

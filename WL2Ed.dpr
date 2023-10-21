@@ -2,10 +2,10 @@ program WL2Ed;
 
 uses
   Vcl.Forms,
-  Main in 'Main.pas' {WL2CED},
+  WL2.SavegameEditor in 'WL2.SavegameEditor.pas' {WL2CED},
   Vcl.Themes,
   Vcl.Styles,
-  Translator in 'Translator.pas';
+  WL2.EditorInterface in 'WL2.EditorInterface.pas',
 
 {$R *.res}
 
