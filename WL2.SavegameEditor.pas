@@ -6,7 +6,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ComCtrls, Vcl.StdCtrls, Vcl.Menus,
   Vcl.XPMan, Vcl.ExtCtrls, ShellAPI, Xml.xmldom, Xml.XMLIntf, Xml.Win.msxmldom,
-  Xml.XMLDoc, Vcl.DBCtrls, Translator;
+  Xml.XMLDoc, Vcl.DBCtrls;
 
 type
   TWL2CED = class(TForm)
@@ -206,34 +206,11 @@ var
   sf1, OldFileName, NewFileName, sname, cname,cn : string;
   savefile : textFile;
 
-const
-{General}
-  ChannelLnk = 'https://www.youtube.com/channel/UCyniVlUauJ1iWYyo-vHfGlA';
-  PatreonLnk = 'https://www.patreon.com/Tokeshy';
-  CoffeeLnk  = 'https://sites.google.com/view/little-beggar/%D0%B3%D0%BB%D0%B0%D0%B2%D0%BD%D0%B0%D1%8F';
-  ProjLnk    = 'https://sonkjeferson.wixsite.com/wastelandschared2';
-  ContLnk    = 'https://www.linkedin.com/in/vitaliherasimenia/';
-  CurrentVersion = '2.1.02';
-
-{Services}
-  Cnst_SkillPref  = 'KeyValuePairOfStringInt32><Key>';
-  Cnst_SkillPstfix = '</Key><Value>';
-  SkillFullPref = '</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>';
-  WSPref : array[1..10] of string = ('bluntWeapons', 'smg', 'brawling',
-    'sniperRifle', 'atWeapons', 'bladedWeapons','rifle','energyWeapons',
-    'shotgun','handgun');
-  GSPref : array[1..12] of string = ('calvinBackerSkill','combatShooting',
-    'outdoorsman','bruteForce','animalWhisperer','spotLie','intimidate',
-    'perception','leadership','barter','weaponSmith','manipulate');
-  TSPref : array[1..9] of string = ('demolitions','computerTech',
-    'mechanicalRepair','fieldMedic','toasterRepair','alarmDisarm','doctor',
-    'safecrack','pickLock');
-  ASPref : array[1..7] of string = ('coordination','luck','awareness','strength',
-    'speed','intelligence','charisma');
-
 implementation
 
 {$R *.dfm}
+uses
+  WL2.EditorInterface, WL2.Constants;
 
 {Regular Procedures & Functions}
 procedure TerminateOrRename;

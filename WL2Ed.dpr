@@ -6,6 +6,7 @@ uses
   Vcl.Themes,
   Vcl.Styles,
   WL2.EditorInterface in 'WL2.EditorInterface.pas',
+  WL2.Constants in 'WL2.Constants.pas';
 
 {$R *.res}
 
