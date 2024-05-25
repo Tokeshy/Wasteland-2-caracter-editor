@@ -32,10 +32,12 @@ begin
         begin
           if i in [1, 4, 7, 10] then
             (FindComponent(Const_GrpLst[i]) as TGroupBox).caption := Const_GrpTrLst[1][LangId]
-          else if i in [2, 5, 8, 11] then
-            (FindComponent(Const_GrpLst[i]) as TGroupBox).caption := Const_GrpTrLst[2][LangId]
-          else if i in [3, 6, 9, 12] then
-            (FindComponent(Const_GrpLst[i]) as TGroupBox).caption := Const_GrpTrLst[3][LangId];
+          else
+            if i in [2, 5, 8, 11] then
+              (FindComponent(Const_GrpLst[i]) as TGroupBox).caption := Const_GrpTrLst[2][LangId]
+          else
+            if i in [3, 6, 9, 12] then
+              (FindComponent(Const_GrpLst[i]) as TGroupBox).caption := Const_GrpTrLst[3][LangId];
         end;
 
       for i := 1 to 6 do  // Labels

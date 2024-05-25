@@ -215,8 +215,8 @@ uses
 {Regular Procedures & Functions}
 procedure TerminateOrRename;
 begin
-  if (WL2CED.Edt_SelectedCrt.text <> 'выбранный SaveGame') and (WL2CED.Edt_SelectedCrt.text <> 'Selected SaveGame')
-    then RenameFile(NewFileName, OldFileName);
+  if (WL2CED.Edt_SelectedCrt.text <> 'выбранный SaveGame') and (WL2CED.Edt_SelectedCrt.text <> 'Selected SaveGame') then
+    RenameFile(NewFileName, OldFileName);
   application.Terminate;
 end;
 
@@ -349,8 +349,8 @@ procedure TWL2CED.Btn_OpenSaveClick(Sender: TObject);
 begin
   openDialog.InitialDir := 'C:\';
   openDialog.Filter := 'Wasteland2 Save Games files|*.xml';
-  if OpenDialog.Execute
-    then Edt_SelectedCrt.Text := (ExtractFileName(OpenDialog.FileName));
+  if OpenDialog.Execute then
+    Edt_SelectedCrt.Text := (ExtractFileName(OpenDialog.FileName));
   CmbB_Caracter.Clear;
 end;
 
@@ -511,9 +511,9 @@ begin
 {Biografy}
   cn1 := cn;
   delete (cn1, 1, (ansipos('<biography>&lt;@&gt;',cn1)-1));
-  if ansipos('<biography>&lt;@&gt;',cn1) = 0 {check if biografy exists}
-    then Mem_CrBio.Text := NoBioText
-    else
+  if ansipos('<biography>&lt;@&gt;',cn1) = 0 {check if biografy exists} then
+    Mem_CrBio.Text := NoBioText
+  else
     begin
       delete (cn1, (ansipos('</biography>',cn1)), Length(cn1));
       delete (cn1, 1, Length('<biography>&lt;@&gt;'));
