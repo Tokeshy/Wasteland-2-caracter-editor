@@ -1,7 +1,7 @@
 ﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <PropertyGroup>
         <ProjectGuid>{869E0AEA-15A0-4BAB-8F9C-43C49143F40A}</ProjectGuid>
-        <ProjectVersion>19.5</ProjectVersion>
+        <ProjectVersion>20.1</ProjectVersion>
         <FrameworkType>VCL</FrameworkType>
         <MainSource>WL2Ed.dpr</MainSource>
         <Base>True</Base>
@@ -99,8 +99,7 @@
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="WL2.EditorInterface.pas"/>
-        <DCCReference Include="WL2.SavegameFile.pas"/>
-        <DCCReference Include="Wl2.PlayerUnits.pas"/>
+        <DCCReference Include="Wl2.Services.pas"/>
         <DCCReference Include="WL2.Constants.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>

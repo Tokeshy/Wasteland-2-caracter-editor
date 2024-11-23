@@ -210,7 +210,7 @@ implementation
 
 {$R *.dfm}
 uses
-  WL2.EditorInterface, WL2.Constants;
+  WL2.EditorInterface, WL2.Constants, WL2.Classes;
 
 {Regular Procedures & Functions}
 procedure TerminateOrRename;
@@ -220,24 +220,8 @@ begin
   application.Terminate;
 end;
 
-Function CnClean (cn, Limiter : string) : string;
-begin
-  delete (cn, 1, (ansipos(Limiter, cn)-1));
-  delete (cn, (ansipos('</Value>',cn)), Length(cn));
-  delete (cn, 1, (Length(Limiter)));
-  Result := cn;
-end;
 
-Function UnregClean (cn, Limiter : string; Len : integer) : string;
-var
-  limSttart, LimEnd : string;
 begin
-  limSttart := '<' + Limiter;
-  LimEnd := '</' + Limiter;
-  delete (cn, 1, (ansipos(limSttart,cn)-1));
-  delete (cn, (ansipos(LimEnd,cn)), Length(cn));
-  delete (cn, 1, Len);
-  Result := cn;
 end;
 
 Function PosToVal (Pos : integer) : integer;
@@ -257,22 +241,6 @@ begin
   end;
 end;
 
-Function ValToWL2Format (Val : string) : string;
-begin
-  case strtointdef(val, 0) of
-    0  : result := '0';
-    2  : result := '1';
-    4  : result := '2';
-    6  : result := '3';
-    10 : result := '4';
-    14 : result := '5';
-    18 : result := '6';
-    24 : result := '7';
-    30 : result := '8';
-    36 : result := '9';
-    44 : result := '10';
-  end;
-end;
 
 {Buttons \ Link section}
 procedure TWL2CED.MIt_FollowPatreonClick(Sender: TObject);
