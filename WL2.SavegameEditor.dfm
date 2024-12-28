@@ -1,8 +1,8 @@
-object WL2CED: TWL2CED
+object frmWL2Main: TfrmWL2Main
   Left = 0
   Top = 0
-  Caption = 'Wastelands'#160'2 character editor Rev'#160
-  ClientHeight = 674
+  Caption = 'Wastelands'#160'2 character editor V.'
+  ClientHeight = 598
   ClientWidth = 633
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -11,53 +11,32 @@ object WL2CED: TWL2CED
   Font.Name = 'Tahoma'
   Font.Style = []
   Menu = MainMenu
-  OldCreateOrder = True
-  OnClose = FormClose
   OnCreate = FormCreate
-  PixelsPerInch = 96
   TextHeight = 13
   object Btn_OpenSave: TButton
     Left = 8
     Top = 8
     Width = 177
-    Height = 25
-    Caption = #1042#1099#1073#1088#1072#1090#1100' '#1089#1086#1093#1088#1072#1085#1105#1085#1085#1091#1102' '#1080#1075#1088#1091
-    TabOrder = 0
-    OnClick = Btn_OpenSaveClick
-  end
-  object Edt_CaracterID: TEdit
-    Left = 8
-    Top = 39
-    Width = 177
     Height = 26
-    Alignment = taCenter
+    Caption = #1042#1099#1073#1088#1072#1090#1100' '#1089#1086#1093#1088#1072#1085#1105#1085#1085#1091#1102' '#1080#1075#1088#1091
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
-    Font.Height = -15
+    Font.Height = -13
     Font.Name = 'Tahoma'
     Font.Style = []
     ParentFont = False
-    ReadOnly = True
-    TabOrder = 1
-    Text = #1042#1089#1077#1075#1086' '#1102#1085#1080#1090#1086#1074
-  end
-  object Btn_ScanCaracter: TButton
-    Left = 471
-    Top = 39
-    Width = 154
-    Height = 25
-    Caption = #1057#1082#1072#1085#1080#1088#1086#1074#1072#1090#1100' '#1087#1077#1088#1089#1086#1085#1072#1078
-    Enabled = False
-    TabOrder = 2
-    OnClick = Btn_ScanCaracterClick
+    TabOrder = 0
+    OnClick = Btn_OpenSaveClick
   end
   object SkillBrowsCntr: TPageControl
     Left = 8
-    Top = 185
+    Top = 141
     Width = 617
     Height = 418
     ActivePage = PG_WeaponSkill
-    TabOrder = 3
+    Enabled = False
+    TabOrder = 1
+    OnChange = SyncCaracterValues
     object PG_WeaponSkill: TTabSheet
       Caption = #1054#1088#1091#1078#1077#1081#1085#1099#1077
       object Grp_WpnSkill: TGroupBox
@@ -489,7 +468,7 @@ object WL2CED: TWL2CED
           Width = 150
           Height = 24
           TabOrder = 0
-          OnChange = WSTB1Change
+          OnChange = SyncTrackBarPosition
         end
         object WSL1: TEdit
           Left = 159
@@ -513,7 +492,7 @@ object WL2CED: TWL2CED
           Width = 150
           Height = 24
           TabOrder = 2
-          OnChange = WSTB1Change
+          OnChange = SyncTrackBarPosition
         end
         object WSTB3: TTrackBar
           Left = 3
@@ -521,7 +500,7 @@ object WL2CED: TWL2CED
           Width = 150
           Height = 24
           TabOrder = 3
-          OnChange = WSTB1Change
+          OnChange = SyncTrackBarPosition
         end
         object WSTB4: TTrackBar
           Left = 3
@@ -529,7 +508,7 @@ object WL2CED: TWL2CED
           Width = 150
           Height = 24
           TabOrder = 4
-          OnChange = WSTB1Change
+          OnChange = SyncTrackBarPosition
         end
         object WSTB5: TTrackBar
           Left = 3
@@ -537,7 +516,7 @@ object WL2CED: TWL2CED
           Width = 150
           Height = 24
           TabOrder = 5
-          OnChange = WSTB1Change
+          OnChange = SyncTrackBarPosition
         end
         object WSTB6: TTrackBar
           Left = 3
@@ -545,7 +524,7 @@ object WL2CED: TWL2CED
           Width = 150
           Height = 24
           TabOrder = 6
-          OnChange = WSTB1Change
+          OnChange = SyncTrackBarPosition
         end
         object WSTB7: TTrackBar
           Left = 3
@@ -553,7 +532,7 @@ object WL2CED: TWL2CED
           Width = 150
           Height = 24
           TabOrder = 7
-          OnChange = WSTB1Change
+          OnChange = SyncTrackBarPosition
         end
         object WSTB8: TTrackBar
           Left = 3
@@ -561,7 +540,7 @@ object WL2CED: TWL2CED
           Width = 150
           Height = 24
           TabOrder = 8
-          OnChange = WSTB1Change
+          OnChange = SyncTrackBarPosition
         end
         object WSTB9: TTrackBar
           Left = 3
@@ -569,7 +548,7 @@ object WL2CED: TWL2CED
           Width = 150
           Height = 24
           TabOrder = 9
-          OnChange = WSTB1Change
+          OnChange = SyncTrackBarPosition
         end
         object WSTB10: TTrackBar
           Left = 3
@@ -577,7 +556,7 @@ object WL2CED: TWL2CED
           Width = 150
           Height = 24
           TabOrder = 10
-          OnChange = WSTB1Change
+          OnChange = SyncTrackBarPosition
         end
         object WSL2: TEdit
           Left = 159
@@ -1237,7 +1216,7 @@ object WL2CED: TWL2CED
           Width = 150
           Height = 24
           TabOrder = 0
-          OnChange = WSTB1Change
+          OnChange = SyncTrackBarPosition
         end
         object RSL1: TEdit
           Left = 159
@@ -1260,7 +1239,7 @@ object WL2CED: TWL2CED
           Width = 150
           Height = 24
           TabOrder = 2
-          OnChange = WSTB1Change
+          OnChange = SyncTrackBarPosition
         end
         object RSTB3: TTrackBar
           Left = 3
@@ -1268,7 +1247,7 @@ object WL2CED: TWL2CED
           Width = 150
           Height = 24
           TabOrder = 3
-          OnChange = WSTB1Change
+          OnChange = SyncTrackBarPosition
         end
         object RSTB4: TTrackBar
           Left = 3
@@ -1276,7 +1255,7 @@ object WL2CED: TWL2CED
           Width = 150
           Height = 24
           TabOrder = 4
-          OnChange = WSTB1Change
+          OnChange = SyncTrackBarPosition
         end
         object RSTB5: TTrackBar
           Left = 3
@@ -1284,7 +1263,7 @@ object WL2CED: TWL2CED
           Width = 150
           Height = 24
           TabOrder = 5
-          OnChange = WSTB1Change
+          OnChange = SyncTrackBarPosition
         end
         object RSTB6: TTrackBar
           Left = 3
@@ -1292,7 +1271,7 @@ object WL2CED: TWL2CED
           Width = 150
           Height = 24
           TabOrder = 6
-          OnChange = WSTB1Change
+          OnChange = SyncTrackBarPosition
         end
         object RSTB7: TTrackBar
           Left = 3
@@ -1300,7 +1279,7 @@ object WL2CED: TWL2CED
           Width = 150
           Height = 24
           TabOrder = 7
-          OnChange = WSTB1Change
+          OnChange = SyncTrackBarPosition
         end
         object RSTB8: TTrackBar
           Left = 3
@@ -1308,7 +1287,7 @@ object WL2CED: TWL2CED
           Width = 150
           Height = 24
           TabOrder = 8
-          OnChange = WSTB1Change
+          OnChange = SyncTrackBarPosition
         end
         object RSTB9: TTrackBar
           Left = 3
@@ -1316,7 +1295,7 @@ object WL2CED: TWL2CED
           Width = 150
           Height = 24
           TabOrder = 9
-          OnChange = WSTB1Change
+          OnChange = SyncTrackBarPosition
         end
         object RSTB10: TTrackBar
           Left = 3
@@ -1324,7 +1303,7 @@ object WL2CED: TWL2CED
           Width = 150
           Height = 24
           TabOrder = 10
-          OnChange = WSTB1Change
+          OnChange = SyncTrackBarPosition
         end
         object RSL2: TEdit
           Left = 159
@@ -1467,7 +1446,7 @@ object WL2CED: TWL2CED
           Width = 150
           Height = 24
           TabOrder = 20
-          OnChange = WSTB1Change
+          OnChange = SyncTrackBarPosition
         end
         object RSTB12: TTrackBar
           Left = 3
@@ -1475,7 +1454,7 @@ object WL2CED: TWL2CED
           Width = 150
           Height = 24
           TabOrder = 21
-          OnChange = WSTB1Change
+          OnChange = SyncTrackBarPosition
         end
         object RSL11: TEdit
           Left = 159
@@ -1901,7 +1880,7 @@ object WL2CED: TWL2CED
           Width = 150
           Height = 24
           TabOrder = 0
-          OnChange = WSTB1Change
+          OnChange = SyncTrackBarPosition
         end
         object TSL1: TEdit
           Left = 159
@@ -1924,7 +1903,7 @@ object WL2CED: TWL2CED
           Width = 150
           Height = 24
           TabOrder = 2
-          OnChange = WSTB1Change
+          OnChange = SyncTrackBarPosition
         end
         object TSTB3: TTrackBar
           Left = 3
@@ -1932,7 +1911,7 @@ object WL2CED: TWL2CED
           Width = 150
           Height = 24
           TabOrder = 3
-          OnChange = WSTB1Change
+          OnChange = SyncTrackBarPosition
         end
         object TSTB4: TTrackBar
           Left = 3
@@ -1940,7 +1919,7 @@ object WL2CED: TWL2CED
           Width = 150
           Height = 24
           TabOrder = 4
-          OnChange = WSTB1Change
+          OnChange = SyncTrackBarPosition
         end
         object TSTB5: TTrackBar
           Left = 3
@@ -1948,7 +1927,7 @@ object WL2CED: TWL2CED
           Width = 150
           Height = 24
           TabOrder = 5
-          OnChange = WSTB1Change
+          OnChange = SyncTrackBarPosition
         end
         object TSTB6: TTrackBar
           Left = 3
@@ -1956,7 +1935,7 @@ object WL2CED: TWL2CED
           Width = 150
           Height = 24
           TabOrder = 6
-          OnChange = WSTB1Change
+          OnChange = SyncTrackBarPosition
         end
         object TSTB7: TTrackBar
           Left = 3
@@ -1964,7 +1943,7 @@ object WL2CED: TWL2CED
           Width = 150
           Height = 24
           TabOrder = 7
-          OnChange = WSTB1Change
+          OnChange = SyncTrackBarPosition
         end
         object TSTB8: TTrackBar
           Left = 3
@@ -1972,7 +1951,7 @@ object WL2CED: TWL2CED
           Width = 150
           Height = 24
           TabOrder = 8
-          OnChange = WSTB1Change
+          OnChange = SyncTrackBarPosition
         end
         object TSTB9: TTrackBar
           Left = 3
@@ -1980,7 +1959,7 @@ object WL2CED: TWL2CED
           Width = 150
           Height = 24
           TabOrder = 9
-          OnChange = WSTB1Change
+          OnChange = SyncTrackBarPosition
         end
         object TSL2: TEdit
           Left = 159
@@ -2416,7 +2395,7 @@ object WL2CED: TWL2CED
           Width = 150
           Height = 24
           TabOrder = 0
-          OnChange = WSTB1Change
+          OnChange = SyncTrackBarPosition
         end
         object ASL1: TEdit
           Left = 159
@@ -2439,7 +2418,7 @@ object WL2CED: TWL2CED
           Width = 150
           Height = 24
           TabOrder = 2
-          OnChange = WSTB1Change
+          OnChange = SyncTrackBarPosition
         end
         object ASTB3: TTrackBar
           Left = 3
@@ -2447,7 +2426,7 @@ object WL2CED: TWL2CED
           Width = 150
           Height = 24
           TabOrder = 3
-          OnChange = WSTB1Change
+          OnChange = SyncTrackBarPosition
         end
         object ASTB4: TTrackBar
           Left = 3
@@ -2455,7 +2434,7 @@ object WL2CED: TWL2CED
           Width = 150
           Height = 24
           TabOrder = 4
-          OnChange = WSTB1Change
+          OnChange = SyncTrackBarPosition
         end
         object ASTB5: TTrackBar
           Left = 3
@@ -2463,7 +2442,7 @@ object WL2CED: TWL2CED
           Width = 150
           Height = 24
           TabOrder = 5
-          OnChange = WSTB1Change
+          OnChange = SyncTrackBarPosition
         end
         object ASTB6: TTrackBar
           Left = 3
@@ -2471,7 +2450,7 @@ object WL2CED: TWL2CED
           Width = 150
           Height = 24
           TabOrder = 6
-          OnChange = WSTB1Change
+          OnChange = SyncTrackBarPosition
         end
         object ASTB7: TTrackBar
           Left = 3
@@ -2479,7 +2458,7 @@ object WL2CED: TWL2CED
           Width = 150
           Height = 24
           TabOrder = 7
-          OnChange = WSTB1Change
+          OnChange = SyncTrackBarPosition
         end
         object ASL2: TEdit
           Left = 159
@@ -2575,57 +2554,58 @@ object WL2CED: TWL2CED
     end
   end
   object Edt_SelectedCrt: TEdit
-    Left = 191
+    Left = 193
     Top = 8
-    Width = 274
-    Height = 26
+    Width = 227
+    Height = 24
     Alignment = taCenter
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
-    Font.Height = -15
+    Font.Height = -13
     Font.Name = 'Tahoma'
     Font.Style = []
     ParentFont = False
+    ParentShowHint = False
     ReadOnly = True
-    TabOrder = 4
-    Text = #1074#1099#1073#1088#1072#1085#1085#1099#1081' SaveGame'
+    ShowHint = True
+    TabOrder = 2
   end
   object Btn_Quit: TButton
     Left = 553
-    Top = 640
+    Top = 565
     Width = 72
     Height = 25
     Caption = #1042#1099#1093#1086#1076
-    TabOrder = 5
+    TabOrder = 3
     OnClick = Btn_QuitClick
   end
-  object Btn_ScanSave: TButton
-    Left = 471
+  object CmbbCaracters: TComboBox
+    Left = 426
     Top = 8
-    Width = 154
-    Height = 25
-    Caption = #1057#1082#1072#1085#1080#1088#1086#1074#1072#1090#1100' Save'
-    TabOrder = 6
-    OnClick = Btn_ScanSaveClick
-  end
-  object CmbB_Caracter: TComboBox
-    Left = 191
-    Top = 40
-    Width = 274
-    Height = 21
-    TabOrder = 7
-    Text = #1042#1099#1073#1088#1072#1090#1100' '#1087#1077#1088#1089#1086#1085#1072#1078
+    Width = 199
+    Height = 24
+    Style = csDropDownList
+    Enabled = False
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+    ParentShowHint = False
+    ShowHint = True
+    TabOrder = 4
+    OnSelect = CmbbCaractersSelect
   end
   object Grp_CurUnit: TGroupBox
     Left = 8
-    Top = 71
+    Top = 37
     Width = 617
-    Height = 108
-    Caption = #1042#1099#1073#1088#1072#1085#1085#1099#1081' '#1102#1085#1080#1090
-    TabOrder = 8
+    Height = 97
+    TabOrder = 5
     object Lbl_Sex: TLabel
       Left = 29
-      Top = 25
+      Top = 14
       Width = 27
       Height = 16
       Caption = #1055#1086#1083
@@ -2638,7 +2618,7 @@ object WL2CED: TWL2CED
     end
     object Lbl_Age: TLabel
       Left = 29
-      Top = 51
+      Top = 40
       Width = 53
       Height = 16
       Caption = #1042#1086#1079#1088#1072#1089#1090
@@ -2651,7 +2631,7 @@ object WL2CED: TWL2CED
     end
     object Lbl_CurrLvl: TLabel
       Left = 29
-      Top = 78
+      Top = 67
       Width = 56
       Height = 16
       Caption = #1059#1088#1086#1074#1077#1085#1100
@@ -2664,7 +2644,7 @@ object WL2CED: TWL2CED
     end
     object Lbl_CurrHP: TLabel
       Left = 174
-      Top = 25
+      Top = 14
       Width = 79
       Height = 16
       Caption = 'T'#1077#1082#1091#1097#1080#1077' HP'
@@ -2677,7 +2657,7 @@ object WL2CED: TWL2CED
     end
     object Lbl_MaxHP: TLabel
       Left = 174
-      Top = 51
+      Top = 40
       Width = 123
       Height = 16
       Caption = #1052#1072#1082#1089#1080#1084#1072#1083#1100#1085#1099#1077' HP'
@@ -2690,7 +2670,7 @@ object WL2CED: TWL2CED
     end
     object Lbl_FreeSkPnt: TLabel
       Left = 174
-      Top = 78
+      Top = 67
       Width = 116
       Height = 16
       Caption = #1057#1074#1086#1073#1086#1076#1085#1099#1077' Skil'#39#1099
@@ -2703,7 +2683,7 @@ object WL2CED: TWL2CED
     end
     object Edt_Sex: TEdit
       Left = 106
-      Top = 24
+      Top = 13
       Width = 33
       Height = 21
       Alignment = taCenter
@@ -2713,7 +2693,7 @@ object WL2CED: TWL2CED
     end
     object Edt_Age: TEdit
       Left = 106
-      Top = 51
+      Top = 40
       Width = 33
       Height = 21
       Alignment = taCenter
@@ -2724,7 +2704,7 @@ object WL2CED: TWL2CED
     end
     object Edt_CurrLvl: TEdit
       Left = 106
-      Top = 78
+      Top = 67
       Width = 33
       Height = 21
       Alignment = taCenter
@@ -2735,7 +2715,7 @@ object WL2CED: TWL2CED
     end
     object Edt_CurrHP: TEdit
       Left = 303
-      Top = 24
+      Top = 13
       Width = 49
       Height = 21
       Alignment = taCenter
@@ -2746,7 +2726,7 @@ object WL2CED: TWL2CED
     end
     object Edt_MaxHP: TEdit
       Left = 303
-      Top = 51
+      Top = 40
       Width = 49
       Height = 21
       Alignment = taCenter
@@ -2757,7 +2737,7 @@ object WL2CED: TWL2CED
     end
     object Edt_FreeSkPnt: TEdit
       Left = 303
-      Top = 78
+      Top = 67
       Width = 49
       Height = 21
       Alignment = taCenter
@@ -2768,7 +2748,7 @@ object WL2CED: TWL2CED
     end
     object Mem_CrBio: TMemo
       Left = 358
-      Top = 24
+      Top = 13
       Width = 245
       Height = 73
       ReadOnly = True
@@ -2776,51 +2756,25 @@ object WL2CED: TWL2CED
       TabOrder = 6
     end
   end
-  object Btn_CaracSave: TButton
-    Left = 345
-    Top = 609
-    Width = 137
-    Height = 25
-    Caption = #1057#1086#1093#1088#1072#1085#1080#1090#1100' '#1087#1077#1088#1089#1086#1085#1072#1078
-    Enabled = False
-    TabOrder = 9
-    OnClick = Btn_CaracSaveClick
-  end
   object Btn_RRSave: TButton
-    Left = 488
-    Top = 609
+    Left = 385
+    Top = 565
     Width = 137
     Height = 25
     Caption = #1055#1077#1088#1077#1079#1072#1087#1080#1089#1072#1090#1100' Save'
     Enabled = False
-    TabOrder = 10
+    TabOrder = 6
     OnClick = Btn_RRSaveClick
   end
   object XPManifest: TXPManifest
     Left = 24
-    Top = 610
+    Top = 570
   end
   object MainMenu: TMainMenu
     Left = 96
-    Top = 610
+    Top = 570
     object MIt_InfoSection: TMenuItem
       Caption = #1048#1085#1092#1086
-      object MIt_DevInfo: TMenuItem
-        Caption = #1056#1072#1079#1088#1072#1073#1086#1090#1095#1080#1082
-        object MIt_Coffee: TMenuItem
-          Caption = #1050#1091#1087#1080#1090#1100' '#1082#1086#1092#1077' '#1088#1072#1079#1088#1072#1073#1086#1090#1095#1080#1082#1091
-          OnClick = MIt_CoffeeClick
-        end
-        object MIt_FollowPatreon: TMenuItem
-          Caption = 'Follow on patreon'
-          Hint = 'support a developer on the Patreon platform'
-          OnClick = MIt_FollowPatreonClick
-        end
-        object MIt_DevContact: TMenuItem
-          Caption = #1050#1086#1085#1090#1072#1082#1090#1099
-          OnClick = MIt_DevContactClick
-        end
-      end
       object MIt_ProjectInfo: TMenuItem
         Caption = #1054' '#1087#1088#1086#1077#1082#1090#1077
         object MIt_HowToUse: TMenuItem
@@ -2830,6 +2784,17 @@ object WL2CED: TWL2CED
         object MIt_AboutProject: TMenuItem
           Caption = #1054' '#1087#1088#1086#1077#1082#1090#1077
           OnClick = MIt_AboutProjectClick
+        end
+      end
+      object MEContactDev: TMenuItem
+        Caption = #1050#1086#1085#1090#1072#1082#1090' '#1089' '#1088#1072#1079#1088#1072#1073#1086#1090#1095#1080#1082#1086#1084
+        object MELinkedIn: TMenuItem
+          Caption = 'LinkedIn'
+          OnClick = MELinkedInClick
+        end
+        object MEXing: TMenuItem
+          Caption = 'Xing'
+          OnClick = MEXingClick
         end
       end
     end
@@ -2844,9 +2809,21 @@ object WL2CED: TWL2CED
         OnClick = MIt_ToRusClick
       end
     end
+    object MIt_DevInfo: TMenuItem
+      Caption = #1055#1086#1076#1076#1077#1088#1078#1072#1090#1100' '#1087#1088#1086#1077#1082#1090
+      object MIt_Coffee: TMenuItem
+        Caption = #1050#1091#1087#1080#1090#1100' '#1082#1086#1092#1077' '#1088#1072#1079#1088#1072#1073#1086#1090#1095#1080#1082#1091
+        OnClick = MIt_CoffeeClick
+      end
+      object MIt_FollowPatreon: TMenuItem
+        Caption = 'Follow on patreon'
+        Hint = 'support a developer on the Patreon platform'
+        OnClick = MIt_FollowPatreonClick
+      end
+    end
   end
   object OpenDialog: TOpenDialog
     Left = 168
-    Top = 610
+    Top = 570
   end
 end

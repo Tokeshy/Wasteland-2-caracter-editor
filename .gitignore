@@ -5,3 +5,18 @@ WL2Ed.dproj.local
 Win32/Debug/WL2Ed.exe
 Win32/Debug/Main.dcu
 WL2Ed.stat
+Win32/Release/WL2Ed.exe
+Win32/Release/Wl2.Utilities.dcu
+Win32/Release/WL2.SavegameEditor.dcu
+Win32/Release/WL2.EditorInterface.dcu
+Win32/Release/WL2.Constants.dcu
+Win32/Release/WL2.Classes.dcu
+Win32/Debug/Wl2.Utilities.dcu
+Win32/Debug/Wl2.Services.dcu
+Win32/Debug/WL2.SavegameFile.dcu
+Win32/Debug/WL2.SavegameEditor.dcu
+Win32/Debug/Wl2.PlayerUnits.dcu
+Win32/Debug/WL2.EditorInterface.dcu
+Win32/Debug/WL2.Constants.dcu
+Win32/Debug/WL2.Classes.dcu
+/for tests
