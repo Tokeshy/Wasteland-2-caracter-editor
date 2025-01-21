@@ -1,27 +1,39 @@
-# Wasteland-2-caracter-editor
+#Wasteland-2-caracter-editor (Tested with Director's cut)
+SaveGameCaracterEditor for Wasteland 2 (Game character editor for Wasteland 2).
+Developed purely from passion, written in Delphi and completely free.
+However, despite the fact that the project is free, you can always support it by buying the developer a coffee.
 
-SaveGameCaracterEditor for Wasteland 2 (Game Character Editor for Wasteland 2).
-Designed exclusively on enthusiasm, written in Delphi and is completely free.
+04/21/2020 the source code became open (suffer mortals, for it is terrible)
 
-04/21/2020 source code became open
+The editor has sufficient functionality to make changes to the characteristics of units.
+You can edit all skills (weapon, general, technical) and attributes. 
+The interface is intuitive, but, nevertheless, you can watch a video of editing SaveGames in order to understand the principle of operation.
 
-The editor has enough functionality to make changes to the characteristics of units.
-You can edit all the skills (weapons, general, technical) and attributes.
-The interface is intuitive, but, nevertheless, you can watch the video editing SaveGame’s in order to understand the principle of operation.
+Well, one more thing - this project will continue to remain absolutely free, regardless of functionality..
+Therefore, if someone tries to sell it to you, they are scammers 😉
+=================================
 
-Well, and here's what else - this project will continue to remain absolutely free, regardless of functionality..
-So if someone is trying to sell it to you, it's scammers))
+changes in version 3 (currently implemented)
+from code point:
+  the internal structure has undergone significant rethinking and processing (let's just start with a “clean slate”);
+  also fixed the creation errors, which previously led to corruption of the game file;
+  The game file is now overwritten only when changes are saved;
 
-###############################
+from the user's point: 
+  for user convenience, the save file is now scanned immediately after selection;
+  The bill interface has been redesigned (some buttons have been removed)
+  when saving, a backup copy of the original file is also created (in case something goes wrong)
 
-SaveGameCaracterEditor for Wasteland 2 (Редактор игровых персонажей для Wasteland 2).
-Разработан исключительно на энтузиазме, написан на Delphi и является абсолютно бесплатным.
+=================================
 
-21.04.2020 исходный код стал открытым (страдайте смертные, ибо он ужасен)
+coming soon:
+  DragNDrop support;
+  resetting\applying a common value to all skills by category;
+  adding a timestamp when naming the backup file;
+  correction of invalid values ​​(for example, in case of file processing after “manual correction”)
 
-Редактор обладает достаточным функционалом для внесения изменений в характеристики юнитов.
-Редактировать можно все навыки (оружейные, общие, технические) и атрибуты. 
-Интерфес интуитивно понятен, но, тем не менее, можно посмотреть видео редактирования SaveGame’ов дабы понять принцип работы.
+=================================
 
-Ну и вот ещё что - этот проект и дальше будет оставаться абсолютно бесплатным, независимо от функционала..
-Поэтому, если кто-то пытается вам его продать - это мошенники ))
+feasibility is being studied:  
+  editing all available unit parameters (experience points, name, age, etc.).
+  the possibility of completely editing the inventory is being considered (if it suddenly turns out that someone needs it) - there is certainly no certainty about the need, given the amount of work
