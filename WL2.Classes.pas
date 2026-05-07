@@ -3,7 +3,7 @@ unit WL2.Classes;
 interface
 
 uses
-  System.Classes;
+  System.Classes, WL2.Resources;
 
 type
   tArrayOfString = array of string;
@@ -86,17 +86,6 @@ type
       property SaveGameBody: String read fSaveGameBody;
 
 end;
-
-  const
-    SkillPrefixes: array [0..2] of String = ('</Key><Value>', '<pair><key>', '</Value></KeyValuePairOfStringInt32><KeyValuePairOfStringInt32><Key>');
-    CaracterNamePrefixes: String = '</name><displayName><@>';
-    BiographyPrefixes: array [0..1] of String = ('<biography><@>', '</biography>' );
-    CaractersDataEnd: String = '</value></pair></skillXps>';
-
-    WeaponSkills: array [1 .. 10] of string = ('bluntWeapons', 'smg', 'brawling', 'sniperRifle', 'atWeapons', 'bladedWeapons', 'rifle', 'energyWeapons', 'shotgun', 'handgun');
-    GeneralSkills: array [1 .. 12] of string = ('calvinBackerSkill', 'combatShooting', 'outdoorsman', 'bruteForce', 'animalWhisperer', 'spotLie', 'intimidate', 'perception', 'leadership', 'barter', 'weaponSmith', 'manipulate');
-    TechnicalSkills: array [1 .. 9] of string = ('demolitions', 'computerTech', 'mechanicalRepair', 'fieldMedic', 'toasterRepair', 'alarmDisarm', 'doctor', 'safecrack', 'pickLock');
-    Attributes: array [1 .. 7] of string = ('coordination', 'luck', 'awareness', 'strength', 'speed', 'intelligence', 'charisma');
 
   function GetSkillPrefix(const aPrefixIndex: Integer): String;
   function ParceRawDataToCaracter(const aSourceData, aCaracterName: String; const aCaracterID: integer): TCaracterData;

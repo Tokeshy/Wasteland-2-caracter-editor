@@ -7,7 +7,7 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ComCtrls, Vcl.StdCtrls, Vcl.Menus,
   Vcl.XPMan, Vcl.ExtCtrls, Xml.xmldom, Xml.XMLIntf, Xml.Win.msxmldom,
   Xml.XMLDoc, Vcl.DBCtrls, WL2.Classes, Vcl.Mask, System.Skia, Vcl.Skia,
-  System.Classes;
+  System.Classes, WL2.Resources;
 
 type
   TfrmWL2Main = class(TForm)
@@ -221,17 +221,6 @@ type
 
   end;
 
-const
-  CurrentVersion = '3.0.01';
-
-  ChannelLnk = 'https://www.youtube.com/channel/UCyniVlUauJ1iWYyo-vHfGlA';
-  PatreonLnk = 'https://www.patreon.com/Tokeshy';
-  CoffeeLnk = 'https://www.paypal.com/donate/?hosted_button_id=6H3WDBHQ3MEC6';
-  ProjLnk = 'https://sonkjeferson.wixsite.com/wastelandschared2';
-  LinkInLnk = 'https://www.linkedin.com/in/vitaliherasimenia/';
-  XingLink = 'https://www.xing.com/profile/Vitali_Herasimenia';
-  Wl2FormatCorrespondence: array [1 .. 11] of array [0 .. 1] of integer = ((0, 0), (1, 2), (2, 4), (3, 6), (4, 10), (5, 14), (6, 18), (7, 24), (8, 30), (9, 36), (10, 44));
-
 var
   SaveGameData: TSaveGameData;
   PreSelectedCaracter: integer;
@@ -245,27 +234,27 @@ uses
 
 procedure TfrmWL2Main.MIt_FollowPatreonClick(Sender: TObject);
 begin
-  OpenLink(PatreonLnk);
+  OpenLink(WL2.Resources.PatreonLnk);
 end;
 
 procedure TfrmWL2Main.MIt_FollowUsClick(Sender: TObject);
 begin
-   OpenLink(ChannelLnk);
+   OpenLink(WL2.Resources.ChannelLnk);
 end;
 
 procedure TfrmWL2Main.MELinkedInClick(Sender: TObject);
 begin
-  OpenLink(LinkInLnk);
+  OpenLink(WL2.Resources.LinkInLnk);
 end;
 
 procedure TfrmWL2Main.MEXingClick(Sender: TObject);
 begin
-  OpenLink(Pchar(XingLink));
+  OpenLink(Pchar(WL2.Resources.XingLink));
 end;
 
 procedure TfrmWL2Main.MIt_CoffeeClick(Sender: TObject);
 begin
-  OpenLink(CoffeeLnk);
+  OpenLink(WL2.Resources.CoffeeLnk);
 end;
 
 procedure TfrmWL2Main.MIt_HowToUseClick(Sender: TObject);
@@ -275,13 +264,13 @@ end;
 
 procedure TfrmWL2Main.MIt_AboutProjectClick(Sender: TObject);
 begin
-  OpenLink(ProjLnk);
+  OpenLink(WL2.Resources.ProjLnk);
 end;
 
 procedure TfrmWL2Main.Btn_QuitClick(Sender: TObject);
 begin
-  if (frmWL2Main.Edt_SelectedCrt.text <> UnitDataCaptions[40][SelectedLangId]) then
-    if MessageDlg(SaveRequestText[SelectedLangId], mtConfirmation, [mbYes, mbNo], 0, mbYes) = mrYes then
+  if (frmWL2Main.Edt_SelectedCrt.text <> WL2.Resources.UnitDataCaptions[40][SelectedLangId]) then
+    if MessageDlg(WL2.Resources.SaveRequestText[SelectedLangId], mtConfirmation, [mbYes, mbNo], 0, mbYes) = mrYes then
     begin
       SaveGameData.UpdateCaracter(CmbbCaracters.ItemIndex, SetNewSkillValues(SaveGameData.GetCaracterData(CmbbCaracters.ItemIndex)));
       SyncInterfaceAndCaracterData(SaveGameData.GetCaracterData(CmbbCaracters.ItemIndex));
@@ -307,7 +296,7 @@ procedure TfrmWL2Main.FormCreate(Sender: TObject);
 var
   i: integer;
 begin
-  frmWL2Main.Caption := frmWL2Main.Caption + CurrentVersion;
+  frmWL2Main.Caption := frmWL2Main.Caption + WL2.Resources.CurrentVersion;
   SelectedLangId := 0;
   Translate(SelectedLangId);
   Mem_CrBio.Clear;
@@ -353,9 +342,9 @@ begin
     SaveGameData.UpdateCaracter(CmbbCaracters.ItemIndex, SetNewSkillValues(SaveGameData.GetCaracterData(CmbbCaracters.ItemIndex)));
 
     if SaveGameData.SaveChanges() then
-      MessageDlg(SavingMessage[1][SelectedLangId], mtInformation, [mbOk], 0, mbOk)
+      MessageDlg(WL2.Resources.SavingMessage[1][SelectedLangId], mtInformation, [mbOk], 0, mbOk)
     else
-      MessageDlg(SavingMessage[0][SelectedLangId], mtInformation, [mbOk], 0, mbOk)
+      MessageDlg(WL2.Resources.SavingMessage[0][SelectedLangId], mtInformation, [mbOk], 0, mbOk)
   except
     on E: Exception do
       MessageDlg('Error saving changes: ' + E.Message, mtError, [mbOk], 0);
