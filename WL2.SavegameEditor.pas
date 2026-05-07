@@ -293,12 +293,17 @@ end;
 
 procedure TfrmWL2Main.Btn_RRSaveClick(Sender: TObject);
 begin
-  SaveGameData.UpdateCaracter(CmbbCaracters.ItemIndex, SetNewSkillValues(SaveGameData.GetCaracterData(CmbbCaracters.ItemIndex)));
+  try
+    SaveGameData.UpdateCaracter(CmbbCaracters.ItemIndex, SetNewSkillValues(SaveGameData.GetCaracterData(CmbbCaracters.ItemIndex)));
 
-  if SaveGameData.SaveChanges() then
-    MessageDlg(SavingMessage[1][SelectedLangId], mtInformation, [mbOk], 0, mbOk)
-  else
-    MessageDlg(SavingMessage[0][SelectedLangId], mtInformation, [mbOk], 0, mbOk)
+    if SaveGameData.SaveChanges() then
+      MessageDlg(SavingMessage[1][SelectedLangId], mtInformation, [mbOk], 0, mbOk)
+    else
+      MessageDlg(SavingMessage[0][SelectedLangId], mtInformation, [mbOk], 0, mbOk)
+  except
+    on E: Exception do
+      MessageDlg('Error saving changes: ' + E.Message, mtError, [mbOk], 0);
+  end;
 end;
 
 procedure TfrmWL2Main.Btn_OpenSaveClick(Sender: TObject);
@@ -307,17 +312,27 @@ begin
   openDialog.Filter := 'Wasteland2 Save Games files|*.xml';
   if OpenDialog.Execute and fileexists(OpenDialog.FileName) then
   begin
-    CmbbCaracters.Clear;
-    SaveGameData := TSaveGameData.Create(OpenDialog.FileName);
-    PreSelectedCaracter := 0;
+    try
+      CmbbCaracters.Clear;
+      SaveGameData := TSaveGameData.Create(OpenDialog.FileName);
+      PreSelectedCaracter := 0;
 
-    Edt_SelectedCrt.Text := SaveGameData.NameOfFile;
-    Edt_SelectedCrt.Hint := SaveGameData.FileLocation;
+      Edt_SelectedCrt.Text := SaveGameData.NameOfFile;
+      Edt_SelectedCrt.Hint := SaveGameData.FileLocation;
 
-    CmbbCaracters.Items := SaveGameData.CaracterList;
-    CmbbCaracters.Hint := CmbbCaracterHint[SelectedLangId][0] + inttostr(CmbbCaracters.Items.Count) + CmbbCaracterHint[SelectedLangId][1];
-    CmbbCaracters.Enabled := True;
-    CmbbCaracters.TextHint := CmbbCaracterTextsHint[SelectedLangId];
+      CmbbCaracters.Items := SaveGameData.CaracterList;
+      CmbbCaracters.Hint := CmbbCaracterHint[SelectedLangId][0] + inttostr(CmbbCaracters.Items.Count) + CmbbCaracterHint[SelectedLangId][1];
+      CmbbCaracters.Enabled := True;
+      CmbbCaracters.TextHint := CmbbCaracterTextsHint[SelectedLangId];
+    except
+      on E: Exception do
+      begin
+        MessageDlg('Error loading save file: ' + E.Message, mtError, [mbOk], 0);
+        CmbbCaracters.Enabled := False;
+        Edt_SelectedCrt.Text := '';
+        Edt_SelectedCrt.Hint := '';
+      end;
+    end;
   end;
 end;
 

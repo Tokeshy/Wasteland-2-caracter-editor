@@ -206,11 +206,19 @@ end;
 
 constructor TSaveGameData.Create(const aSaveGameFullFileName: string);
 begin
-  fNameOfFile := CutextensionEnding(ExtractFileName(aSaveGameFullFileName));
-  fLocationOfSourceFile := aSaveGameFullFileName;
-  fSaveGameBody := LoadAsText(GetDefaultFileName);
-  fCaracterList := TStringList.Create;
-  ScanSourceForCaracters();
+  try
+    fNameOfFile := CutextensionEnding(ExtractFileName(aSaveGameFullFileName));
+    fLocationOfSourceFile := aSaveGameFullFileName;
+    fSaveGameBody := LoadAsText(GetDefaultFileName);
+    fCaracterList := TStringList.Create;
+    ScanSourceForCaracters();
+  except
+    on E: Exception do
+    begin
+      fCaracterList.Free;
+      raise Exception.Create('Failed to create save game data: ' + E.Message);
+    end;
+  end;
 end;
 
 destructor TSaveGameData.Destroy();
@@ -222,18 +230,24 @@ end;
 Function TSaveGameData.SaveChanges(): boolean;
 begin
   Result := False;
-  var lBackupCopyName: String := fLocationOfSourceFile + '.back';
-  if fileexists(lBackupCopyName) then
-    DeleteFile(lBackupCopyName);
-  RenameFile(fLocationOfSourceFile, lBackupCopyName);
-  if SaveCaractersData() then
-  begin
-    if SaveAsText(CutextensionEnding(fLocationOfSourceFile + '.txt'), SaveGameBody) then
-      RenameFile(CutextensionEnding(fLocationOfSourceFile + '.txt'), fLocationOfSourceFile);
-    Result := True;
-  end
-  else
-    RenameFile(lBackupCopyName, fLocationOfSourceFile);
+  try
+    var timestamp: string := FormatDateTime('yyyy-mm-dd_hh-nn-ss', Now);
+    var lBackupCopyName: String := fLocationOfSourceFile + '.back_' + timestamp;
+    if fileexists(lBackupCopyName) then
+      DeleteFile(lBackupCopyName);
+    RenameFile(fLocationOfSourceFile, lBackupCopyName);
+    if SaveCaractersData() then
+    begin
+      if SaveAsText(CutextensionEnding(fLocationOfSourceFile + '.txt'), SaveGameBody) then
+        RenameFile(CutextensionEnding(fLocationOfSourceFile + '.txt'), fLocationOfSourceFile);
+      Result := True;
+    end
+    else
+      RenameFile(lBackupCopyName, fLocationOfSourceFile);
+  except
+    on E: Exception do
+      raise Exception.Create('Failed to save changes: ' + E.Message);
+  end;
 end;
 
 procedure TSaveGameData.ReloadSource();
@@ -342,18 +356,18 @@ begin
 
 { Skill's ID MAP:
   ID |       Weapon          |               General               |           Technical                |          Attributes        |
-   1 | Crushing / дробящее   | Calvin Backer skill / Знаток запада | Demolitions / взрывотехника        | Coordination / Координация |
-   2 | Submachine gun / ПП   | Combat shooting / стрелок           | Computer tech / компьютеры         | Luck / удача               |
-   3 | Melee / Рукопашная    | Outdoorsman / выживание             | Mechanical repair / механика       | Awareness / восприятие     |
-   4 | Sniper  / Снайперские | Brute force / грубая сила           | Field medic / полевая медицина     | Strength / сила            |
-   5 | Heavy / Тяжёлое       | Animal Whisperer / дрессировщик     | Toaster repair / ремонт тостеров   | Speed / скорость           |
-   6 | Steel arms / Холодное | Spot lie / жополиз                  | Alarm disarm / снятие сигнализации | Intelligence / интеллект   |
-   7 | Assault / Штурмовые   | Intimidate / задира                 | Doctor / хирургия                  | Charisma / харизма         |
-   8 | Power /Энергетическое | Perception / Зоркий глаз            | Safe crack / взлом сейфов          | -------------------------- |
-   9 | Shotguns / дробовики  | Leadership / лидерство              | PickLock / взлом замков            | -------------------------- |
-  10 | Guns / пистолеты      | Barter / меняла                     | ---------------------------------- | -------------------------- |
-  11 | --------------------- | Weapon smith / оружейник            | ---------------------------------- | -------------------------- |
-  12 | --------------------- | Manipulate / хитрожопый             | ---------------------------------- | -------------------------- |}
+   1 | Crushing / РґСЂРѕР±СЏС‰РµРµ   | Calvin Backer skill / Р—РЅР°С‚РѕРє Р·Р°РїР°РґР° | Demolitions / РІР·СЂС‹РІРѕС‚РµС…РЅРёРєР°        | Coordination / РљРѕРѕСЂРґРёРЅР°С†РёСЏ |
+   2 | Submachine gun / РџРџ   | Combat shooting / СЃС‚СЂРµР»РѕРє           | Computer tech / РєРѕРјРїСЊСЋС‚РµСЂС‹         | Luck / СѓРґР°С‡Р°               |
+   3 | Melee / Р СѓРєРѕРїР°С€РЅР°СЏ    | Outdoorsman / РІС‹Р¶РёРІР°РЅРёРµ             | Mechanical repair / РјРµС…Р°РЅРёРєР°       | Awareness / РІРѕСЃРїСЂРёСЏС‚РёРµ     |
+   4 | Sniper  / РЎРЅР°Р№РїРµСЂСЃРєРёРµ | Brute force / РіСЂСѓР±Р°СЏ СЃРёР»Р°           | Field medic / РїРѕР»РµРІР°СЏ РјРµРґРёС†РёРЅР°     | Strength / СЃРёР»Р°            |
+   5 | Heavy / РўСЏР¶С‘Р»РѕРµ       | Animal Whisperer / РґСЂРµСЃСЃРёСЂРѕРІС‰РёРє     | Toaster repair / СЂРµРјРѕРЅС‚ С‚РѕСЃС‚РµСЂРѕРІ   | Speed / СЃРєРѕСЂРѕСЃС‚СЊ           |
+   6 | Steel arms / РҐРѕР»РѕРґРЅРѕРµ | Spot lie / Р¶РѕРїРѕР»РёР·                  | Alarm disarm / СЃРЅСЏС‚РёРµ СЃРёРіРЅР°Р»РёР·Р°С†РёРё | Intelligence / РёРЅС‚РµР»Р»РµРєС‚   |
+   7 | Assault / РЁС‚СѓСЂРјРѕРІС‹Рµ   | Intimidate / Р·Р°РґРёСЂР°                 | Doctor / С…РёСЂСѓСЂРіРёСЏ                  | Charisma / С…Р°СЂРёР·РјР°         |
+   8 | Power /Р­РЅРµСЂРіРµС‚РёС‡РµСЃРєРѕРµ | Perception / Р—РѕСЂРєРёР№ РіР»Р°Р·            | Safe crack / РІР·Р»РѕРј СЃРµР№С„РѕРІ          | -------------------------- |
+   9 | Shotguns / РґСЂРѕР±РѕРІРёРєРё  | Leadership / Р»РёРґРµСЂСЃС‚РІРѕ              | PickLock / РІР·Р»РѕРј Р·Р°РјРєРѕРІ            | -------------------------- |
+  10 | Guns / РїРёСЃС‚РѕР»РµС‚С‹      | Barter / РјРµРЅСЏР»Р°                     | ---------------------------------- | -------------------------- |
+  11 | --------------------- | Weapon smith / РѕСЂСѓР¶РµР№РЅРёРє            | ---------------------------------- | -------------------------- |
+  12 | --------------------- | Manipulate / С…РёС‚СЂРѕР¶РѕРїС‹Р№             | ---------------------------------- | -------------------------- |}
 
   for var i: integer := 1 to 4 do
   begin

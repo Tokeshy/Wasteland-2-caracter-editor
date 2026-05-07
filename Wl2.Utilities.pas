@@ -148,10 +148,15 @@ function LoadAsText(const aFileLocation: String): String;
 var
   lTextFile: tFile;
 begin
-  var TempFileName: String := CutextensionEnding(aFileLocation + '.txt');
-  RenameFile(aFileLocation, TempFileName);
-  Result := lTextFile.ReadAllText(TempFileName, TEncoding.UTF8);
-  RenameFile(TempFileName, aFileLocation);
+  try
+    var TempFileName: String := CutextensionEnding(aFileLocation + '.txt');
+    RenameFile(aFileLocation, TempFileName);
+    Result := lTextFile.ReadAllText(TempFileName, TEncoding.UTF8);
+    RenameFile(TempFileName, aFileLocation);
+  except
+    on E: Exception do
+      raise Exception.Create('Failed to load text from file: ' + E.Message);
+  end;
 end;
 
 function SaveAsText(const aFileLocation, aTextToSave: String): Boolean;
@@ -159,8 +164,13 @@ var
   lTextFile: tFile;
 begin
   Result := false;
-  lTextFile.WriteAllText(aFileLocation, aTextToSave);
-  Result := True;
+  try
+    lTextFile.WriteAllText(aFileLocation, aTextToSave);
+    Result := True;
+  except
+    on E: Exception do
+      raise Exception.Create('Failed to save text to file: ' + E.Message);
+  end;
 end;
 
 procedure OpenLink(const aLink: pWideChar);
