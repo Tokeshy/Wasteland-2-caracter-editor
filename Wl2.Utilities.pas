@@ -174,7 +174,19 @@ begin
 end;
 
 procedure OpenLink(const aLink: pWideChar);
+var
+  linkStr: string;
 begin
+  linkStr := string(aLink);
+  // Basic validation: allow only https URLs from trusted domains
+  if not (linkStr.StartsWith('https://') and
+          ((Pos('patreon.com', linkStr) > 0) or
+           (Pos('youtube.com', linkStr) > 0) or
+           (Pos('linkedin.com', linkStr) > 0) or
+           (Pos('xing.com', linkStr) > 0) or
+           (Pos('paypal.com', linkStr) > 0) or
+           (Pos('wixsite.com', linkStr) > 0))) then
+    raise Exception.Create('Invalid or untrusted URL: ' + linkStr);
   ShellExecute(0, 'open', aLink, '', '', SW_SHOWNORMAL);
 end;
 
