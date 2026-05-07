@@ -12,8 +12,8 @@ uses
 
 const
   BarsAndEditPrefixSet: array[1..4] of array[1..5] of string = (('WSPB', 'WSTB', 'WSL', 'WSI', '10'), ('RSPB', 'RSTB', 'RSL', 'RSI', '12'), ('TSPB', 'TSTB', 'TSL', 'TSI', '9'), ('ASPB', 'ASTB', 'ASL', 'ASI', '7'));
-  CmbbCaracterTextsHint: array [0 .. 1] of string = ('Select unit', 'Выбрать персонаж');
-  CmbbCaracterHint: array [0 .. 1] of array [0 .. 1] of string =  (('Founded ', ' caracters'), ('Найдено ', ' юнитов'));
+  CmbbCaracterTextsHint: array [0 .. 1] of string = ('Select unit', 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ');
+  CmbbCaracterHint: array [0 .. 1] of array [0 .. 1] of string =  (('Founded ', ' caracters'), ('пїЅпїЅпїЅпїЅпїЅпїЅпїЅ ', ' пїЅпїЅпїЅпїЅпїЅпїЅ'));
   ButtonsNamesList: array [1 .. 6] of string = ('Btn_CaracSave', 'Btn_ScanCaracter', 'Btn_Quit', 'Btn_RRSave', 'Btn_OpenSave', 'Btn_ScanSave');
   EditsNamesList: array [1 .. 40] of string = ('edCaracterCounter', 'Edt_WpnS1', 'Edt_WpnS10', 'Edt_WpnS2', 'Edt_WpnS3', 'Edt_WpnS4', 'Edt_WpnS5', 'Edt_WpnS6', 'Edt_WpnS7', 'Edt_WpnS8', 'Edt_WpnS9', 'Edt_RS1',
     'Edt_RS10', 'Edt_RS11', 'Edt_RS12', 'Edt_RS2', 'Edt_RS3', 'Edt_RS4', 'Edt_RS5', 'Edt_RS6', 'Edt_RS7', 'Edt_RS8', 'Edt_RS9', 'Edt_TechS1', 'Edt_TechS2', 'Edt_TechS3', 'Edt_TechS4', 'Edt_TechS5', 'Edt_TechS6',
@@ -22,29 +22,29 @@ const
     'Grp_CurUnitAtrSkill', 'Grp_AtrCurrLvl', 'Grp_AtrAplyLvl');
   LabelsNamesList: array [1 .. 6] of string = ('Lbl_Sex', 'Lbl_Age', 'Lbl_CurrLvl', 'Lbl_CurrHP', 'Lbl_MaxHP', 'Lbl_FreeSkPnt');
   MenuItemsNames: array [1 .. 8] of string = ('MIt_DevInfo', 'MIt_ProjectInfo', 'MIt_Coffee', 'MIt_FollowPatreon', 'MIt_InfoSection', 'MIt_AboutProject', 'MIt_HowToUse', 'MEContactDev');
-  MenuItemsCaptions: array [1 .. 8] of array [0 .. 1] of string = (('Support project', 'Поддержать проект'), ('Help', 'О проекте (Help)'), ('Buy coffee for developer',
-    'Купить кофе разработчику'), ('Follow on patreon', 'поддержать на Patreon'), ('Info', 'Инфо'), ('About project', 'О проекте'), ('How to use', 'Как пользоваться'), ('Contact developer', 'Контакт с разработчиком'));
+  MenuItemsCaptions: array [1 .. 8] of array [0 .. 1] of string = (('Support project', 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ'), ('Help', 'пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ (Help)'), ('Buy coffee for developer',
+    'пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ'), ('Follow on patreon', 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ Patreon'), ('Info', 'пїЅпїЅпїЅпїЅ'), ('About project', 'пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ'), ('How to use', 'пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ'), ('Contact developer', 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ'));
 
   ProgressBarsGroups: array [1 .. 4] of string = ('PG_WeaponSkill', 'PG_GeneralSkill', 'PG_TechSkill', 'PG_AttributeSkills');
-  ButtonsCaptions: array [1 .. 6] of array [0 .. 1] of string = (('Save unit', 'Сохранить персонаж'), ('Scan character', 'Сканировать персонаж'), ('Exit', 'Выход'),
-    ('Update SaveGame', 'Сохранить изменения в Save'), ('Select saved game', 'Выбрать сохранённую игру'), ('Scan SaveGame', 'Сканировать Save'));
-  UnitDataCaptions: array [1 .. 40] of array [0 .. 1] of string = (('Total Units', 'Всего юнитов'), ('Blunt weapons', 'Дробящее'), ('Handgun', 'Пистолеты'), ('smg', 'Пист.-пулемёт'),
-    ('Brawling', 'Рукопашная'), ('Sniper rifle', 'Снайперские'), ('F.Big weapons', 'Тяжёлое'), ('Bladed weapons', 'Холодное'), ('Rifle', 'Штурмовые'), ('Energy weapons', 'Энергетическое'),
-    ('Shotgun', 'Дробовики'), ('Calvin Backer skill', '"Знаток запада"'), ('Barter', 'Меняла'), ('weapon smith', 'Оружейник'), ('Manipulate', 'Хитрожопый'), ('Combat shooting', 'Стрелок'),
-    ('Outdoorsman', 'Выживание'), ('Brute force', 'Грубая сила'), ('Animal Whisperer', 'Дрессировщик'), ('Spot lie', 'Жополиз'), ('Intimidate', 'Задира'), ('Perception', 'Зоркий глаз'),
-    ('Leadership', 'Лидерство'), ('Demolitions', 'Взрывотехника'), ('Computer tech', 'Компьютеры'), ('Mechanical repair', 'Механика'), ('Field medic', 'Полевая мед.'),
-    ('Toaster repair', 'Ремонт тостеров'), ('Alarm disarm', 'Снятие сигнализ.'), ('Doctor', 'Хирургия'), ('Safe crack', 'Взлом сейфов'), ('PickLock', 'Взлом замков'),
-    ('Coordination', 'Координация'), ('Luck', 'Удача'), ('Awareness', 'Восприятие'), ('Strength', 'Сила'), ('Speed', 'Скорость'), ('Intelligence', 'Интеллект'), ('Charisma', 'Харизма'),
-    ('Selected SaveGame', 'выбранный SaveGame'));
-  GeneralInfoAdditionalLabels: array [0 .. 3] of array [0 .. 1] of string =  (('Selected unit', 'Выбранный юнит'), ('Skill', 'Навык'), ('Current level', 'Текущий уровень'), ('Applicable level', 'Применяемый уровень'));
-  GeneralInfoLabels: array [1 .. 6] of array [0 .. 1] of string = (('Sex', 'Пол'), ('Age', 'Возраст'), ('Level', 'Уровень'), ('Current HP', 'Tекущие HP'), ('Max HP', 'Максимальные HP'),
-    ('Free Skils', 'Свободные Skil' + #39 + 'ы'));
-  SkillsGroupsCaptions: array [1 .. 4] of array [0 .. 1] of string =  (('Weapons', 'Оружейные'), ('General', 'Общие'), ('Technical', 'Технические'), ('Attributes', 'Атрибуты'));
+  ButtonsCaptions: array [1 .. 6] of array [0 .. 1] of string = (('Save unit', 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ'), ('Scan character', 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ'), ('Exit', 'пїЅпїЅпїЅпїЅпїЅ'),
+    ('Update SaveGame', 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ Save'), ('Select saved game', 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ'), ('Scan SaveGame', 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ Save'));
+  UnitDataCaptions: array [1 .. 40] of array [0 .. 1] of string = (('Total Units', 'пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ'), ('Blunt weapons', 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ'), ('Handgun', 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ'), ('smg', 'пїЅпїЅпїЅпїЅ.-пїЅпїЅпїЅпїЅпїЅпїЅ'),
+    ('Brawling', 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ'), ('Sniper rifle', 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ'), ('F.Big weapons', 'пїЅпїЅпїЅпїЅпїЅпїЅ'), ('Bladed weapons', 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ'), ('Rifle', 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ'), ('Energy weapons', 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ'),
+    ('Shotgun', 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ'), ('Calvin Backer skill', '"пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ"'), ('Barter', 'пїЅпїЅпїЅпїЅпїЅпїЅ'), ('weapon smith', 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ'), ('Manipulate', 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ'), ('Combat shooting', 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅ'),
+    ('Outdoorsman', 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ'), ('Brute force', 'пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ'), ('Animal Whisperer', 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ'), ('Spot lie', 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅ'), ('Intimidate', 'пїЅпїЅпїЅпїЅпїЅпїЅ'), ('Perception', 'пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ'),
+    ('Leadership', 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ'), ('Demolitions', 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ'), ('Computer tech', 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ'), ('Mechanical repair', 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ'), ('Field medic', 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ.'),
+    ('Toaster repair', 'пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ'), ('Alarm disarm', 'пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.'), ('Doctor', 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ'), ('Safe crack', 'пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ'), ('PickLock', 'пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ'),
+    ('Coordination', 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ'), ('Luck', 'пїЅпїЅпїЅпїЅпїЅ'), ('Awareness', 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ'), ('Strength', 'пїЅпїЅпїЅпїЅ'), ('Speed', 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ'), ('Intelligence', 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ'), ('Charisma', 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅ'),
+    ('Selected SaveGame', 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ SaveGame'));
+  GeneralInfoAdditionalLabels: array [0 .. 3] of array [0 .. 1] of string =  (('Selected unit', 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ'), ('Skill', 'пїЅпїЅпїЅпїЅпїЅ'), ('Current level', 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ'), ('Applicable level', 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ'));
+  GeneralInfoLabels: array [1 .. 6] of array [0 .. 1] of string = (('Sex', 'пїЅпїЅпїЅ'), ('Age', 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅ'), ('Level', 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅ'), ('Current HP', 'TпїЅпїЅпїЅпїЅпїЅпїЅ HP'), ('Max HP', 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ HP'),
+    ('Free Skils', 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ Skil' + #39 + 'пїЅ'));
+  SkillsGroupsCaptions: array [1 .. 4] of array [0 .. 1] of string =  (('Weapons', 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ'), ('General', 'пїЅпїЅпїЅпїЅпїЅ'), ('Technical', 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ'), ('Attributes', 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ'));
 
   VideoInstructionLink: array [0..1] of string = ('https://www.youtube.com/watch?v=LeS7QBcF6zI', 'https://www.youtube.com/watch?v=EORiIPeyx2Y');
-  NoBiographyText: array [0..1] of string = ('No biography info detected', 'Раздел биографии не заполнен');
-  SaveRequestText: array [0..1] of String = ('Do you want to save changes in current SaveGame?', 'Сохранить изменения в текущем SaveGame?');
-  SavingMessage: array [0..1] of array [0..1] of String = (('Saving of current file Failed.', 'Сохранить текущий файл не удалось.'), ('Saving of current file was sucsesfull.', 'Сохранение прошло успешно.'));
+  NoBiographyText: array [0..1] of string = ('No biography info detected', 'пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ');
+  SaveRequestText: array [0..1] of String = ('Do you want to save changes in current SaveGame?', 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ SaveGame?');
+  SavingMessage: array [0..1] of array [0..1] of String = (('Saving of current file Failed.', 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.'), ('Saving of current file was sucsesfull.', 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.'));
 var
   NoBioText, VideoLink : string;
 
@@ -118,10 +118,32 @@ begin
           3: lCurrentSkillValue := RawSkillValueToNormal(strtointdef(aCaracterData.GetTechnicalSkill(j), 0));
           4: lCurrentSkillValue := RawAttributeValueToNormal(strtointdef(aCaracterData.GetAttributesSkill(j), 0));
         end;
-        (FindComponent(BarsAndEditPrefixSet[i][1] + inttostr(j)) as TProgressbar).position := lCurrentSkillValue;
-        (FindComponent(BarsAndEditPrefixSet[i][2] + inttostr(j)) as TTrackbar).position := lCurrentSkillValue;
-        (FindComponent(BarsAndEditPrefixSet[i][3] + inttostr(j)) as TEdit).Text := inttostr(lCurrentSkillValue) + '/10';
-        (FindComponent(BarsAndEditPrefixSet[i][4] + inttostr(j)) as TEdit).Text := inttostr(lCurrentSkillValue) + '/10';
+        case i of
+          1: begin
+               frmWL2Main.WSPB[j].Position := lCurrentSkillValue;
+               frmWL2Main.WSTB[j].Position := lCurrentSkillValue;
+               frmWL2Main.WSL[j].Text := inttostr(lCurrentSkillValue) + '/10';
+               frmWL2Main.WSI[j].Text := inttostr(lCurrentSkillValue) + '/10';
+             end;
+          2: begin
+               frmWL2Main.RSPB[j].Position := lCurrentSkillValue;
+               frmWL2Main.RSTB[j].Position := lCurrentSkillValue;
+               frmWL2Main.RSL[j].Text := inttostr(lCurrentSkillValue) + '/10';
+               frmWL2Main.RSI[j].Text := inttostr(lCurrentSkillValue) + '/10';
+             end;
+          3: begin
+               frmWL2Main.TSPB[j].Position := lCurrentSkillValue;
+               frmWL2Main.TSTB[j].Position := lCurrentSkillValue;
+               frmWL2Main.TSL[j].Text := inttostr(lCurrentSkillValue) + '/10';
+               frmWL2Main.TSI[j].Text := inttostr(lCurrentSkillValue) + '/10';
+             end;
+          4: begin
+               frmWL2Main.ASPB[j].Position := lCurrentSkillValue;
+               frmWL2Main.ASTB[j].Position := lCurrentSkillValue;
+               frmWL2Main.ASL[j].Text := inttostr(lCurrentSkillValue) + '/10';
+               frmWL2Main.ASI[j].Text := inttostr(lCurrentSkillValue) + '/10';
+             end;
+        end;
       end;
     end;
   end;
@@ -139,13 +161,13 @@ begin
   with WL2.SavegameEditor.frmWL2Main do
   begin
     for i := 1 to 10 do
-      (FindComponent('WSL' + inttostr(i)) as TEdit).Text := inttostr((FindComponent('WSTB' + inttostr(i)) as TTrackbar).position) + '/10';
+      WSL[i].Text := inttostr(WSTB[i].Position) + '/10';
     for i := 1 to 12 do
-      (FindComponent('RSL' + inttostr(i)) as TEdit).Text := inttostr((FindComponent('RSTB' + inttostr(i)) as TTrackbar).position) + '/10';
+      RSL[i].Text := inttostr(RSTB[i].Position) + '/10';
     for i := 1 to 9 do
-      (FindComponent('TSL' + inttostr(i)) as TEdit).Text := inttostr((FindComponent('TSTB' + inttostr(i)) as TTrackbar).position) + '/10';
+      TSL[i].Text := inttostr(TSTB[i].Position) + '/10';
     for i := 1 to 7 do
-      (FindComponent('ASL' + inttostr(i)) as TEdit).Text := inttostr((FindComponent('ASTB' + inttostr(i)) as TTrackbar).position) + '/10';
+      ASL[i].Text := inttostr(ASTB[i].Position) + '/10';
   end;
 end;
 

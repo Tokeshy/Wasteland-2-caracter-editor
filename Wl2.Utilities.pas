@@ -200,28 +200,28 @@ begin
   begin
     for i := 1 to 10 do
     begin
-      skillValue := (FindComponent('WSTB' + inttostr(i)) as TTrackbar).position;
+      skillValue := WSTB[i].Position;
       if (skillValue < 0) or (skillValue > 10) then
         raise Exception.Create('Invalid weapon skill value for skill ' + inttostr(i) + ': ' + inttostr(skillValue));
       Result.SetWeaponSkill(i, DigitSkillValueToRaw(skillValue));
     end;
     for i := 1 to 12 do
     begin
-      skillValue := (FindComponent('RSTB' + inttostr(i)) as TTrackbar).position;
+      skillValue := RSTB[i].Position;
       if (skillValue < 0) or (skillValue > 10) then
         raise Exception.Create('Invalid general skill value for skill ' + inttostr(i) + ': ' + inttostr(skillValue));
       Result.SetGeneralSkill(i, DigitSkillValueToRaw(skillValue));
     end;
     for i := 1 to 9 do
     begin
-      skillValue := (FindComponent('TSTB' + inttostr(i)) as TTrackbar).position;
+      skillValue := TSTB[i].Position;
       if (skillValue < 0) or (skillValue > 10) then
         raise Exception.Create('Invalid technical skill value for skill ' + inttostr(i) + ': ' + inttostr(skillValue));
       Result.SetTechnicalSkill(i, DigitSkillValueToRaw(skillValue));
     end;
     for i := 1 to 7 do
     begin
-      skillValue := (FindComponent('ASTB' + inttostr(i)) as TTrackbar).position;
+      skillValue := ASTB[i].Position;
       if (skillValue < 1) or (skillValue > 10) then
         raise Exception.Create('Invalid attribute value for attribute ' + inttostr(i) + ': ' + inttostr(skillValue));
       Result.SetAttributesSkill(i, DigitAttributeValueToRaw(skillValue));

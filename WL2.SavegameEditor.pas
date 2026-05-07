@@ -196,6 +196,26 @@ type
 
   private
     { Private declarations }
+    Edt_WpnS: array[1..10] of TEdit;
+    WSPB: array[1..10] of TProgressBar;
+    WSTB: array[1..10] of TTrackBar;
+    WSL: array[1..10] of TEdit;
+    WSI: array[1..10] of TEdit;
+    Edt_RS: array[1..12] of TEdit;
+    RSPB: array[1..12] of TProgressBar;
+    RSTB: array[1..12] of TTrackBar;
+    RSL: array[1..12] of TEdit;
+    RSI: array[1..12] of TEdit;
+    Edt_TechS: array[1..9] of TEdit;
+    TSPB: array[1..9] of TProgressBar;
+    TSTB: array[1..9] of TTrackBar;
+    TSL: array[1..9] of TEdit;
+    TSI: array[1..9] of TEdit;
+    Edt_AS: array[1..7] of TEdit;
+    ASPB: array[1..7] of TProgressBar;
+    ASTB: array[1..7] of TTrackBar;
+    ASL: array[1..7] of TEdit;
+    ASI: array[1..7] of TEdit;
   public
     property SelectedLangId: Integer read fSelectedLangId write fSelectedLangId;
 
@@ -284,11 +304,47 @@ begin
 end;
 
 procedure TfrmWL2Main.FormCreate(Sender: TObject);
+var
+  i: integer;
 begin
   frmWL2Main.Caption := frmWL2Main.Caption + CurrentVersion;
   SelectedLangId := 0;
   Translate(SelectedLangId);
   Mem_CrBio.Clear;
+
+  // Initialize component arrays
+  for i := 1 to 10 do
+  begin
+    Edt_WpnS[i] := TEdit(FindComponent('Edt_WpnS' + IntToStr(i)));
+    WSPB[i] := TProgressBar(FindComponent('WSPB' + IntToStr(i)));
+    WSTB[i] := TTrackBar(FindComponent('WSTB' + IntToStr(i)));
+    WSL[i] := TEdit(FindComponent('WSL' + IntToStr(i)));
+    WSI[i] := TEdit(FindComponent('WSI' + IntToStr(i)));
+  end;
+  for i := 1 to 12 do
+  begin
+    Edt_RS[i] := TEdit(FindComponent('Edt_RS' + IntToStr(i)));
+    RSPB[i] := TProgressBar(FindComponent('RSPB' + IntToStr(i)));
+    RSTB[i] := TTrackBar(FindComponent('RSTB' + IntToStr(i)));
+    RSL[i] := TEdit(FindComponent('RSL' + IntToStr(i)));
+    RSI[i] := TEdit(FindComponent('RSI' + IntToStr(i)));
+  end;
+  for i := 1 to 9 do
+  begin
+    Edt_TechS[i] := TEdit(FindComponent('Edt_TechS' + IntToStr(i)));
+    TSPB[i] := TProgressBar(FindComponent('TSPB' + IntToStr(i)));
+    TSTB[i] := TTrackBar(FindComponent('TSTB' + IntToStr(i)));
+    TSL[i] := TEdit(FindComponent('TSL' + IntToStr(i)));
+    TSI[i] := TEdit(FindComponent('TSI' + IntToStr(i)));
+  end;
+  for i := 1 to 7 do
+  begin
+    Edt_AS[i] := TEdit(FindComponent('Edt_AS' + IntToStr(i)));
+    ASPB[i] := TProgressBar(FindComponent('ASPB' + IntToStr(i)));
+    ASTB[i] := TTrackBar(FindComponent('ASTB' + IntToStr(i)));
+    ASL[i] := TEdit(FindComponent('ASL' + IntToStr(i)));
+    ASI[i] := TEdit(FindComponent('ASI' + IntToStr(i)));
+  end;
 end;
 
 procedure TfrmWL2Main.Btn_RRSaveClick(Sender: TObject);
