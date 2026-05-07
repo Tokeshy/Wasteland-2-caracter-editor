@@ -349,8 +349,13 @@ end;
 
 procedure TfrmWL2Main.SyncCaracterValues(Sender: TObject);
 begin
-  SaveGameData.UpdateCaracter(CmbbCaracters.ItemIndex, SetNewSkillValues(SaveGameData.GetCaracterData(CmbbCaracters.ItemIndex)));
-  SyncInterfaceAndCaracterData(SaveGameData.GetCaracterData(CmbbCaracters.ItemIndex));
+  try
+    SaveGameData.UpdateCaracter(CmbbCaracters.ItemIndex, SetNewSkillValues(SaveGameData.GetCaracterData(CmbbCaracters.ItemIndex)));
+    SyncInterfaceAndCaracterData(SaveGameData.GetCaracterData(CmbbCaracters.ItemIndex));
+  except
+    on E: Exception do
+      MessageDlg('Error updating character values: ' + E.Message, mtError, [mbOk], 0);
+  end;
 end;
 
 procedure TfrmWL2Main.SyncTrackBarPosition(Sender: TObject);

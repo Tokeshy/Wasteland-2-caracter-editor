@@ -181,18 +181,39 @@ end;
 function SetNewSkillValues(const aUpdatedCaracter: TCaracterData): TCaracterData;
 var
   i: integer;
+  skillValue: integer;
 begin
   result := aUpdatedCaracter;
   with WL2.SavegameEditor.frmWL2Main do
   begin
     for i := 1 to 10 do
-      Result.SetWeaponSkill(i, DigitSkillValueToRaw((FindComponent('WSTB' + inttostr(i)) as TTrackbar).position));
+    begin
+      skillValue := (FindComponent('WSTB' + inttostr(i)) as TTrackbar).position;
+      if (skillValue < 0) or (skillValue > 10) then
+        raise Exception.Create('Invalid weapon skill value for skill ' + inttostr(i) + ': ' + inttostr(skillValue));
+      Result.SetWeaponSkill(i, DigitSkillValueToRaw(skillValue));
+    end;
     for i := 1 to 12 do
-      Result.SetGeneralSkill(i, DigitSkillValueToRaw((FindComponent('RSTB' + inttostr(i)) as TTrackbar).position));
+    begin
+      skillValue := (FindComponent('RSTB' + inttostr(i)) as TTrackbar).position;
+      if (skillValue < 0) or (skillValue > 10) then
+        raise Exception.Create('Invalid general skill value for skill ' + inttostr(i) + ': ' + inttostr(skillValue));
+      Result.SetGeneralSkill(i, DigitSkillValueToRaw(skillValue));
+    end;
     for i := 1 to 9 do
-      Result.SetTechnicalSkill(i, DigitSkillValueToRaw((FindComponent('TSTB' + inttostr(i)) as TTrackbar).position));
+    begin
+      skillValue := (FindComponent('TSTB' + inttostr(i)) as TTrackbar).position;
+      if (skillValue < 0) or (skillValue > 10) then
+        raise Exception.Create('Invalid technical skill value for skill ' + inttostr(i) + ': ' + inttostr(skillValue));
+      Result.SetTechnicalSkill(i, DigitSkillValueToRaw(skillValue));
+    end;
     for i := 1 to 7 do
-      Result.SetAttributesSkill(i, DigitAttributeValueToRaw((FindComponent('ASTB' + inttostr(i)) as TTrackbar).position));
+    begin
+      skillValue := (FindComponent('ASTB' + inttostr(i)) as TTrackbar).position;
+      if (skillValue < 1) or (skillValue > 10) then
+        raise Exception.Create('Invalid attribute value for attribute ' + inttostr(i) + ': ' + inttostr(skillValue));
+      Result.SetAttributesSkill(i, DigitAttributeValueToRaw(skillValue));
+    end;
   end;
 end;
 
