@@ -259,7 +259,7 @@ end;
 
 procedure TfrmWL2Main.MIt_HowToUseClick(Sender: TObject);
 begin
-   OpenLink(Pchar(VideoLink));
+   OpenLink(Pchar(WL2.Resources.VideoLink));
 end;
 
 procedure TfrmWL2Main.MIt_AboutProjectClick(Sender: TObject);

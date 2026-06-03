@@ -335,7 +335,7 @@ begin
   lWorkTempStr := Result.ReadOnlyDefaultTextRecord;
   delete (lWorkTempStr, 1, (pos(BiographyPrefixes[0], lWorkTempStr)-1));
   if pos(BiographyPrefixes[0], lWorkTempStr) = 0 then
-    Result.Biography := NoBioText
+    Result.Biography := WL2.Resources.NoBioText
   else
     begin
       delete (lWorkTempStr, (pos(BiographyPrefixes[1], lWorkTempStr)), Length(lWorkTempStr));
