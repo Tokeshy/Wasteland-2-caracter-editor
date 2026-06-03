@@ -101,6 +101,7 @@
         </DCCReference>
         <DCCReference Include="WL2.EditorInterface.pas"/>
         <DCCReference Include="WL2.Classes.pas"/>
+        <DCCReference Include="WL2.Resources.pas"/>
         <DCCReference Include="Wl2.Utilities.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
