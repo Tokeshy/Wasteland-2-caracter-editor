@@ -19,6 +19,7 @@ interface
   function DigitAttributeValueToRaw(const aPositionValue: string): string; overload;
 
   function CutextensionEnding(const aInput: String): string;
+  function TryLoadXmlDocument(const aFileLocation: String; out aDoc: IXMLDocument): Boolean;
   function LoadAsText(const aFileLocation: String): String;
   function SaveAsText(const aFileLocation, aTextToSave: String): Boolean;
   function SetNewSkillValues(const aUpdatedCaracter: TCaracterData): TCaracterData;
@@ -27,7 +28,8 @@ interface
 
 implementation
   uses
-    System.SysUtils, System.IOUtils, ShellAPI, Winapi.Windows, System.Classes, WL2.SavegameEditor, Vcl.ComCtrls;
+    System.SysUtils, System.IOUtils, ShellAPI, Winapi.Windows, System.Classes, WL2.SavegameEditor, Vcl.ComCtrls,
+    Xml.XMLDoc, Xml.XMLIntf, Xml.Win.msxmldom;
 
 function CleanRawData(const aSourceString, aLimiter: string; const aExpectedLength: integer): string;
 begin
@@ -144,15 +146,28 @@ begin
   delete(Result, (Result.length-3), Result.length);
 end;
 
+function TryLoadXmlDocument(const aFileLocation: String; out aDoc: IXMLDocument): Boolean;
+begin
+  Result := False;
+  aDoc := nil;
+  try
+    aDoc := NewXMLDocument;
+    aDoc.LoadFromFile(aFileLocation);
+    aDoc.Options := aDoc.Options + [doNodeAutoCreate, doNodeAutoIndent];
+    aDoc.Active := True;
+    Result := Assigned(aDoc.DocumentElement);
+  except
+    on E: Exception do
+      Result := False;
+  end;
+end;
+
 function LoadAsText(const aFileLocation: String): String;
 var
   lTextFile: tFile;
 begin
   try
-    var TempFileName: String := CutextensionEnding(aFileLocation + '.txt');
-    RenameFile(aFileLocation, TempFileName);
-    Result := lTextFile.ReadAllText(TempFileName, TEncoding.UTF8);
-    RenameFile(TempFileName, aFileLocation);
+    Result := lTextFile.ReadAllText(aFileLocation, TEncoding.UTF8);
   except
     on E: Exception do
       raise Exception.Create('Failed to load text from file: ' + E.Message);

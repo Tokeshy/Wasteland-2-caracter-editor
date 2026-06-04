@@ -94,6 +94,33 @@ implementation
   uses
     Wl2.Utilities, WL2.EditorInterface, System.SysUtils, System.IOUtils, vcl.Dialogs;
 
+function TryExtractCaracterListFromXml(const aFileName: String; const aList: TStringList): Boolean;
+var
+  lDoc: IXMLDocument;
+  lNodes: IXMLNodeList;
+  lNode: IXMLNode;
+  lName: string;
+begin
+  Result := False;
+  aList.Clear;
+  if not TryLoadXmlDocument(aFileName, lDoc) then
+    Exit(False);
+
+  lNodes := lDoc.DocumentElement.GetElementsByTagName('displayName');
+  if lNodes.Count = 0 then
+    lNodes := lDoc.DocumentElement.GetElementsByTagName('name');
+
+  for var i := 0 to lNodes.Count - 1 do
+  begin
+    lNode := lNodes[i];
+    lName := Trim(lNode.Text);
+    if (lName <> '') and (aList.IndexOf(lName) = -1) then
+      aList.Add(lName);
+  end;
+
+  Result := aList.Count > 0;
+end;
+
 constructor TCaracterData.Create;
 begin
 
@@ -247,17 +274,25 @@ end;
 procedure TSaveGameData.ScanSourceForCaracters();
 begin
   fCaracterList.Clear;
-  var lTempString: String := fSaveGameBody;
-  for var i: integer := 0 to Length(lTempString) - Length(CaracterNamePrefixes) do
+
+  if not TryExtractCaracterListFromXml(fLocationOfSourceFile, fCaracterList) then
   begin
-    if copy(lTempString, i, Length(CaracterNamePrefixes)) = CaracterNamePrefixes then
+    var lTempString: String := fSaveGameBody;
+    for var i: integer := 1 to Length(lTempString) - Length(CaracterNamePrefixes) do
     begin
-      var lCaracterName: String := copy(lTempString, i, Length(CaracterNamePrefixes) + 50);
-      delete (lCaracterName, 1, Length(CaracterNamePrefixes));
-      delete (lCaracterName, (pos('{',lCaracterName)), Length(lCaracterName));
-      fCaracterList.add(lCaracterName);
+      if Copy(lTempString, i, Length(CaracterNamePrefixes)) = CaracterNamePrefixes then
+      begin
+        var lCaracterName: String := Copy(lTempString, i + Length(CaracterNamePrefixes), 50);
+        var lBracePos := Pos('{', lCaracterName);
+        if lBracePos > 0 then
+          SetLength(lCaracterName, lBracePos - 1);
+        lCaracterName := Trim(lCaracterName);
+        if (lCaracterName <> '') and (fCaracterList.IndexOf(lCaracterName) = -1) then
+          fCaracterList.Add(lCaracterName);
+      end;
     end;
   end;
+
   SetLength(fCaracterSet, fCaracterList.Count);
   for var lCaracterCounter: Integer := 0 to fCaracterList.Count - 1 do
   begin
