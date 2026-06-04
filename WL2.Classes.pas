@@ -213,6 +213,7 @@ begin
   Result := Result + '</value></pair><pair><key>spotLie</key><value>' + DigitSkillValueToRaw(Self.GetGeneralSkill(6));
   Result := Result + '</value></pair><pair><key>toasterRepair</key><value>' + DigitSkillValueToRaw(Self.GetTechnicalSkill(5));
   Result := Result + '</value></pair><pair><key>weaponSmith</key><value>' + DigitSkillValueToRaw(Self.GetGeneralSkill(11));
+  Result := Result + '</value></pair></skillXps>';
 end;
 
 procedure TCaracterData.RestoreCaracterData(const aCaracterID: Integer);
@@ -319,26 +320,22 @@ end;
 
 function TSaveGameData.SaveCaractersData(): Boolean;
 var
-  lTextFile: tFile;
+  lDoc: IXMLDocument;
 begin
-  Result := false;
+  Result := False;
+  if not TryLoadXmlDocument(fLocationOfSourceFile, lDoc) then
+    Exit(False);
+
   for var lCaracterCounter: Integer := 0 to fCaracterList.Count - 1 do
   begin
-    var lTempPrefix: String := copy(SaveGameBody, 1, pos(fCaracterList[lCaracterCounter], SaveGameBody) - 1);
-    var lPostfix: String := SaveGameBody;
-    delete(lPostfix, 1, length(lTempPrefix) - 1);
-    var lCaracterStaticPart: String := lPostfix;
-    delete(lPostfix, 1, pos(CaractersDataEnd, lPostfix) - 1);
-    lCaracterStaticPart := copy(lCaracterStaticPart, 2, pos('<attributes><pair><key>', lCaracterStaticPart) - 2);
-    var lCaracterSkillsSet: String := fCaracterSet[lCaracterCounter].DefaultTextRecord;
     if fCaracterSet[lCaracterCounter].WasUpdated then
     begin
-      lCaracterSkillsSet := fCaracterSet[lCaracterCounter].GetCaracterSkillsText;
-      fSaveGameBody := lTempPrefix + lCaracterStaticPart + lCaracterSkillsSet + lPostfix;
-    end
-    else
-      fSaveGameBody := lTempPrefix + lCaracterStaticPart + lPostfix;
+      if not UpdateCharacterNodeFromData(lDoc, fCaracterList[lCaracterCounter], fCaracterSet[lCaracterCounter]) then
+        Exit(False);
+    end;
   end;
+
+  fSaveGameBody := lDoc.XML;
   Result := True;
 end;
 
