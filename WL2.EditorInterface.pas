@@ -75,53 +75,34 @@ begin
     Edt_MaxHP.Text := aCaracterData.MaxHP;
     Edt_FreeSkPnt.Text := aCaracterData.FreeSkillPoints;
     Mem_CrBio.Text := aCaracterData.Biography;
-
-
-    for var i: integer := 1 to 4 do
-    begin
-      for var j: integer := 1 to strtoint(WL2.Resources.BarsAndEditPrefixSet[i][5]) do
-      begin
-        var lCurrentSkillValue: Integer := 0;
-        case i of
-          1: lCurrentSkillValue := RawSkillValueToNormal(strtointdef(aCaracterData.GetWeaponSkill(j), 0));
-          2: lCurrentSkillValue := RawSkillValueToNormal(strtointdef(aCaracterData.GetGeneralSkill(j), 0));
-          3: lCurrentSkillValue := RawSkillValueToNormal(strtointdef(aCaracterData.GetTechnicalSkill(j), 0));
-          4: lCurrentSkillValue := RawAttributeValueToNormal(strtointdef(aCaracterData.GetAttributesSkill(j), 0));
-        end;
-        case i of
-          1: begin
-               frmWL2Main.WSPB[j].Position := lCurrentSkillValue;
-               frmWL2Main.WSTB[j].Position := lCurrentSkillValue;
-               frmWL2Main.WSL[j].Text := inttostr(lCurrentSkillValue) + '/10';
-               frmWL2Main.WSI[j].Text := inttostr(lCurrentSkillValue) + '/10';
-             end;
-          2: begin
-               frmWL2Main.RSPB[j].Position := lCurrentSkillValue;
-               frmWL2Main.RSTB[j].Position := lCurrentSkillValue;
-               frmWL2Main.RSL[j].Text := inttostr(lCurrentSkillValue) + '/10';
-               frmWL2Main.RSI[j].Text := inttostr(lCurrentSkillValue) + '/10';
-             end;
-          3: begin
-               frmWL2Main.TSPB[j].Position := lCurrentSkillValue;
-               frmWL2Main.TSTB[j].Position := lCurrentSkillValue;
-               frmWL2Main.TSL[j].Text := inttostr(lCurrentSkillValue) + '/10';
-               frmWL2Main.TSI[j].Text := inttostr(lCurrentSkillValue) + '/10';
-             end;
-          4: begin
-               frmWL2Main.ASPB[j].Position := lCurrentSkillValue;
-               frmWL2Main.ASTB[j].Position := lCurrentSkillValue;
-               frmWL2Main.ASL[j].Text := inttostr(lCurrentSkillValue) + '/10';
-               frmWL2Main.ASI[j].Text := inttostr(lCurrentSkillValue) + '/10';
-             end;
-        end;
-      end;
-    end;
   end;
+
+  FillBarsAndEdits(aCaracterData);
 end;
 
 procedure FillBarsAndEdits(const aCaracterData: TCaracterData);
 begin
+  with WL2.SavegameEditor.frmWL2Main do
+  begin
+    for var i := 1 to 4 do
+    begin
+      for var j := 1 to StrToInt(WL2.Resources.BarsAndEditPrefixSet[i][5]) do
+      begin
+        var lCurrentSkillValue: Integer := 0;
+        case i of
+          1: lCurrentSkillValue := RawSkillValueToNormal(StrToIntDef(aCaracterData.GetWeaponSkill(j), 0));
+          2: lCurrentSkillValue := RawSkillValueToNormal(StrToIntDef(aCaracterData.GetGeneralSkill(j), 0));
+          3: lCurrentSkillValue := RawSkillValueToNormal(StrToIntDef(aCaracterData.GetTechnicalSkill(j), 0));
+          4: lCurrentSkillValue := RawAttributeValueToNormal(StrToIntDef(aCaracterData.GetAttributesSkill(j), 0));
+        end;
 
+        FindMainFormComponent<TProgressBar>(WL2.Resources.BarsAndEditPrefixSet[i][1] + IntToStr(j)).Position := lCurrentSkillValue;
+        FindMainFormComponent<TTrackBar>(WL2.Resources.BarsAndEditPrefixSet[i][2] + IntToStr(j)).Position := lCurrentSkillValue;
+        FindMainFormComponent<TEdit>(WL2.Resources.BarsAndEditPrefixSet[i][3] + IntToStr(j)).Text := IntToStr(lCurrentSkillValue) + '/10';
+        FindMainFormComponent<TEdit>(WL2.Resources.BarsAndEditPrefixSet[i][4] + IntToStr(j)).Text := IntToStr(lCurrentSkillValue) + '/10';
+      end;
+    end;
+  end;
 end;
 
 procedure RefreshValuesByTrackBar();
